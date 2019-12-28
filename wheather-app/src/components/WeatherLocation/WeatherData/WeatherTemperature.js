@@ -9,6 +9,7 @@ import {
     RAIN,
     SNOW
 } from './../../../constants/weathers';
+import './styles.css';
 
 const iconsMap = {
     [CLOUD]: 'wi-day-sunny',
@@ -30,7 +31,7 @@ const getWeatherIcon = weatherState =>{
 }
 
 const WeatherTemperature = ({temperature, weatherState})=>(
-    <div>
+    <div className="weatherTemperatureContainer">
         {getWeatherIcon(weatherState)}
         <span>
             {`${temperature} C°`}
