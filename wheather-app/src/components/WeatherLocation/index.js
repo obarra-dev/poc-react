@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import PropTypes from 'prop-types';
-import { SUN } from '../../constants/weathers';
 import {api_open_weather} from '../../constants/api-url'
+import { SUN } from '../../constants/weathers';
+import transformWeather from './../../services/transformWeather';
 
 
 const firstData = {
@@ -28,6 +29,7 @@ const secondData = {
 class WeatherLocation extends Component{
 
     constructor(){
+        console.log("constructor...");
         super();
         this.state = {
             city: firstData.city,
@@ -35,12 +37,34 @@ class WeatherLocation extends Component{
         }
     }
 
+    componentDidMount() {
+        console.log("componentDidMount...");
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log("componentDidUpdate...");
+    }
+    
+    componentWillMount() {
+        console.log("componentWillMount...");
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log("componentWillUpdate...");
+    }
+    
+    
+    
+
     handlerButtonUpdate = () => {
         console.log("invoking: " + api_open_weather);
         fetch(api_open_weather)
             .then(resolve => {return resolve.json()})
             .then(data => {
-                console.log(data)
+                console.log(data);
+                debugger;
+                this.setState({
+                    data: transformWeather(data)
+                });
             })
         
         if(this.state.city ===firstData.city){
@@ -58,6 +82,7 @@ class WeatherLocation extends Component{
     }
 
     render(){
+        console.log("render...");
         return (
             <div>
                 <Location city={this.state.city} ></Location>
