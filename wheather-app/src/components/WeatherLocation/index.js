@@ -6,7 +6,6 @@ import {api_open_weather} from '../../constants/api-url'
 import { SUN } from '../../constants/weathers';
 import transformWeather from './../../services/transformWeather';
 
-
 const firstData = {
     //TODO si city se elimina no tira error de validacion xq
     city: 'Cordoba',
@@ -33,12 +32,13 @@ class WeatherLocation extends Component{
         super();
         this.state = {
             city: firstData.city,
-            data: firstData
+            data: null
         }
     }
 
     componentDidMount() {
         console.log("componentDidMount...");
+        this.handlerButtonUpdate();
     }
     componentDidUpdate(prevProps, prevState) {
         console.log("componentDidUpdate...");
@@ -66,7 +66,7 @@ class WeatherLocation extends Component{
                     data: transformWeather(data)
                 });
             })
-        
+        /** 
         if(this.state.city ===firstData.city){
             this.setState({
                 city: secondData.city,
@@ -78,15 +78,17 @@ class WeatherLocation extends Component{
                 data: firstData
             });
         }
-        
+        */
     }
 
     render(){
         console.log("render...");
+        const {data, city} = this.state;
         return (
             <div>
-                <Location city={this.state.city} ></Location>
-                <WeatherData data={this.state.data}></WeatherData>
+                <Location city={city} ></Location>
+                {data? <WeatherData data={data}></WeatherData>: "Cargando..."}
+                
                 <button onClick={this.handlerButtonUpdate}>Update</button>
             </div>
         );
