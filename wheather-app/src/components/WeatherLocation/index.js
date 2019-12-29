@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import PropTypes from 'prop-types';
-import {api_open_weather} from '../../constants/api-url'
+import getURLWeatherByCity from '../../services/getURLWeatherByCity'
 import { SUN } from '../../constants/weathers';
 import transformWeather from './../../services/transformWeather';
 
@@ -27,11 +27,12 @@ const secondData = {
 
 class WeatherLocation extends Component{
 
-    constructor(){
+    constructor(props){
         console.log("constructor...");
-        super();
+        super(props);
+        const {city} = props;
         this.state = {
-            city: firstData.city,
+            city,
             data: null
         }
     }
@@ -52,12 +53,10 @@ class WeatherLocation extends Component{
         console.log("componentWillUpdate...");
     }
     
-    
-    
-
     handlerButtonUpdate = () => {
-        console.log("invoking: " + api_open_weather);
-        fetch(api_open_weather)
+        const endpoint = getURLWeatherByCity(this.state.city);
+        console.log("invoking: " + endpoint);
+        fetch(endpoint)
             .then(resolve => {return resolve.json()})
             .then(data => {
                 console.log(data);
@@ -104,7 +103,8 @@ WeatherLocation.propTypes = {
             humidity: PropTypes.string.isRequired,
             wind:PropTypes.string.isRequired,
         }
-    )
+    ),
+    city: PropTypes.string.isRequired,
 }
 
 export default WeatherLocation;
