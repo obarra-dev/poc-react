@@ -82,9 +82,10 @@ class WeatherLocation extends Component{
 
     render(){
         console.log("render...");
+        const {handlerWeatherLocationOnClick} = this.props;
         const {data, city} = this.state;
         return (
-            <div>
+            <div onClick={handlerWeatherLocationOnClick}>
                 <Location city={city} ></Location>
                 {data? <WeatherData data={data}></WeatherData>: "Cargando..."}
                 
@@ -105,6 +106,7 @@ WeatherLocation.propTypes = {
         }
     ),
     city: PropTypes.string.isRequired,
+    handlerWeatherLocationOnClick: PropTypes.func
 }
 
 export default WeatherLocation;
