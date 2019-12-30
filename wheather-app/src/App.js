@@ -1,5 +1,6 @@
 import React from 'react';
-import LocationList from './components/LocationList'
+import LocationList from './components/LocationList';
+import ForecastExtended from './components/ForecastExtended';
 import './App.css';
 
 const cities = [
@@ -8,6 +9,7 @@ const cities = [
   'Salta, ar'
 ];
 
+//TODO estudiar scopes
 const onSelectedLocation = city => {
   console.log(`OnSelection: ${city}`);
 };
@@ -20,6 +22,11 @@ function App() {
         <LocationList cities={cities} 
           onSelectedLocation={onSelectedLocation}/>
       </header>
+      <body>
+        <div>
+          <ForecastExtended city="HOLA MUNDO"/>
+        </div>
+      </body>
     </div>
   );
 }
