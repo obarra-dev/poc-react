@@ -10,12 +10,10 @@ const cities = [
 ];
 
 
-
-
 class App extends Component{
   constructor(){
     super();
-    this.state = {city: 'empty'};
+    this.state = {city: null};
   }
 
   //TODO estudiar scopes
@@ -36,7 +34,7 @@ class App extends Component{
         </header>
         <body>
           <div>
-            <ForecastExtended city={city}/>
+            {city &&  <ForecastExtended city={city}/>}
           </div>
         </body>
       </div>

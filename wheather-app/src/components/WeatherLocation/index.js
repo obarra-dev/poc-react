@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import PropTypes from 'prop-types';
-import getURLWeatherByCity from '../../services/getURLWeatherByCity'
+import {getURLWeatherByCity} from '../../services/getURLsOpenWeather'
 import { SUN } from '../../constants/weathers';
 import transformWeather from './../../services/transformWeather';
 
@@ -55,12 +55,10 @@ class WeatherLocation extends Component{
     
     handlerButtonUpdate = () => {
         const endpoint = getURLWeatherByCity(this.state.city);
-        console.log("invoking: " + endpoint);
         fetch(endpoint)
             .then(resolve => {return resolve.json()})
             .then(data => {
                 console.log(data);
-                debugger;
                 this.setState({
                     data: transformWeather(data)
                 });

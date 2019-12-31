@@ -19,7 +19,6 @@ const iconsMap = {
 
 const getWeatherIcon = weatherState =>{
     const iconName = iconsMap[weatherState];
-   // debugger;
   // TODO there is a error of prop type with weather icon
     let weatherIcon = <WeatherIcon name="owm" iconId="200" flip="horizontal" rotate="90" />;
     if(iconName){
