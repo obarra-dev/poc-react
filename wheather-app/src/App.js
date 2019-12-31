@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import LocationList from './components/LocationList';
 import ForecastExtended from './components/ForecastExtended';
 import {setCity} from './actions';
-import {store} from './store';
 import './App.css';
 
 const cities = [
@@ -22,8 +23,7 @@ class App extends Component{
   onSelectedLocation = city => {
     console.log(`OnSelection: ${city}`);
     this.setState({city});
-
-    store.dispatch(setCity(city));
+    this.props.dispatchSetCity(city);
   };
 
 //TODO ver que paso con el tap react de react developer tools, y pasar del dom al react element
@@ -47,4 +47,15 @@ class App extends Component{
   
 }
 
-export default App;
+App.propTypes = {
+  dispatchSetCity: PropTypes.func.isRequired,
+}
+
+const mapDispatchToProps = dispatch => ({
+    dispatchSetCity: value => dispatch(setCity(value))
+});
+
+const AppConnected = connect(null, mapDispatchToProps)(App);
+
+//TODO si se cambio el export de App a AppConnected porque no se cambia en el index
+export default AppConnected;
