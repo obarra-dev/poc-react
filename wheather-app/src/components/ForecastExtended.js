@@ -26,7 +26,6 @@ class ForecastExtended extends Component{
         const endpoint = getURLForecastByCity(this.props.city);
         fetch(endpoint).then(reponse => (reponse.json())).then(
             forecastData => {
-                debugger;
                 console.log(forecastData);
                 const forecastDataTransformed = transformForecast(forecastData);
                 this.setState({forecastData: forecastDataTransformed});

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import LocationList from './components/LocationList';
 import ForecastExtended from './components/ForecastExtended';
+import {setCity} from './actions';
+import {store} from './store';
 import './App.css';
 
 const cities = [
@@ -20,6 +22,8 @@ class App extends Component{
   onSelectedLocation = city => {
     console.log(`OnSelection: ${city}`);
     this.setState({city});
+
+    store.dispatch(setCity(city));
   };
 
 //TODO ver que paso con el tap react de react developer tools, y pasar del dom al react element
