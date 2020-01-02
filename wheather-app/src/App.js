@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-import LocationList from './components/LocationList';
+import LocationListContainer from './containers/LocationListContainer';
 import ForecastExtended from './components/ForecastExtended';
-import {setCity} from './actions';
 import './App.css';
 
 const cities = [
@@ -33,8 +30,7 @@ class App extends Component{
     return (
       <div className="App">
         <header className="App-header">
-          <LocationList cities={cities} 
-            onSelectedLocation={this.onSelectedLocation}/>
+          <LocationListContainer cities={cities} />
         </header>
         <body>
           <div>
@@ -43,19 +39,7 @@ class App extends Component{
         </body>
       </div>
     );
-  }
-  
+  }  
 }
 
-App.propTypes = {
-  dispatchSetCity: PropTypes.func.isRequired,
-}
-
-const mapDispatchToProps = dispatch => ({
-    dispatchSetCity: value => dispatch(setCity(value))
-});
-
-const AppConnected = connect(null, mapDispatchToProps)(App);
-
-//TODO si se cambio el export de App a AppConnected porque no se cambia en el index
-export default AppConnected;
+export default App;
