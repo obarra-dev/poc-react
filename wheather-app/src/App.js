@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LocationListContainer from './containers/LocationListContainer';
-import ForecastExtended from './components/ForecastExtended';
+import ForecastExtendedContainer from './containers/ForecastExtendedContainer';
 import './App.css';
 
 const cities = [
@@ -11,22 +11,10 @@ const cities = [
 
 
 class App extends Component{
-  constructor(){
-    super();
-    this.state = {city: null};
-  }
-
-  //TODO estudiar scopes
-  onSelectedLocation = city => {
-    console.log(`OnSelection: ${city}`);
-    this.setState({city});
-    this.props.dispatchSetCity(city);
-  };
 
 //TODO ver que paso con el tap react de react developer tools, y pasar del dom al react element
 //TODO ver la diferencia entre class App  y function App
   render(){
-    const {city} = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -34,7 +22,7 @@ class App extends Component{
         </header>
         <body>
           <div>
-            {city &&  <ForecastExtended city={city}/>}
+            <ForecastExtendedContainer/>
           </div>
         </body>
       </div>
