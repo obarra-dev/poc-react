@@ -1,4 +1,5 @@
 import { SET_FORECAST_DATA } from "../actions";
+import {createSelector} from "reselect";
 
 export const cities = (state = {}, action) => {
     switch (action.type) {
@@ -10,4 +11,7 @@ export const cities = (state = {}, action) => {
     }
 }
 
-export const getForecastData = (cities, city) => cities[city] && cities[city].forecastDataTransformed;
+//export const getForecastData = (cities, city) => cities[city] && cities[city].forecastDataTransformed;
+export const getForecastData = createSelector(
+    (cities, city) => cities[city] && cities[city].forecastDataTransformed,
+     forecastDataTransformed => forecastDataTransformed);
