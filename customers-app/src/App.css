@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+
+.customers-list-item .field {
+  width: 160px;
+  margin: 1px;
+  padding: 4px;
+  background: #EEE;
+  display: inline-block;
+}

@@ -1,33 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import {Link, BrowserRouter as Router} from 'react-router-dom';
-import './App.css';
+import React, { Component } from 'react';
+import {Switch, Link, BrowserRouter as Router, Route} from 'react-router-dom';
+import HomeContainer from './containers/HomeContainer';
+import CustomersContainer from './containers/CustomersContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Router>
-        <Link to="/customer">customer</Link>
-          <Link to="/customer/3000">customer 300</Link>
 
-        </Router>
-          
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+
+  renderHome = () => <HomeContainer/>;
+
+  
+  renderCustomerListContainer = () => <CustomersContainer/>;
+  
+  renderCustomerContainer = () => <h1>customer container</h1>;
+
+  renderCustomerNewContainer = () => <h1>renderCustomerNewContainer</h1>;
+
+
+  render(){
+    return (
+      <Router>
+          <div>
+            
+            <Route exact path="/">{this.renderHome()}</Route>
+            <Route exact path="/customers">{this.renderCustomerListContainer()}</Route>
+            <Switch>
+            <Route  path="/customers/new">{this.renderCustomerNewContainer()}</Route>
+            
+              <Route  path="/customers/:dni">{this.renderCustomerContainer()}</Route>
+               
+            </Switch>
+                
+          </div>
+      </Router>
+    )
+  } 
 }
 
 export default App;

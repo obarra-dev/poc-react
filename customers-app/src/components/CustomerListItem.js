@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-const CustomerListItem = ({name,urlPath, deleteAction, editAction}) => {
+
+const CustomerListItem = ({dni, name, deleteAction, editAction, urlPath}) => {
     return (
         <div>
-            <div className="customer-listitem">
+            <div className="customers-list-item">
                 <div className="field">
-                    <Link to={`${urlPath}/${name}`}>{name}</Link>
+                    <Link to={`${urlPath}/${dni}`}>{name}</Link>
                 </div>
                 <div className="field">
-                    <Link to={`${urlPath}/${name}/edit`}>{editAction}</Link>
+                    <Link to={`${urlPath}/${dni}/edit`}>{editAction}</Link>
                 </div>
                 <div className="field">
-                    <Link to={`${urlPath}/${name}/delete`}>{deleteAction}</Link>
+                    <Link to={`${urlPath}/${dni}/delete`}>{deleteAction}</Link>
                 </div>
             </div>
 
