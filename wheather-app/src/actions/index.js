@@ -15,7 +15,7 @@ const setForecastData = payload => ({type: SET_FORECAST_DATA, payload});
 const getWeatherCity = payload => ({type: GET_WEATHER_CITY, payload});
 const setWeatherCity = payload => ({type: SET_WEATHER_CITY, payload});
 
-export const setSelectedCity = payload => {
+export const dispatchSetCity = payload => {
 
    // TODO averiguar quien y como se le pasa la funcion dispatch
     return dispatch => {
@@ -35,7 +35,7 @@ export const setSelectedCity = payload => {
     } 
 };
 
-export const setWeather = payload => {
+export const dispatchSetWeather = payload => {
     return dispatch => {
         payload.forEach(city =>{
             dispatch(getWeatherCity(city));

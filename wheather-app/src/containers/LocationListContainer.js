@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
-import {setSelectedCity, setWeather} from './../actions';
+import * as actions from './../actions';
 import LocationList from './../components/LocationList';
 import {getCity, getCitiesWeather} from './../reducers';
 
@@ -32,11 +33,16 @@ LocationListContainer.propTypes = {
     dispatchSetCity: PropTypes.func.isRequired,
     cities: PropTypes.array.isRequired,
 }
-  
+
+/** 
 const mapDispatchToProps = dispatch => ({
-    dispatchSetWeather: payload => dispatch(setWeather(payload)),
-    dispatchSetCity: payload => dispatch(setSelectedCity(payload))
+    dispatchSetWeather: payload => dispatch(actions.dispatchSetWeather(payload)),
+    dispatchSetCity: payload => dispatch(actions.dispatchSetCity(payload))
 });
+*/
+
+
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 const mapStateToProps = state => ({
     city: getCity(state),
