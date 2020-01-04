@@ -16,12 +16,11 @@ class HomeContainer extends Component {
     render() {
         return (
             <div>
-                <AppFrame header="HEADER" 
+                <AppFrame header="Customers" 
                  body={
                     <div>
-                        This is initial screen
                         <CustomerActions>
-                            <button onClick={this.handleOnClick}> Listado  </button>
+                            <button onClick={this.handleOnClick}> List of Customers  </button>
                         </CustomerActions>
                     </div>
                  }>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 import CustomersList from '../components/CustomersList';
 import CustomerActions from '../components/CustomerActions';
 import AppFrame from '../components/AppFrame';
@@ -18,14 +19,14 @@ const customers = [{
 class CustomersContainer extends Component {
 
     handleOnClick = () =>{
-
+        this.props.history.push('/customers/new');
     }
 
     renderBody = customers => (
         <div>
             <CustomersList 
                 customers={customers}
-                urlPath={'customer/'}>
+                urlPath={'customers'}>
             </CustomersList>
             
             <CustomerActions>
@@ -51,4 +52,4 @@ CustomersContainer.propTypes = {
 
 };
 
-export default CustomersContainer;
+export default withRouter(CustomersContainer);
