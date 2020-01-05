@@ -1,0 +1,30 @@
+{
+  "customers": [{
+    "dni": "1000001",
+    "name": "Omar",
+    "age": 29
+  },
+  {
+    "dni": "1000002",
+    "name": "Maru",
+    "age": 23
+  }],
+  
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 import CustomersList from '../components/CustomersList';
 import CustomerActions from '../components/CustomerActions';
 import AppFrame from '../components/AppFrame';
+import {dispatchFetchCustomers} from './../actions'
+import { getCustomers } from '../selectors/customers';
 
-const customers = [{
-    "dni": "1000001",
-    "name": "Omar",
-    "age": 29
-  },
-  {
-    "dni": "1000002",
-    "name": "Maru",
-    "age": 23
-  }];
 
 class CustomersContainer extends Component {
+
+    componentDidMount() {
+        this.props.dispatchFetchCustomers();
+    }
+    
 
     handleOnClick = () =>{
         this.props.history.push('/customers/new');
@@ -40,7 +38,7 @@ class CustomersContainer extends Component {
         return (
             <div>
                 <AppFrame header={'List of Customers'} 
-                    body={this.renderBody(customers)}>
+                    body={this.renderBody(this.props.customers)}>
                 </AppFrame>
 
             </div>
@@ -52,4 +50,31 @@ CustomersContainer.propTypes = {
 
 };
 
-export default withRouter(CustomersContainer);
+CustomersContainer.defaultProps = {
+
+    customers : [{
+        "dni": "10000",
+        "name": "Nobody",
+        "age": 0
+      }]
+}
+
+const mapStateToProps = state => ({
+    customers: getCustomers(state)
+});
+
+/* 
+const mapDipatchToProps = dispatch => (
+    {
+        dispatchFetchCustomers: () => dispatch(dispatchFetchCustomers())
+    }
+)
+*/
+
+//con creationAction el mapeo clasico igual a 
+//const mapDipatchToProps = {dispatchFetchCustomers};
+
+
+// incluso se puede no usar const mapDipatchToProps =
+//TODO xq se puede usar asi? se usa destructuring
+export default withRouter(connect(mapStateToProps, {dispatchFetchCustomers})(CustomersContainer));
