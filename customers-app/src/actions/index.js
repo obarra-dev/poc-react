@@ -1,15 +1,7 @@
 import {createAction} from 'redux-actions';
 import {FETCH_CUSTOMERS} from './../constants/index'
+import {apiGet} from './../api';
+import {urlCustomers} from './../api/urls';
 
-const  customers = [{
-    "dni": "1000001",
-    "name": "Omar",
-    "age": 29
-  },
-  {
-    "dni": "1000002",
-    "name": "Maru",
-    "age": 23
-  }];
 
-export const dispatchFetchCustomers = createAction(FETCH_CUSTOMERS, () => customers);
+export const dispatchFetchCustomers = createAction(FETCH_CUSTOMERS, apiGet(urlCustomers));
