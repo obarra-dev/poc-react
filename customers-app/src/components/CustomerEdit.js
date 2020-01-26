@@ -11,6 +11,20 @@ const isNumber = value => (
     isNaN(value) && "This field is numeric"
 )
 
+const validate = values => {
+    const error = {};
+    debugger;
+    if(values.name && values.name.length<4){
+        error.name = "Name has to have 3 or more letter";
+    }
+
+    if(values.dni && values.dni.length<4){
+        error.dni = "DNI has to have 3 or more letter";
+    }
+
+    return error;
+}
+
 // TODO fix para que se active la validacion solo cuando se sale del campo
 const MyField = ({input, meta, name, label, type}) => (
     <div>
@@ -44,5 +58,8 @@ CustomerEdit.propTypes = {
     dni: PropTypes.string,
 };
 
-const CustomerEditForm = reduxForm({form: 'CustomerEdit'})(CustomerEdit);
+const CustomerEditForm = reduxForm({
+    form: 'CustomerEdit',
+    validate    
+})(CustomerEdit);
 export default setPropsAsInitial(CustomerEditForm);
