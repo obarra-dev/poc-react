@@ -5,16 +5,26 @@ import AppFrame from './../components/AppFrame';
 import CustomerEdit from './../components/CustomerEdit';
 import CustomerData from './../components/CustomerData';
 import {getCustomerByDNI} from './../selectors/customers';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 
 class CustomerContainer extends Component {
+    handleSubmit = values => {
+        console.log(JSON.stringify(values));
+    }
+
+    
+    handleOnBack = () => {
+        this.props.history.goBack();
+    }
+
     renderBody = () => (
         <Route path="/customers/:dni/edit" children={
             ({match}) => {
                 const MyDynamicComponent = match? CustomerEdit: CustomerData;
-                return <MyDynamicComponent { ...this.props.customer}/>
-
-                //return <MyDynamicComponent initialValues={this.props.customer}/>
+                return <MyDynamicComponent 
+                    { ...this.props.customer} 
+                    onSubmit={this.handleSubmit}
+                    onBack={this.handleOnBack}/>
             }
         }></Route>
     )
@@ -37,4 +47,4 @@ const mapStateToProps = (state, props) => ({
     customer: getCustomerByDNI(state, props)
 });
 
-export default connect(mapStateToProps, null)(CustomerContainer);
+export default withRouter(connect(mapStateToProps, null)(CustomerContainer));
