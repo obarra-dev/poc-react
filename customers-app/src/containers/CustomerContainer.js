@@ -12,8 +12,9 @@ class CustomerContainer extends Component {
         <Route path="/customers/:dni/edit" children={
             ({match}) => {
                 const MyDynamicComponent = match? CustomerEdit: CustomerData;
-                return <MyDynamicComponent { ...this.props.customer}/>
+               // return <MyDynamicComponent { ...this.props.customer}/>
 
+                return <MyDynamicComponent initialValues={this.props.customer}/>
             }
         }></Route>
     )
