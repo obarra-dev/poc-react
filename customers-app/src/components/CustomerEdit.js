@@ -3,23 +3,36 @@ import PropTypes from 'prop-types';
 import {reduxForm, Field} from 'redux-form';
 import { setPropsAsInitial } from '../helper-hoc/setPropsAsInitial';
 
+const isRequired = value => (
+    !value && "This field is required"
+);
+
+const isNumber = value => (
+    isNaN(value) && "This field is numeric"
+)
+
+// TODO fix para que se active la validacion solo cuando se sale del campo
+const MyField = ({input, meta, name, label, type}) => (
+    <div>
+        <label htmlFor={name}>{label}</label>
+        <input {...input} type={type}/>
+        {
+            meta.touched && meta.error &&  <span>{meta.error}</span>
+        }
+    </div>
+);
+
 const CustomerEdit = ({name, age, dni}) => {
     return (
         <div>
             <h2>Edit data of customer</h2>
             <form action="">
-                <div>
-                    <label htmlFor="name">Name</label>
-                    <Field name="name" component="input" type="text"></Field>
-                </div>
-                <div>
-                    <label htmlFor="dni">DNI</label>
-                    <Field name="dni" component="input" type="text"></Field>
-                </div>
-                <div>
-                    <label htmlFor="age">Age</label>
-                    <Field name="age" component="input" type="number"></Field>
-                </div>
+                    <Field name="name" type="text" label="Name: "
+                        component={MyField} validate={isRequired}></Field>
+                    <Field name="dni" type="text" label="DNI: "
+                        component={MyField} validate={[isRequired, isNumber]}></Field>
+                    <Field name="age" type="number" label="Age: "
+                        component={MyField} validate={[isRequired, isNumber]}></Field>
             </form>
         </div>
     );
