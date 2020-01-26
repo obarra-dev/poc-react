@@ -6,13 +6,14 @@ import CustomerEdit from './../components/CustomerEdit';
 import CustomerData from './../components/CustomerData';
 import {getCustomerByDNI} from './../selectors/customers';
 import { Route, withRouter } from 'react-router-dom';
+import { dispatchFetchCustomers, dispatchUpdateCustomers } from '../actions';
 
 class CustomerContainer extends Component {
     handleSubmit = values => {
-        console.log(JSON.stringify(values));
+        const {id} = values;
+        return this.props.dispatchUpdateCustomers(id, values);
     }
 
-    
     handleOnBack = () => {
         this.props.history.goBack();
     }
@@ -28,6 +29,13 @@ class CustomerContainer extends Component {
             }
         }></Route>
     )
+
+    componentDidMount() {
+        if(!this.props.customer){
+            this.props.dispatchFetchCustomers();
+        }
+    }
+    
 
     render() {
         return (
@@ -47,4 +55,5 @@ const mapStateToProps = (state, props) => ({
     customer: getCustomerByDNI(state, props)
 });
 
-export default withRouter(connect(mapStateToProps, null)(CustomerContainer));
+export default withRouter(connect(mapStateToProps, 
+    {dispatchFetchCustomers, dispatchUpdateCustomers})(CustomerContainer));
