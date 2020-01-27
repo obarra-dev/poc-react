@@ -7,11 +7,16 @@ import CustomerData from './../components/CustomerData';
 import {getCustomerByDNI} from './../selectors/customers';
 import { Route, withRouter } from 'react-router-dom';
 import { dispatchFetchCustomers, dispatchUpdateCustomers } from '../actions';
+import { SubmissionError } from 'redux-form';
 
 class CustomerContainer extends Component {
     handleSubmit = values => {
         const {id} = values;
-        return this.props.dispatchUpdateCustomers(id, values);
+        return this.props.dispatchUpdateCustomers(id, values).then(res => {
+            if(res.error){
+                throw new SubmissionError(res.payload);
+            }
+        });
     }
 
     handleOnBack = () => {

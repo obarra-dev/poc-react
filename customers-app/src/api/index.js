@@ -8,3 +8,10 @@ export const apiPut = (url, id, object) => () =>
         body: JSON.stringify(object),
         headers: new Headers({'Content-type': 'application/json'})
     }).then(res => res.json())
+    .then(res => {
+        if(res.error){
+            return Promise.reject(res.validate);
+        }
+        return res;
+    }
+    )
