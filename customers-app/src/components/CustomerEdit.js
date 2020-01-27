@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {reduxForm, Field} from 'redux-form';
 import { setPropsAsInitial } from '../helper-hoc/setPropsAsInitial';
 import CustomerActions from './CustomerActions';
+import { Prompt } from 'react-router-dom';
 
 const isRequired = value => (
     !value && "This field is required"
@@ -43,7 +44,7 @@ const MyField = ({input, meta, name, label, type}) => (
 
                // Field generan un action creator que modificanel estado 
 
-const CustomerEdit = ({name, age, dni, onBack, handleSubmit, submitting}) => {
+const CustomerEdit = ({name, age, dni, onBack, handleSubmit, submitting, pristine}) => {
     return (
         <div>
             <h2>Edit data of customer</h2>
@@ -57,9 +58,12 @@ const CustomerEdit = ({name, age, dni, onBack, handleSubmit, submitting}) => {
                         component={MyField} validate={[isRequired, isNumber]}
                         parse={toNumber} normalize={toGrow}></Field>
                     <CustomerActions>
-                        <button type="submit" disabled={submitting}>Save</button>
-                        <button onClick={onBack}>Cancel</button>
+                        <button type="submit" disabled={pristine || submitting}>Save</button>
+                        <button type="button" disabled={submitting} onClick={onBack}>Cancel</button>
                     </CustomerActions>
+                    <Prompt when={!pristine ||!submitting}
+                        message="are you sure?">
+                    </Prompt>
             </form>
         </div>
     );
