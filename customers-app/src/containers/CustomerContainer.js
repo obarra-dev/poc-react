@@ -18,6 +18,10 @@ class CustomerContainer extends Component {
         this.props.history.goBack();
     }
 
+    handleOnSubmitSuccess = () =>{
+        this.handleOnBack();
+    }
+
     renderBody = () => (
         <Route path="/customers/:dni/edit" children={
             ({match}) => {
@@ -25,6 +29,7 @@ class CustomerContainer extends Component {
                 return <MyDynamicComponent 
                     { ...this.props.customer} 
                     onSubmit={this.handleSubmit}
+                    onSubmitSuccess={this.handleOnSubmitSuccess}
                     onBack={this.handleOnBack}/>
             }
         }></Route>
