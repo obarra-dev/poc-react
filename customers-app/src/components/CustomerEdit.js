@@ -25,6 +25,11 @@ const validate = values => {
     return error;
 }
 
+const toNumber = value => value && Number(value);
+const toUpper = value => value && value.toUpperCase();
+const toLower = value => value && value.toLowerCase();
+const toGrow = (value, previousValue, values) => 
+    value && previousValue && (value > previousValue? value : previousValue);
 // TODO fix para que se active la validacion solo cuando se sale del campo
 const MyField = ({input, meta, name, label, type}) => (
     <div>
@@ -36,17 +41,21 @@ const MyField = ({input, meta, name, label, type}) => (
     </div>
 );
 
+               // Field generan un action creator que modificanel estado 
+
 const CustomerEdit = ({name, age, dni, onBack, handleSubmit, submitting}) => {
     return (
         <div>
             <h2>Edit data of customer</h2>
             <form onSubmit={handleSubmit}>
                     <Field name="name" type="text" label="Name: "
-                        component={MyField} validate={isRequired}></Field>
+                        component={MyField} validate={isRequired} 
+                        format={toLower} parse={toUpper}></Field>
                     <Field name="dni" type="text" label="DNI: "
                         component={MyField} validate={[isRequired, isNumber]}></Field>
                     <Field name="age" type="number" label="Age: "
-                        component={MyField} validate={[isRequired, isNumber]}></Field>
+                        component={MyField} validate={[isRequired, isNumber]}
+                        parse={toNumber} normalize={toGrow}></Field>
                     <CustomerActions>
                         <button type="submit" disabled={submitting}>Save</button>
                         <button onClick={onBack}>Cancel</button>
