@@ -30,7 +30,8 @@ const toNumber = value => value && Number(value);
 const toUpper = value => value && value.toUpperCase();
 const toLower = value => value && value.toLowerCase();
 const toGrow = (value, previousValue, values) => 
-    value && previousValue && (value > previousValue? value : previousValue);
+     value && (!previousValue?value: (value > previousValue? value : previousValue));
+
 // TODO fix para que se active la validacion solo cuando se sale del campo
 const MyField = ({input, meta, name, label, type}) => (
     <div>

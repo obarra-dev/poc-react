@@ -3,6 +3,7 @@ import {Switch, Link, BrowserRouter as Router, Route} from 'react-router-dom';
 import HomeContainer from './containers/HomeContainer';
 import CustomersContainer from './containers/CustomersContainer';
 import CustomerContainer from './containers/CustomerContainer';
+import NewCustomerContainer from './containers/NewCustomerContainer';
 
 
 
@@ -15,7 +16,7 @@ class App extends Component {
   
   renderCustomerContainer = () => <CustomerContainer/>;
 
-  renderCustomerNewContainer = () => <h1>renderCustomerNewContainer</h1>;
+  renderCustomerNewContainer = () => <NewCustomerContainer/>;
 
 
   render(){

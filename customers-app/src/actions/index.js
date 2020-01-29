@@ -1,6 +1,6 @@
 import {createAction} from 'redux-actions';
-import {FETCH_CUSTOMERS, UPDATE_CUSTOMER} from './../constants/index';
-import {apiGet, apiPut} from './../api';
+import {FETCH_CUSTOMERS, UPDATE_CUSTOMER, INSERT_CUSTOMER} from './../constants/index';
+import {apiGet, apiPut, apiPost} from './../api';
 import {urlCustomers} from './../api/urls';
 
 
@@ -9,3 +9,7 @@ export const dispatchFetchCustomers = createAction(FETCH_CUSTOMERS, apiGet(urlCu
 //TODO xq hace falta los padentecis al final?
 export const dispatchUpdateCustomers = createAction(UPDATE_CUSTOMER,
     (id, customer) => apiPut(urlCustomers, id, customer)());
+
+
+export const dispatchInsertCustomers = createAction(INSERT_CUSTOMER,
+    customer => apiPost(urlCustomers, customer)());
