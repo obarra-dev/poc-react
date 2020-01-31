@@ -4,6 +4,7 @@ import {reduxForm, Field} from 'redux-form';
 import { setPropsAsInitial } from '../helper-hoc/setPropsAsInitial';
 import CustomerActions from './CustomerActions';
 import { Prompt } from 'react-router-dom';
+import { Component } from 'react';
 
 const isRequired = value => (
     !value && "This field is required"
@@ -43,31 +44,53 @@ const MyField = ({input, meta, name, label, type}) => (
     </div>
 );
 
-               // Field generan un action creator que modificanel estado 
+// Field generan un action creator que modificanel estado 
+// TODO  CustomEdit se paso de function Component to Class component to use 'reg', TODO volver a function component 
+class CustomerEdit extends Component {
 
-const CustomerEdit = ({name, age, dni, onBack, handleSubmit, submitting, pristine}) => {
-    return (
+    componentDidMount() {
+        debugger;
+        if(this.txt){
+            this.txt.focus();
+        }
+    }
+  
+    renderMyField =  ({input, meta, name, label, type, withFocus}) => (
         <div>
-            <h2>Edit data of customer</h2>
-            <form onSubmit={handleSubmit}>
-                    <Field name="name" type="text" label="Name: "
-                        component={MyField} validate={isRequired} 
-                        format={toLower} parse={toUpper}></Field>
-                    <Field name="dni" type="text" label="DNI: "
-                        component={MyField} validate={[isRequired, isNumber]}></Field>
-                    <Field name="age" type="number" label="Age: "
-                        component={MyField} validate={[isRequired, isNumber]}
-                        parse={toNumber} normalize={toGrow}></Field>
-                    <CustomerActions>
-                        <button type="submit" disabled={pristine || submitting}>Save</button>
-                        <button type="button" disabled={submitting} onClick={onBack}>Cancel</button>
-                    </CustomerActions>
-                    <Prompt when={!pristine ||!submitting}
-                        message="are you sure?">
-                    </Prompt>
-            </form>
+            <label htmlFor={name}>{label}</label>
+            <input {...input} type={type} ref={withFocus && (txt => this.txt = txt)}/>
+            {
+                meta.touched && meta.error &&  <span>{meta.error}</span>
+            }
         </div>
     );
+
+    render(){
+        const {name, age, dni, onBack, handleSubmit, submitting, pristine} = this.props;
+        return (
+            <div>
+                <h2>Edit data of customer</h2>
+                <form onSubmit={handleSubmit}>
+                        <Field withFocus name="name" type="text" label="Name: "
+                            component={this.renderMyField} validate={isRequired} 
+                            format={toLower} parse={toUpper}></Field>
+                        <Field name="dni" type="text" label="DNI: "
+                            component={this.renderMyField} validate={[isRequired, isNumber]}></Field>
+                        <Field name="age" type="number" label="Age: "
+                            component={this.renderMyField} validate={[isRequired, isNumber]}
+                            parse={toNumber} normalize={toGrow}></Field>
+                        <CustomerActions>
+                            <button type="submit" disabled={pristine || submitting}>Save</button>
+                            <button type="button" disabled={submitting} onClick={onBack}>Cancel</button>
+                        </CustomerActions>
+                        <Prompt when={!pristine ||!submitting}
+                            message="are you sure?">
+                        </Prompt>
+                </form>
+            </div>
+        );
+    }
+    
 };
 
 CustomerEdit.propTypes = {
