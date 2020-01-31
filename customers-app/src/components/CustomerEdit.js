@@ -5,6 +5,8 @@ import { setPropsAsInitial } from '../helper-hoc/setPropsAsInitial';
 import CustomerActions from './CustomerActions';
 import { Prompt } from 'react-router-dom';
 import { Component } from 'react';
+import {accessControl} from './../helper-hoc/accessControl';
+import {CUSTOMER_EDIT } from './../constants/permissions';
 
 const isRequired = value => (
     !value && "This field is required"
@@ -102,4 +104,5 @@ const CustomerEditForm = reduxForm({
     form: 'CustomerEdit',
     validate    
 })(CustomerEdit);
-export default setPropsAsInitial(CustomerEditForm);
+
+export default accessControl([CUSTOMER_EDIT])(setPropsAsInitial(CustomerEditForm));
