@@ -27,16 +27,31 @@ class CustomerContainer extends Component {
         this.handleOnBack();
     }
 
-    renderBody = () => (
-        <Route path="/customers/:dni/edit" children={
-            ({match}) => {
-                const MyDynamicComponent = match? CustomerEdit: CustomerData;
-                return <MyDynamicComponent 
+    
+    handleDelete = () =>{
+        this.handleOnBack();
+    }
+
+    renderMyDynamicComponent = (isActionEdit, isActionDelete) =>{
+        const MyDynamicComponent = isActionEdit? CustomerEdit: CustomerData;
+        return <MyDynamicComponent 
                     { ...this.props.customer} 
                     onSubmit={this.handleSubmit}
                     onSubmitSuccess={this.handleOnSubmitSuccess}
-                    onBack={this.handleOnBack}/>
-            }
+                    onBack={this.handleOnBack}
+                    isActionDelete={!!isActionDelete}
+                    onDelete={this.handleDelete}/>  
+    }
+
+    renderBody = () => (
+        <Route path="/customers/:dni/edit" children={
+            ({match: isActionEdit}) => (
+                <Route path="/customers/:dni/delete" children={
+                    ({match: isActionDelete}) => {
+                        return this.renderMyDynamicComponent(isActionEdit, isActionDelete);
+                    }
+                }></Route>
+            )
         }></Route>
     )
 
