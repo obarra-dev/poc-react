@@ -27,8 +27,10 @@ class CustomerContainer extends Component {
         this.handleOnBack();
     }
 
-    handleDelete = () =>{
-        this.props.dispatchDeleteCustomers("1000001");
+    handleDelete = (id) =>{
+        this.props.dispatchDeleteCustomers(id).then(v => {
+            this.handleOnBack();
+        });
     }
 
     renderMyDynamicComponent = (isActionEdit, isActionDelete) =>{
