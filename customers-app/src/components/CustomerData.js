@@ -20,10 +20,10 @@ const CustomerData = ({id, name, dni, age, onBack, isActionDelete, onDelete}) =>
 };
 
 CustomerData.propTypes = {
-    name: PropTypes.string.isRequired,
-    dni: PropTypes.string.isRequired,
-    age: PropTypes.number.isRequired, 
-    onBack: PropTypes.func.isRequired,   
+    name: PropTypes.string,
+    dni: PropTypes.string,
+    age: PropTypes.number, 
+    onBack: PropTypes.func,   
 };
 
 export default CustomerData;

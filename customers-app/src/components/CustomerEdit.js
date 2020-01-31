@@ -49,7 +49,6 @@ const MyField = ({input, meta, name, label, type}) => (
 class CustomerEdit extends Component {
 
     componentDidMount() {
-        debugger;
         if(this.txt){
             this.txt.focus();
         }
@@ -94,7 +93,7 @@ class CustomerEdit extends Component {
 };
 
 CustomerEdit.propTypes = {
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     age: PropTypes.number,
     dni: PropTypes.string,
 };
