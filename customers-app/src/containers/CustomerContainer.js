@@ -6,7 +6,7 @@ import CustomerEdit from './../components/CustomerEdit';
 import CustomerData from './../components/CustomerData';
 import {getCustomerByDNI} from './../selectors/customers';
 import { Route, withRouter } from 'react-router-dom';
-import { dispatchFetchCustomers, dispatchUpdateCustomers } from '../actions';
+import { dispatchFetchCustomers, dispatchUpdateCustomers, dispatchDeleteCustomers } from '../actions';
 import { SubmissionError } from 'redux-form';
 
 class CustomerContainer extends Component {
@@ -27,9 +27,8 @@ class CustomerContainer extends Component {
         this.handleOnBack();
     }
 
-    
     handleDelete = () =>{
-        this.handleOnBack();
+        this.props.dispatchDeleteCustomers("1000001");
     }
 
     renderMyDynamicComponent = (isActionEdit, isActionDelete) =>{
@@ -81,4 +80,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 export default withRouter(connect(mapStateToProps, 
-    {dispatchFetchCustomers, dispatchUpdateCustomers})(CustomerContainer));
+    {
+        dispatchFetchCustomers,
+        dispatchUpdateCustomers,
+        dispatchDeleteCustomers})(CustomerContainer));
