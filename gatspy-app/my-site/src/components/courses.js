@@ -8,14 +8,9 @@ export default () => {
     {
         maruexampleJson {
           id
-          fluctuationAccountBalance
-          contractId
-          policyId {
-            endorsementNumber
-            insurerId
-            policyNumber
-            sectionId
-            subSectionId
+          user {
+            year
+            month
           }
         }
       }
