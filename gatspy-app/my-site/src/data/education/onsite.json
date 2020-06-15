@@ -1,0 +1,17 @@
+{
+    "slug": "onsite",
+    "title": "Formal education",
+    "description": "All my formal studies",
+    "items": [
+        {
+            "name": "UNLaM",
+            "degree": "Ingeniero en informatica",
+            "score": "90"
+        },
+        {
+            "name": "TOEFL",
+            "degree": "TOEFL ITP",
+            "score": "640"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "slug": "online",
+    "title": "Online courses",
+    "description": "All online courses completed on internet",
+    "items": [
+        {
+            "name": "Spring boot",
+            "url": "https://spring.io/projects/spring-boot"
+        },
+        {
+            "name": "Mongo DB",
+            "url": "https://www.mongodb.com/es"
+        },
+        {
+            "name": "React",
+            "url": "https://es.reactjs.org/"
+        }
+    ]
+}

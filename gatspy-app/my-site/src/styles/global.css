@@ -5,5 +5,23 @@
 @tailwind utilities;
 
 .btn {
-  /* @apply bg-purple-500* TODO rompe buscar xq */
+   @apply bg-purple-500;
+}
+
+.repot-list {
+  column-width: 25%;
+  columns:4;
+  column-rule: 1px solid;
+  @apply p-4;
+}
+
+.repot-list li {
+  @apply p-4;
+  break-inside: avoid-column;
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  @apply bg-blue-200 text-purple-700 text-xs p-2 inline-block;
 }
