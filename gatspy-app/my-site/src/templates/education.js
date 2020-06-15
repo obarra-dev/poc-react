@@ -1,5 +1,6 @@
 import React from "react";
-import {graphql} from 'gatsby';
+import {graphql, Link} from 'gatsby';
+import EducationNav from "../components/education-nav";
 
 export default (props) => {
     const dataEduction = props.data.educationJson;
@@ -7,6 +8,7 @@ export default (props) => {
        <div>
            <header className="py-12 border-purple-500 border-solid border-t-8">
                <div className="max-w-4xl mx-auto">
+                   <Link to="/" className="uppercase underline text-purple-500">Come back</Link>
                    <h2 className="capitalize text-6xl font-blod">{dataEduction.title}</h2>
                    <p className="text-xl">{dataEduction.description}</p>
                </div>
@@ -31,6 +33,7 @@ export default (props) => {
                     )
                 }
             </ul>
+            <EducationNav></EducationNav>
        </div>
     )
 
