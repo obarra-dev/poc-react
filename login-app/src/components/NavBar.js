@@ -19,6 +19,7 @@ import {
 } from "reactstrap";
 
 import { useAuth0 } from "../react-auth0-spa";
+import {auth0} from "../oauth0/Authenticator"
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +30,23 @@ const NavBar = () => {
     logout({
       returnTo: window.location.origin
     });
+
+  const doLogin = () => {
+    console.log("**DEBUG: Login.auth before to invoke popup.authorize");
+
+    auth0.popup.authorize({}, (err, authResult) => {
+        if (err) {
+            console.log("**DEBUG: error auth0", err)
+            return;
+        }
+        else {
+            console.log("**DEBUG: OK auth0", authResult.idToken);
+            console.log(authResult.idTokenPayload.email);
+            console.log(authResult.idTokenPayload.nickname);
+            localStorage.setItem('token', authResult.idToken);
+        }
+    });
+  };
 
   return (
     <div className="nav-container">
@@ -58,7 +76,7 @@ const NavBar = () => {
                     className="btn-margin"
                     onClick={() => loginWithRedirect({})}
                   >
-                    Log in
+                    Log in 1
                   </Button>
                 </NavItem>
               )}
@@ -93,6 +111,20 @@ const NavBar = () => {
                 </UncontrolledDropdown>
               )}
             </Nav>
+            <Nav className="d-none d-md-block" navbar>
+              {!isAuthenticated && (
+                <NavItem>
+                  <Button
+                    id="qsLoginBtn"
+                    color="primary"
+                    className="btn-margin"
+                    onClick={() => doLogin({})}
+                  >
+                    Log in with auth0-js
+                  </Button>
+                </NavItem>
+              )}
+            </Nav>
             {!isAuthenticated && (
               <Nav className="d-md-none" navbar>
                 <NavItem>
@@ -102,7 +134,7 @@ const NavBar = () => {
                     block
                     onClick={() => loginWithRedirect({})}
                   >
-                    Log in
+                    Log in 2
                   </Button>
                 </NavItem>
               </Nav>
