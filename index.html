@@ -13,11 +13,9 @@
     <div id="root"></div>
     <script type="text/babel">
 
-      const items = ["rag", "microwave", "dishwasher", "couch", "hose", "broom"]
-
-      //const [items, setItems] = useState(["rag", "microwave", "dishwasher", "couch", "hose", "broom"])
-
         function MyList() {
+          const [items, setItems] = React.useState(["rag", "microwave", "dishwasher", "couch", "hose", "broom"])
+
             return <>
                      Search: 
                 <input type="search"/>
