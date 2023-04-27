@@ -13,18 +13,32 @@
     <div id="root"></div>
     <script type="text/babel">
 
+      const items = ["rag", "microwave", "dishwasher", "couch", "hose", "broom"]
+
+      //const [items, setItems] = useState(["rag", "microwave", "dishwasher", "couch", "hose", "broom"])
+
         function MyList() {
-            return <div>
-                
-                <ul><li>omar</li>
-                    <li>barra</li>
-                    <li>omar</li>
-                    <li>omar</li></ul>
-                </div>
+            return <>
+                     Search: 
+                <input type="search"/>
+                <br/>
+                <br/>
+                <form onSubmit="">
+                  New Item: <input type="text"/>
+                  <button type="submit">Add</button>
+                </form>
+                <h2>Items</h2>
+                {
+                  items.map( (it, index) => (
+                    <div key={index}>{it}</div>
+                  ))
+                  
+                }
+                </>
         }
     
       function MyApp() {
-        return <h1>Hello, world <MyList/>!</h1>;
+        return <MyList/>;
       }
 
       const container = document.getElementById('root');
