@@ -15,19 +15,42 @@
 
         function MyList() {
           const [items, setItems] = React.useState(["rag", "microwave", "dishwasher", "couch", "hose", "broom"])
+          const [query, setQuery] = React.useState("")
+
+          const inputRef = React.useRef()
+
+          const filterdItems = React.useMemo(() => {
+            return items.filter(item => item.toLowerCase().includes(query.toLowerCase()))
+          }, [items, query])
+    
+
+          function addItem(e) {
+            e.preventDefault()
+
+            const newItem = inputRef.current.value 
+            if (newItem === "") return 
+
+            setItems( prevItems =>  [...prevItems, newItem] )
+
+            inputRef.current.value = ""
+          }
+
+          function search(e) {
+            setQuery( () => e.target.value )
+          }
 
             return <>
                      Search: 
-                <input type="search"/>
+                <input type="search" onChange={search}/>
                 <br/>
                 <br/>
-                <form onSubmit="">
-                  New Item: <input type="text"/>
+                <form onSubmit={addItem}>
+                  New Item: <input ref={inputRef} type="text"/>
                   <button type="submit">Add</button>
                 </form>
                 <h2>Items</h2>
                 {
-                  items.map( (it, index) => (
+                  filterdItems.map( (it, index) => (
                     <div key={index}>{it}</div>
                   ))
                   
