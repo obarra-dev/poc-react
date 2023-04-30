@@ -12,7 +12,9 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-
+      // Derived states works if you have state that's stored using a state hookt that is derived from other states values or shared between different state values, it is almost a sign of a bad code, thata is going to be difficult to maintain
+      // you should always take derived States such as this Filtered List of items move it out of your actual State and just calculate it based on your state values
+      // avoid to maintaine two list, items and filterdItems
         function MyList() {
           const [items, setItems] = React.useState(["rag", "microwave", "dishwasher", "couch", "hose", "broom"])
           const [query, setQuery] = React.useState("")
