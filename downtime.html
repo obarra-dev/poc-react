@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function Downtime() {
+        let [targetSeconds, setTargetSeconds] = React.useState(null);
+
+        let [seconds, setSeconds] = React.useState(0);
+
+        React.useEffect(() => {
+          if (targetSeconds === null) {
+            return;
+          }
+
+          setSeconds(0);
+
+          const interval = setInterval(decreaseSeconds, 1000);
+
+          // TODO why is this executed when targetSeconds is null and when Downtime componens is removed?
+          return () => {
+            clearInterval(interval)
+            alert("ClearInterval done")
+          };
+        }, [targetSeconds]);
+
+        function decreaseSeconds() {
+          setSeconds((prev) => prev + 1);
+        }
+
+        function initiateTargetSeconds(e) {
+          e.preventDefault();
+          setTargetSeconds(e.target.seconds.value);
+        }
+
+        if (targetSeconds === null) {
+          return (
+            <>
+              <p>Enter seconds to count: </p>
+              <form action="#" onSubmit={initiateTargetSeconds}>
+                <input name="seconds" type="number" />
+                <button type="submit">Start</button>
+              </form>
+            </>
+          );
+        }
+
+        if (seconds + 1 > targetSeconds) {
+          return (
+            <>
+              <p>
+                Interval is continue working, seconds: {targetSeconds - seconds}
+              </p>
+              <button onClick={() => setTargetSeconds(null)}>Restart</button>
+            </>
+          );
+        }
+
+        return <p>{targetSeconds - seconds} seconds left</p>;
+      }
+
+      function MyApp() {
+        const [show, setShow] = React.useState(false);
+
+        return (
+          <>
+            <button onClick={() => setShow(!show)}>
+              {show ? "remove" : "show"}
+            </button>
+            {show && <Downtime />}
+          </>
+        );
+      }
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
+</html>
