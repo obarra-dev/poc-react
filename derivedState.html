@@ -24,15 +24,15 @@
           "hose",
           "broom",
         ]);
-        const [query, setQuery] = React.useState("");
+        const [filter, setFilter] = React.useState("");
 
         const inputRef = React.useRef();
 
         const filterdItems = React.useMemo(() => {
           return items.filter((item) =>
-            item.toLowerCase().includes(query.toLowerCase())
+            item.toLowerCase().includes(filter.toLowerCase())
           );
-        }, [items, query]);
+        }, [items, filter]);
 
         function addItem(e) {
           e.preventDefault();
@@ -40,13 +40,13 @@
           const newItem = inputRef.current.value;
           if (newItem === "") return;
 
-          setItems((prevItems) => [...prevItems, newItem]);
+          setItems((prevItems) => prevItems.concat(newItem));
 
           inputRef.current.value = "";
         }
 
         function search(e) {
-          setQuery(() => e.target.value);
+          setFilter(() => e.target.value);
         }
 
         return (
