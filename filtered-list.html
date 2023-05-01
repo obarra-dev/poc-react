@@ -33,10 +33,18 @@
         return <li>{item}</li>;
       }
 
+      function SearchInput({ filterItems }) {
+        return (
+          <input type="text" onChange={(e) => filterItems(e.target.value)} />
+        );
+      }
+
       function ListView({ items, filterItems }) {
+        if (!items) return <p>Loading...</p>;
+
         return (
           <div>
-            <input type="text" onChange={(e) => filterItems(e.target.value)} />
+            <SearchInput filterItems={filterItems} />
             <ul>
               {items.map(
                 (item, index) => item && <ListItem key={index} item={item} />

@@ -34,19 +34,22 @@
       }
 
       function SearchInput({ filterItems }) {
+        const { search, setSearch } = React.useContext(SearchContext);
         return (
           <input
             type="text"
-            // value={search}
-            onChange={(e) => filterItems(e.target.value)}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
         );
       }
 
-      function ListView({ items, filterItems }) {
+      function ListView({ items }) {
+        if (!items) return <p>Loading...</p>;
+
         return (
           <div>
-            <SearchInput filterItems={filterItems} />
+            <SearchInput />
             <ul>
               {items.map(
                 (item, index) => item && <ListItem key={index} item={item} />
@@ -57,28 +60,69 @@
       }
 
       function MyApp() {
-        let [items, setItems] = React.useState(originalItems);
+        const { items } = React.useContext(ItemsContext);
 
-        function filterItemsBySearchPattern(searchPattern) {
-          let filteredItems = originalItems.map((item) =>
-            item.toLocaleLowerCase().includes(searchPattern) ? item : null
-          );
-          setItems(filteredItems);
-        }
+        return <ListView items={items} />;
+      }
 
-        function filterItems(searchPattern) {
-          if (searchPattern === "") {
+      const SearchContext = React.createContext({});
+
+      function SearchProvider({ children }) {
+        const [search, setSearch] = React.useState("");
+
+        return (
+          <SearchContext.Provider value={{ search, setSearch }}>
+            {children}
+          </SearchContext.Provider>
+        );
+      }
+
+      const ItemsContext = React.createContext("");
+
+      function filterItemsBySearchPattern(items, searchPattern) {
+        return items.map((item) =>
+          item.toLocaleLowerCase().includes(searchPattern) ? item : null
+        );
+      }
+
+      function ItemsProvider({ children }) {
+        const [items, setItems] = React.useState(originalItems);
+        const { search } = React.useContext(SearchContext);
+
+        React.useEffect(() => {
+          if (search === "") {
             setItems(originalItems);
           } else {
-            filterItemsBySearchPattern(searchPattern);
+            let filteredItems = filterItemsBySearchPattern(
+              originalItems,
+              search
+            );
+            setItems(filteredItems);
           }
-        }
+        }, [search]);
 
-        return <ListView items={items} filterItems={filterItems} />;
+        return (
+          <ItemsContext.Provider value={{ items }}>
+            {children}
+          </ItemsContext.Provider>
+        );
       }
+
+      function MyAppContexts() {
+        return (
+          <div>
+            <SearchProvider>
+              <ItemsProvider>
+                <MyApp />
+              </ItemsProvider>
+            </SearchProvider>
+          </div>
+        );
+      }
+
       const container = document.getElementById("root");
       const root = ReactDOM.createRoot(container);
-      root.render(<MyApp />);
+      root.render(<MyAppContexts />);
     </script>
     <!--
       Note: this page is a great way to try React but it's not suitable for production.
