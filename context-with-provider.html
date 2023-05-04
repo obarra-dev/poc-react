@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const themes = {
+        light: {
+          name: "light",
+          foreground: "#000000",
+          background: "#eeeeee",
+        },
+        dark: {
+          name: "dark",
+          foreground: "#ffffff",
+          background: "#222222",
+        },
+      };
+
+      const ThemeConext = React.createContext({});
+
+      function ThemeProvider({ children }) {
+        const [theme, setTheme] = React.useState(themes.light);
+
+        function changeTheme() {
+          if (theme === themes.light) {
+            setTheme(themes.dark);
+          } else {
+            setTheme(themes.light);
+          }
+        }
+
+        return (
+          <ThemeConext.Provider value={theme}>
+            <button onClick={changeTheme}>
+              Change to{" "}
+              {theme.name === themes.light.name
+                ? themes.dark.name
+                : themes.light.name}
+            </button>
+            {children}
+          </ThemeConext.Provider>
+        );
+      }
+
+      function ThemedParagraph() {
+        const theme = React.useContext(ThemeConext);
+        return (
+          <p style={{ background: theme.background, color: theme.foreground }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum
+          </p>
+        );
+      }
+
+      function NoThemedH2() {
+        return <h2 style={{ background: "red", color: "#ffffff" }}>h2</h2>;
+      }
+
+      function ThemedNav() {
+        const theme = React.useContext(ThemeConext);
+        return (
+          <>
+            <NoThemedH2 />
+            <nav
+              style={{ background: theme.background, color: theme.foreground }}
+            >
+              <ThemedParagraph />
+            </nav>
+          </>
+        );
+      }
+
+      function MyApp() {
+        return (
+          <ThemeProvider>
+            <ThemedNav />
+          </ThemeProvider>
+        );
+      }
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
+</html>
