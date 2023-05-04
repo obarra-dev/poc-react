@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function ListItems({ getItemsByCallback, getItems }) {
+        const [items, setItems] = React.useState([]);
+        const [itemsCallback, setItemsCallback] = React.useState([]);
+        const [countGetItemsReferences, setCountGetItemsReferences] =
+          React.useState(0);
+        const [
+          countGetItemsCallbackReferences,
+          setCountGetItemsCallbackReferences,
+        ] = React.useState(0);
+
+        React.useEffect(() => {
+          setCountGetItemsReferences(countGetItemsReferences + 1);
+          setItems(getItems(1));
+        }, [getItems]);
+
+        React.useEffect(() => {
+          setCountGetItemsCallbackReferences(
+            countGetItemsCallbackReferences + 1
+          );
+          setItemsCallback(getItemsByCallback(1));
+        }, [getItemsByCallback]);
+
+        return (
+          <div>
+            <h2>
+              Items, count reference of getItems: {countGetItemsReferences}
+            </h2>
+            {items.map((item, index) => (
+              <div key={index}> {item} </div>
+            ))}
+            <h2>
+              Items by useCallback, count reference of getItemsByCallback:{" "}
+              {countGetItemsCallbackReferences}
+            </h2>
+
+            {itemsCallback.map((item, index) => (
+              <div key={index}> {item} </div>
+            ))}
+          </div>
+        );
+      }
+
+      function MyApp() {
+        const [dark, setDark] = React.useState(false);
+        const [number, setNumber] = React.useState(1);
+
+        const theme = {
+          backgroundColor: dark ? "#333" : "#FFF",
+          color: dark ? "#FFF" : "#333",
+        };
+
+        const getItemsByCallback = React.useCallback(
+          (incrementor) => {
+            return [
+              number + incrementor,
+              number + incrementor + 1,
+              number + incrementor + 2,
+            ];
+          },
+          [number]
+        );
+
+        const getItems = (incrementor) => {
+          return [
+            number + incrementor,
+            number + incrementor + 1,
+            number + incrementor + 2,
+          ];
+        };
+
+        return (
+          <>
+            <div style={theme}>
+              <div>
+                {" "}
+                Use useCallback when you need to pass the same reference
+              </div>
+
+              <input
+                type="number"
+                value={number}
+                onChange={(e) => setNumber(parseInt(e.target.value))}
+              />
+
+              <button onClick={() => setDark((prev) => !prev)}>
+                Toggle theme
+              </button>
+
+              <ListItems
+                getItemsByCallback={getItemsByCallback}
+                getItems={getItems}
+              />
+            </div>
+          </>
+        );
+      }
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
+</html>

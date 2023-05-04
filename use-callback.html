@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function ChildrenTag({ newFunction, memorizedFunction }) {
+        return (
+          <div>
+            This ia a child{" "}
+            {`newFunction = ${newFunction()}, memorizedFunction = ${memorizedFunction()}`}
+          </div>
+        );
+      }
+
+      function MyApp() {
+        const [count, setCount] = React.useState(4);
+
+        //  the reference id of this function is different for each re-render
+        const showCount = () => {
+          return count;
+        };
+
+        // useCallback devuelve a memorized callback, so the reference id (object) of this function is always the same for each re-render
+        // since is the same object, the value count has the same value as the initial value in the first render
+        const showCountCallback = React.useCallback(() => {
+          return count;
+        }, []);
+
+        return (
+          <>
+            <div> Use useCallback when you need to pass the same reference</div>
+
+            <div> You pressed {count} times</div>
+
+            <button onClick={() => setCount(count + 1)}>Increase</button>
+
+            <ChildrenTag
+              newFunction={showCount}
+              memorizedFunction={showCountCallback}
+            />
+          </>
+        );
+      }
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
+</html>
