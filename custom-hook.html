@@ -21,7 +21,7 @@
         return initialValue;
       }
 
-      function useLocalStorate(key, initialValue) {
+      function useLocalStorate({ key, initialValue }) {
         const [value, setValue] = React.useState(() => {
           return getSavedValue(key, initialValue);
         });
@@ -34,7 +34,10 @@
       }
 
       function MyApp() {
-        const [name, setName] = useLocalStorate("myKey", "O'Doyle Rules!");
+        const [name, setName] = useLocalStorate({
+          key: "myKey",
+          initialValue: "O'Doyle Rules!",
+        });
 
         return (
           <input
