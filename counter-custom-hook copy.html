@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function useCounter(initial = 0) {
+        const [count, setCount] = React.useState(initial);
+
+        const decrease = () => setCount(count - 1);
+        const increase = () => setCount(count + 1);
+
+        return {
+          count,
+          decrease,
+          increase,
+        };
+      }
+
+      function WrapperCounter() {
+        const { count, decrease, increase } = useCounter(0);
+
+        return (
+          <>
+            <div> Counter W: You pressed {count} times</div>
+
+            <button onClick={increase}>Increase</button>
+            <button onClick={decrease}>Decrease</button>
+          </>
+        );
+      }
+
+      function MyApp() {
+        const counterA = useCounter(0);
+        const counterB = useCounter(0);
+
+        return (
+          <>
+            <WrapperCounter />
+            <div> Counter A: You pressed {counterA.count} times</div>
+
+            <button onClick={counterA.increase}>Increase</button>
+            <button onClick={counterA.decrease}>Decrease</button>
+
+            <br />
+
+            <div> Counter B: You pressed {counterB.count} times</div>
+
+            <button onClick={counterB.increase}>Increase</button>
+            <button onClick={counterB.decrease}>Decrease</button>
+          </>
+        );
+      }
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
+</html>
