@@ -16,7 +16,7 @@
         return (
           <div>
             This ia a child{" "}
-            {`newFunction = ${newFunction()}, memorizedFunction = ${memorizedFunction()}`}
+            {`newFunction.returnedValue = ${newFunction()}, memorizedFunction.returnedValue = ${memorizedFunction()}`}
           </div>
         );
       }
@@ -29,7 +29,7 @@
           return count;
         };
 
-        // useCallback devuelve a memorized callback, so the reference id (object) of this function is always the same for each re-render
+        // useCallback returns a memorized callback, so the reference id (object) of this function is always the same for each re-render
         // since is the same object, the value count has the same value as the initial value in the first render
         const showCountCallback = React.useCallback(() => {
           return count;

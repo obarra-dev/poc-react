@@ -25,8 +25,8 @@
           fetch(
             "http://openlibrary.org/search.json?" +
               new URLSearchParams({
-                q: "One Hundred Years of Solitude",
-                limit: 10,
+                q: "o",
+                limit: 50,
                 page: pageNumber,
               })
           )
@@ -41,6 +41,7 @@
             })
             .catch((e) => {
               console.log(e);
+              setLoading(false);
               setError(true);
             });
         }, [pageNumber]);
@@ -55,21 +56,21 @@
           pageNumber,
         });
 
-        const observer = React.useRef();
+        const myRef = React.useRef();
 
         const lastBookElementRef = React.useCallback(
-          (node) => {
+          (element) => {
             if (loading) return;
 
-            if (observer.current) observer.current.disconnect();
+            if (myRef.current) myRef.current.disconnect();
 
-            observer.current = new IntersectionObserver((entries) => {
-              if (entries[0].isIntersecting && hasMore) {
-                setPageNumber((prevPageNumber) => prevPageNumber + 1);
+            myRef.current = new IntersectionObserver((entries) => {
+              if (hasMore && entries[0].isIntersecting) {
+                setPageNumber((prev) => prev + 1);
               }
             });
 
-            if (node) observer.current.observe(node);
+            if (element) myRef.current.observe(element);
           },
           [loading, hasMore]
         );
@@ -77,6 +78,7 @@
         return (
           <>
             {books.map((book, index) => {
+              // TODO no funca with scroll
               if (books.length === index + 1) {
                 return (
                   <div ref={lastBookElementRef} key={index}>
@@ -109,3 +111,4 @@
     -->
   </body>
 </html>
+ 
