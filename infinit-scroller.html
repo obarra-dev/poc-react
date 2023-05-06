@@ -12,7 +12,7 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      function useBookSearch(query, pageNumber) {
+      function useBookSearch(pageNumber) {
         const [loading, setLoading] = React.useState(true);
         const [error, setError] = React.useState(false);
         const [books, setBooks] = React.useState([]);
@@ -25,19 +25,16 @@
           fetch(
             "http://openlibrary.org/search.json?" +
               new URLSearchParams({
-                q: query,
-                page: pageNumber,
+                q: "One Hundred Years of Solitude",
                 limit: 10,
+                page: pageNumber,
               })
           )
             .then((response) => response.json())
             .then((data) => {
               setBooks((prevBooks) => {
                 return [
-                  ...new Set([
-                    ...prevBooks,
-                    ...data.docs.map((b) => b.title),
-                  ]),
+                  ...new Set([...prevBooks, ...data.docs.map((b) => b.title)]),
                 ];
               });
 
@@ -45,10 +42,10 @@
               setLoading(false);
             })
             .catch((e) => {
-              console.log(e)
+              console.log(e);
               setError(true);
             });
-        }, [query, pageNumber]);
+        }, [pageNumber]);
 
         return { loading, error, books, hasMore };
       }
@@ -56,10 +53,7 @@
       function MyApp() {
         const [pageNumber, setPageNumber] = React.useState(1);
 
-        const { books, hasMore, loading, error } = useBookSearch(
-          "One Hundred Years of Solitude",
-          pageNumber
-        );
+        const { books, hasMore, loading, error } = useBookSearch(pageNumber);
 
         const observer = React.useRef();
         const lastBookElementRef = React.useCallback(
