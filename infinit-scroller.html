@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function useBookSearch(query, pageNumber) {
+        const [loading, setLoading] = React.useState(true);
+        const [error, setError] = React.useState(false);
+        const [books, setBooks] = React.useState([]);
+        const [hasMore, setHasMore] = React.useState(false);
+
+        React.useEffect(() => {
+          setLoading(true);
+          setError(false);
+
+          fetch(
+            "http://openlibrary.org/search.json?" +
+              new URLSearchParams({
+                q: query,
+                page: pageNumber,
+                limit: 10,
+              })
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              setBooks((prevBooks) => {
+                return [
+                  ...new Set([
+                    ...prevBooks,
+                    ...data.docs.map((b) => b.title),
+                  ]),
+                ];
+              });
+
+              setHasMore(data.docs.length > 0);
+              setLoading(false);
+            })
+            .catch((e) => {
+              console.log(e)
+              setError(true);
+            });
+        }, [query, pageNumber]);
+
+        return { loading, error, books, hasMore };
+      }
+
+      function MyApp() {
+        const [pageNumber, setPageNumber] = React.useState(1);
+
+        const { books, hasMore, loading, error } = useBookSearch(
+          "One Hundred Years of Solitude",
+          pageNumber
+        );
+
+        const observer = React.useRef();
+        const lastBookElementRef = React.useCallback(
+          (node) => {
+            if (loading) return;
+
+            if (observer.current) observer.current.disconnect();
+
+            observer.current = new IntersectionObserver((entries) => {
+              if (entries[0].isIntersecting && hasMore) {
+                setPageNumber((prevPageNumber) => prevPageNumber + 1);
+              }
+            });
+
+            if (node) observer.current.observe(node);
+          },
+          [loading, hasMore]
+        );
+
+        return (
+          <>
+            {books.map((book, index) => {
+              if (books.length === index + 1) {
+                return (
+                  <div ref={lastBookElementRef} key={book}>
+                    {book}
+                  </div>
+                );
+              } else {
+                return <div key={book}>{book}</div>;
+              }
+            })}
+            <div>{loading && "Loading..."}</div>
+            <div>{error && "Error"}</div>
+          </>
+        );
+      }
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
+</html>
