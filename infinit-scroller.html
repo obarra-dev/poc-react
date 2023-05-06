@@ -12,7 +12,7 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      function useBookSearch(pageNumber) {
+      function useBookSearch({pageNumber}) {
         const [loading, setLoading] = React.useState(true);
         const [error, setError] = React.useState(false);
         const [books, setBooks] = React.useState([]);
@@ -53,11 +53,11 @@
       function MyApp() {
         const [pageNumber, setPageNumber] = React.useState(1);
 
-        const { books, hasMore, loading, error } = useBookSearch(pageNumber);
+        const { books, hasMore, loading, error } = useBookSearch({pageNumber});
 
         const observer = React.useRef();
-        const lastBookElementRef = React.useCallback(
-          (node) => {
+
+        const lastBookElementRef = React.useCallback((node) => {
             if (loading) return;
 
             if (observer.current) observer.current.disconnect();
