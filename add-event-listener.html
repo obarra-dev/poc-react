@@ -22,7 +22,7 @@
 
           window.addEventListener("resize", handleWindowResize);
 
-          // if you do not remove the listener, your computer will be consume a lot of resources
+          // if you do not remove the listener, your computer will be consume a lot of resources since n elements will listen to each event
           return () => {
             window.removeEventListener("resize", handleWindowResize);
           };
