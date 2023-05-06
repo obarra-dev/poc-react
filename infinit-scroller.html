@@ -12,7 +12,7 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      function useBookSearch({pageNumber}) {
+      function useBookSearch({ pageNumber }) {
         const [loading, setLoading] = React.useState(true);
         const [error, setError] = React.useState(false);
         const [books, setBooks] = React.useState([]);
@@ -32,11 +32,9 @@
           )
             .then((response) => response.json())
             .then((data) => {
-              setBooks((prevBooks) => {
-                return [
-                  ...new Set([...prevBooks, ...data.docs.map((b) => b.title)]),
-                ];
-              });
+              setBooks((prevBooks) =>
+                prevBooks.concat(data.docs.map((b) => b.title))
+              );
 
               setHasMore(data.docs.length > 0);
               setLoading(false);
@@ -53,11 +51,14 @@
       function MyApp() {
         const [pageNumber, setPageNumber] = React.useState(1);
 
-        const { books, hasMore, loading, error } = useBookSearch({pageNumber});
+        const { books, hasMore, loading, error } = useBookSearch({
+          pageNumber,
+        });
 
         const observer = React.useRef();
 
-        const lastBookElementRef = React.useCallback((node) => {
+        const lastBookElementRef = React.useCallback(
+          (node) => {
             if (loading) return;
 
             if (observer.current) observer.current.disconnect();
@@ -78,12 +79,12 @@
             {books.map((book, index) => {
               if (books.length === index + 1) {
                 return (
-                  <div ref={lastBookElementRef} key={book}>
+                  <div ref={lastBookElementRef} key={index}>
                     {book}
                   </div>
                 );
               } else {
-                return <div key={book}>{book}</div>;
+                return <div key={index}>{book}</div>;
               }
             })}
             <div>{loading && "Loading..."}</div>
