@@ -1,0 +1,64 @@
+@import "src/scss/responsive";
+
+.lift-page-not-found {
+  background-color: var(--lift-color-404-background);
+  color: var(--nx-swatch-white);
+  height: 100%;
+  padding-bottom: 100px;
+}
+
+.lift-page-not-found__container {
+  background-image: url("./rocket-404.png");
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-size: 100%;
+  margin: 0 auto;
+
+  @include min(400px) {
+    background-size: 90%;
+  }
+
+  @include min(475px) {
+    background-size: 85%;
+  }
+
+  @include sm {
+    background-size: 75%;
+  }
+
+  @include md {
+    background-size: 65%;
+  }
+
+  @include lg {
+    max-width: 970px;
+  }
+}
+
+.lift-page-not-found__title {
+  color: var(--nx-swatch-orange-55);
+  font-size: 55px;
+  font-weight: bold;
+  padding-top: 80px;
+
+  @include lg {
+    padding-top: 90px;
+    font-size: 140px;
+  }
+}
+
+.lift-page-not-found__sub-title {
+  color: var(--nx-swatch-white);
+  font-size: 36px;
+}
+
+.lift-page-not-found__text {
+  font-size: 18px;
+}
+
+.lift-page-not-found__actions {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}

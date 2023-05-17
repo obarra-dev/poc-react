@@ -1,0 +1,16 @@
+.lift-results-title-container {
+  display: flex;
+  margin: 24px 0 24px 0;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 16px;
+}
+
+.lift-results-title {
+  display: inline-flex;
+  align-items: center;
+}
+
+.lift-results-details {
+  display: flex;
+}
