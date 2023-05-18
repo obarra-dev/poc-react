@@ -1,11 +1,5 @@
 import "./ResultTabs.scss";
-import {
-  NxButton,
-  NxTab,
-  NxTabList,
-  NxTabPanel,
-  NxTabs,
-} from "@some/react-test-components";
+
 // import { AnalysisResultsTab } from "./AnalysisResultsTab/AnalysisResultsTab";
 import { PropsWithChildren, useState } from "react";
 import { ResultIdentifier } from "../../services/api/sbomApi/sbomApi";
@@ -17,16 +11,43 @@ import {
   DEPENDENCIES,
   LOGS,
   RESULTS,
-  Tab,
   TECHNICAL_DEBT,
   TOOL_RESULTS,
 } from "./allowedTabs";
 
+import { Box, Tabs, Tab, Typography } from "@mui/material";
+
 export interface ResultTabsProps {
   resultIdentifier: ResultIdentifier;
   jobStatus: Undefinable<JobStatusT>;
-  enabledTabs: Tab[];
+  enabledTabs: string[];
   allowPublicDependenciesAccess?: boolean;
+}
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
 }
 
 export function ResultTabs({
@@ -46,36 +67,36 @@ export function ResultTabs({
 
   //const currentTabName: Tab = currentQueryParamTabName || "results";
 
-  const currentTabName: Tab = "results";
+  const currentTabName = "results";
   
-  const [activeTabId, setActiveTabId] = useState(0);
+  const [activeTabId, setActiveTabId] = useState(2);
   const { jobId } = resultIdentifier;
 
+  function handleChange (event: React.SyntheticEvent, newValue: number)  {
+    setActiveTabId(newValue);
+  };
+
+
   return (
-    <section className="nx-tile">
-      <header className="nx-tile-header">
-        <div className="nx-tile-header__title"><h2 className="nx-h2">Tile Header</h2></div>
-      </header>
-      <div className="nx-tile-content">
-        <NxTabs activeTab={activeTabId} onTabSelect={setActiveTabId}>
-          <NxTabList aria-label="Tabs in a tile">
-            <NxTab>Tab</NxTab>
-            <NxTab>Tab with longer name</NxTab>
-            <NxTab>Another Tab 3 much longer name when will it truncate nobody knows</NxTab>
-            <NxTab>Fourth Tab</NxTab>
-          </NxTabList>
-          <NxTabPanel>Tab 1</NxTabPanel>
-          <NxTabPanel>Tab 2</NxTabPanel>
-          <NxTabPanel>Tab 3</NxTabPanel>
-          <NxTabPanel>Tab 4</NxTabPanel>
-        </NxTabs>
-      </div>
-      <footer className="nx-footer">
-        <div className="nx-btn-bar">
-          <NxButton variant="primary">Button</NxButton>
-        </div>
-      </footer>
-    </section>
+    <Box sx={{ width: '80%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={activeTabId} onChange={handleChange} aria-label="basic tabs example">
+          <Tab label="Item Onebbb" />
+          <Tab label="Item Two"  />
+          <Tab label="Item Three"  />
+        </Tabs>
+      </Box>
+      <TabPanel value={activeTabId} index={0}>
+        Item Onevvv
+      </TabPanel>
+      <TabPanel value={activeTabId} index={1}>
+        Item Two
+      </TabPanel>
+      <TabPanel value={activeTabId} index={2}>
+        Item Three
+      </TabPanel>
+      
+    </Box>
   );
 
   function handleTabSelect(index: number): void {
