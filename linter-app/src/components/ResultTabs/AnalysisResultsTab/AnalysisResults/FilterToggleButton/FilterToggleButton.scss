@@ -1,0 +1,16 @@
+@import "src/components/ResultTabs/AnalysisResultsTab/AnalysisResults/AnalysisResults.variables";
+
+.lift-filter-toggle-button__container {
+  color: var(--nx-color-text);
+  border-color: var(--nx-color-form-element-border);
+  margin: 0;
+  width: 100%;
+
+  &--open {
+    min-width: $lift-analysis-results-column-open-width;
+  }
+
+  &:hover {
+    background: var(--nx-color-interactive-background-hover);
+  }
+}

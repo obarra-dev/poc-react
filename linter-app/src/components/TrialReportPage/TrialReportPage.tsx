@@ -6,13 +6,22 @@ import { resultIdentifier } from "../../services/api/sbomApi/sbomApi";
 import { JobStatusIndicator } from "../JobStatusIndicator/JobStatusIndicator";
 import { buildGithubUrl } from "../../utils/buildGithubUrl";
 import { ResultHeader } from "../ResultHeader/ResultHeader";
+import { ResultTabs } from "../ResultTabs/ResultTabs";
 
+import {
+  DEPENDENCIES,
+  LOGS,
+  RESULTS,
+  TOOL_RESULTS,
+} from "../ResultTabs/allowedTabs";
 
 
 
 
 export function TrialReportPage(props: any) {
   const { repoHost, owner, repo, jobId } = useParams();
+  const tabsShown = [RESULTS, DEPENDENCIES, TOOL_RESULTS, LOGS];
+
 
   //const { repoHost, owner, repo, jobId } = props;
 
@@ -42,6 +51,12 @@ export function TrialReportPage(props: any) {
         jobId={jobId}
       />
 
+<ResultTabs
+        resultIdentifier={resultIdentifier(repoHost, owner, repo, jobId)}
+        jobStatus={"jobStatus"}
+        enabledTabs={tabsShown}
+        allowPublicDependenciesAccess={true}
+      />
      
     </div>
   );
@@ -56,7 +71,7 @@ interface TrialAnalysisHeaderProps {
 function TrialAnalysisHeader({ title, url, jobId }: TrialAnalysisHeaderProps) {
   return (
     <ResultHeader title={title} url={url}>
-      OMAR
+      OMAR {jobId}
     </ResultHeader>
   );
 }

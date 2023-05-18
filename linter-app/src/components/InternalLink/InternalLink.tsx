@@ -1,14 +1,14 @@
 import React from "react";
 
-export const InternalLink = ({
+export function InternalLink({
   eventLabel,
   eventAction = "Internal Click",
   to = "",
   children,
   ...rest
-}: InternalLinkProps) => {
+}: InternalLinkProps) {
   const onClick = () => {
-   console.debug("on click on href");
+   console.log("on click on href");
   };
 
   return <a href={to} onClick={onClick} children={children} {...rest} />;

@@ -8,12 +8,13 @@ export type ResultHeaderProps = PropsWithChildren<{
   title: string;
   url?: string;
 }>;
-export function ResultHeader({ title, children, url }: ResultHeaderProps) {
+
+export function ResultHeader({ title, url, children }: ResultHeaderProps) {
   return (
     <div className="lift-results-title-container">
       <span className="lift-results-title">
         <ResultPageTitle>
-          {isNotNullOrUndefined(url) ? (
+          {isNotNullOrUndefined(url)? (
             <ExternalLink href={url}>{title}</ExternalLink>
           ) : (
             title

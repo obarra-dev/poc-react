@@ -1,0 +1,15 @@
+.lift-result-tabs__new-tab-label {
+  background: #ffbf27;
+  border-radius: 16px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-weight: 600;
+  display: inline-block;
+  color: var(--nx-color-text);
+}
+
+.lift-result-page__tabs {
+  .nx-tab {
+    max-width: fit-content;
+  }
+}

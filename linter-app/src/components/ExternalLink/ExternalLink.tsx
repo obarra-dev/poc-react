@@ -1,19 +1,19 @@
 import { InternalLink, InternalLinkProps } from "../InternalLink/InternalLink";
 
-export const ExternalLink = ({
+export function ExternalLink({
   eventLabel = "Default Label",
   to = "",
   children,
   ...rest
-}: ExternalLinkProps) => {
+}: ExternalLinkProps)  {
   return (
     <InternalLink
-      to={to}
       eventLabel={eventLabel}
       eventAction="External Link"
+      to={to}
+      children={children}
       target="_blank"
       rel="noopener noreferrer"
-      children={children}
       {...rest}
     />
   );
