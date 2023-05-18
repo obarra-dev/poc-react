@@ -1,6 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { TrialReportPage } from './components/TrialReportPage/TrialReportPage.tsx'
+import App from './App.tsx';
+
+// TODO  import * as serviceWorker from "./serviceWorker";
+// TODO import { ErrorBoundary } from "./components/ErrorBoundary/ErrorBoundary";
+// TODO import { getUniqueUserIdForSession } from "./services/analytics/analytics";
+// TODO import { getConfig } from "./config";
+
 
 const repoHost = "github.com";
 const owner = "obarra";
@@ -9,6 +15,7 @@ const jobId= "01H0KFFF2TJPANE3XFGMHGTMM7";
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <TrialReportPage repoHost={repoHost} owner={owner} repo={repo} jobId={jobId}/>
+    {/* <ErrorBoundary> */}
+        <App />
   </React.StrictMode>,
 )
