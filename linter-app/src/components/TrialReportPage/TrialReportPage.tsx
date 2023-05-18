@@ -1,4 +1,4 @@
-import { RouteComponentProps } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { NotFoundTrigger } from "../NotFoundPage/NotFoundTrigger";
 import { resultIdentifier } from "../../services/api/sbomApi/sbomApi";
 
@@ -11,17 +11,10 @@ import { ResultHeader } from "../ResultHeader/ResultHeader";
 
 
 
-export type TrialReportPageProps = RouteComponentProps<{
-  repoHost: string;
-  owner: string;
-  repo: string;
-  jobId: string;
-}>;
+export function TrialReportPage(props: any) {
+  const { repoHost, owner, repo, jobId } = useParams();
 
-export function TrialReportPage(props: TrialReportPageProps) {
-  //const { repoHost, owner, repo, jobId } = props.match.params;
-
-  const { repoHost, owner, repo, jobId } = props;
+  //const { repoHost, owner, repo, jobId } = props;
 
   /** 
  const jobStatusQueryResults = useLiveStatus(jobId).jobStatusQueryResults;

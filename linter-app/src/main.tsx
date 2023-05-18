@@ -8,11 +8,6 @@ import App from './App.tsx';
 // TODO import { getConfig } from "./config";
 
 
-const repoHost = "github.com";
-const owner = "obarra";
-const repo = "vscode-iq-plugin";
-const jobId= "01H0KFFF2TJPANE3XFGMHGTMM7";
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     {/* <ErrorBoundary> */}
