@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from "react";
-import { NxButton } from "@sonatype/react-shared-components";
+import { NxButton } from "@some/react-test-components";
 import { faAngleDoubleLeft, faFilter } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
 import "./FilterToggleButton.scss";

@@ -9,7 +9,7 @@ import {
   NxTreeView,
   NxTreeViewChild,
   useToggle,
-} from "@sonatype/react-shared-components";
+} from "@some/react-test-components";
 import classNames from "classnames";
 import "./ResultFilter.scss";
 import { FacetControl, FilterState } from "../../../../../hooks/useFilterState";

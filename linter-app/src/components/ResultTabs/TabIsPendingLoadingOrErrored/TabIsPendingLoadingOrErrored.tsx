@@ -12,7 +12,7 @@ import { Undefinable } from "../../../utils/nullable";
 import { ResultPendingOrErrored } from "../../ResultPendingOrErrored/ResultPendingOrErrored";
 import { isQueryResultPendingOrErrored } from "../../../services/api/utils/isQueryPendingOrErrored";
 import { isNullOrUndefined } from "../../../utils/isNullOrUndefined";
-import { NxCard, NxH2 } from "@sonatype/react-shared-components";
+import { NxCard, NxH2 } from "@some/react-test-components";
 import "./TabIsPendingLoadingOrErrored.scss";
 import { AnalysisInProgress } from "./AnalysisInProgress/AnalysisInProgress";
 

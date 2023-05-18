@@ -8,7 +8,7 @@ import {
   LiftDialogCloseHandler,
   LiftModal,
 } from "../../../../LiftModal/LiftModal";
-import { NxTextLink } from "@sonatype/react-shared-components";
+import { NxTextLink } from "@some/react-test-components";
 import "./DownloadPatchDialog.scss";
 import { LIFT_BACKEND_BASE_URI } from "../../../../../constants";
 

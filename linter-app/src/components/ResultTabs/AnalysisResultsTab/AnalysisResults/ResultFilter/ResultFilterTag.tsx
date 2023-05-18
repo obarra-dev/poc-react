@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from "react";
-import { NxSelectableTag } from "@sonatype/react-shared-components";
+import { NxSelectableTag } from "@some/react-test-components";
 
 export function ResultFilterTag({ display, onClick }: ResultFilterTagProps) {
   return (

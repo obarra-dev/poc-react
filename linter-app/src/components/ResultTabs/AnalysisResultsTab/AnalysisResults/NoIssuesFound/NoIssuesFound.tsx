@@ -1,4 +1,4 @@
-import { NxButton } from "@sonatype/react-shared-components";
+import { NxButton } from "@some/react-test-components";
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import "./NoIssuesFound.scss";

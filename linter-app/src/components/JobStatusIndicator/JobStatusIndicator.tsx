@@ -5,7 +5,7 @@ import {
   NxPositiveStatusIndicator,
   NxIntermediateStatusIndicator,
   NxErrorStatusIndicator,
-} from "@sonatype/react-shared-components";
+} from "@some/react-test-components";
 import "./JobStatusIndicator.scss";
 
 export const JobStatusIndicator: React.FC<JobStatusIndicatorProps> = ({

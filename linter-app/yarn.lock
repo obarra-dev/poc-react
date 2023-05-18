@@ -619,9 +619,9 @@
     in-publish "^2.0.0"
     prop-types "^15.5.10"
 
-"@sonatype/react-shared-components@^12.14.4":
+"@some/react-test-components@^12.14.4":
   version "12.14.4"
-  resolved "https://registry.yarnpkg.com/@sonatype/react-shared-components/-/react-shared-components-12.14.4.tgz#db40544b7c0546fa87dbc9729496618edb6a1ec5"
+  resolved "https://registry.yarnpkg.com/@some/react-test-components/-/react-shared-components-12.14.4.tgz#db40544b7c0546fa87dbc9729496618edb6a1ec5"
   integrity sha512-aYS25HVhEPY7YJA+/O7nJeYARx2l/TnSYoFUh6p2UGdzfzSzULZOxq5H2Cq4E5BZSJjjSaN/M6MaBeyRVpNJPA==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.32"

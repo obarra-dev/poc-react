@@ -2,7 +2,7 @@ import { LiftUnrecoverableErrorDefault } from "../LiftUnrecoverableErrorDefault/
 import { isNotNullOrUndefined } from "../../utils/isNotNullOrUndefined";
 import { UnknownUseQueryResult } from "../../services/api/rtk-query-types/UseQueryResult";
 import { isQueryResultPending } from "../../services/api/utils/isQueryPendingOrErrored";
-import { NxLoadingSpinner } from "@sonatype/react-shared-components";
+import { NxLoadingSpinner } from "@some/react-test-components";
 import { QueryError } from "../../services/api/rtk-query-types/QueryError";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 

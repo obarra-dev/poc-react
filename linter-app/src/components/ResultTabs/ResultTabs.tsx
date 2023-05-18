@@ -1,10 +1,11 @@
 import "./ResultTabs.scss";
 import {
+  NxButton,
   NxTab,
   NxTabList,
   NxTabPanel,
   NxTabs,
-} from "@sonatype/react-shared-components";
+} from "@some/react-test-components";
 // import { AnalysisResultsTab } from "./AnalysisResultsTab/AnalysisResultsTab";
 import { PropsWithChildren, useState } from "react";
 import { ResultIdentifier } from "../../services/api/sbomApi/sbomApi";
@@ -47,26 +48,34 @@ export function ResultTabs({
 
   const currentTabName: Tab = "results";
   
-
+  const [activeTabId, setActiveTabId] = useState(0);
   const { jobId } = resultIdentifier;
 
   return (
-    <div className="lift-result-tabs">
-      <NxTabs
-        activeTab={getTabIndexByName(currentTabName)}
-        onTabSelect={handleTabSelect}
-      >
-        <NxTabList className="lift-result-tabs__tabs">
-          {isTabEnabled(RESULTS) ? <ResultTab>Issues</ResultTab> : null}
-        </NxTabList>
-
-        {isTabEnabled(RESULTS) ? (
-          <NxTabPanel>
-            <h2>barra</h2>
-          </NxTabPanel>
-        ) : null}
-      </NxTabs>
-    </div>
+    <section className="nx-tile">
+      <header className="nx-tile-header">
+        <div className="nx-tile-header__title"><h2 className="nx-h2">Tile Header</h2></div>
+      </header>
+      <div className="nx-tile-content">
+        <NxTabs activeTab={activeTabId} onTabSelect={setActiveTabId}>
+          <NxTabList aria-label="Tabs in a tile">
+            <NxTab>Tab</NxTab>
+            <NxTab>Tab with longer name</NxTab>
+            <NxTab>Another Tab 3 much longer name when will it truncate nobody knows</NxTab>
+            <NxTab>Fourth Tab</NxTab>
+          </NxTabList>
+          <NxTabPanel>Tab 1</NxTabPanel>
+          <NxTabPanel>Tab 2</NxTabPanel>
+          <NxTabPanel>Tab 3</NxTabPanel>
+          <NxTabPanel>Tab 4</NxTabPanel>
+        </NxTabs>
+      </div>
+      <footer className="nx-footer">
+        <div className="nx-btn-bar">
+          <NxButton variant="primary">Button</NxButton>
+        </div>
+      </footer>
+    </section>
   );
 
   function handleTabSelect(index: number): void {
@@ -91,21 +100,4 @@ export function ResultTabs({
   function isTabEnabled(tab: Tab): boolean {
     return isNotNullOrUndefined(enabledTabs.find((entry) => entry === tab));
   }
-}
-
-function ResultTab({
-  children,
-  isBeta = false,
-}: PropsWithChildren<{ isBeta?: boolean }>) {
-  return (
-    <NxTab>
-      {children}
-      {isBeta ? (
-        <>
-          {" "}
-          <div className="lift-result-tabs__new-tab-label">Beta</div>
-        </>
-      ) : null}
-    </NxTab>
-  );
 }

@@ -22,7 +22,7 @@ import {
 } from "../../../../hooks/useFilteredNotes/useFilteredNotes";
 import { IssuesArea } from "./IssueArea";
 import { FacetSidebar } from "./FacetSidebar";
-import { NxButton, NxFontAwesomeIcon } from "@sonatype/react-shared-components";
+import { NxButton, NxFontAwesomeIcon } from "@some/react-test-components";
 import { DownloadPatchDialog } from "./DownloadPatchDialog/DownloadPatchDialog";
 import { useGetPatchSummaryQuery } from "../../../../services/api/jobsApi/jobsApi";
 import { isQueryResultPending } from "../../../../services/api/utils/isQueryPendingOrErrored";

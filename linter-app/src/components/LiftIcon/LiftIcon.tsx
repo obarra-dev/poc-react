@@ -1,3 +1,3 @@
-import { NxFontAwesomeIcon } from "@sonatype/react-shared-components";
+import { NxFontAwesomeIcon } from "@some/react-test-components";
 
 export const LiftIcon = NxFontAwesomeIcon;
