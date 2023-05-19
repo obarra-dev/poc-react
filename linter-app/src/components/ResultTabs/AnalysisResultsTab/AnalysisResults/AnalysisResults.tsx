@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ResultIdentifier } from "../../../../services/api/sbomApi/sbomApi";
 
 import { IssuesArea } from "./IssueArea";
-import { JobSummary, ToolNote } from "../../../../utils/filterableNote";
+import { FilteredNotes, JobSummary, ToolNote } from "../../../../utils/filterableNote";
 
 
 export const AnalysisResults: React.FC<{
@@ -14,7 +14,7 @@ export const AnalysisResults: React.FC<{
 
 // TODO   const filteredNotes = useFilteredNotes(fixRates || {}, toolNotes);
 
-let filteredNotes: any;
+const filteredNotes: FilteredNotes = { notes : []};
 
   /*TODO
   if (isReportWithNoIssuesFound()) {
@@ -27,7 +27,7 @@ let filteredNotes: any;
       <ResultTabBottomSection
         resultIdentifier={resultIdentifier}
         jobSummary={jobSummary}
-        filterOpen={true}
+        filteredNotes={filteredNotes}
       />
     </>
   );
@@ -36,12 +36,13 @@ let filteredNotes: any;
 export interface ResultTabBottomSectionProps {
   resultIdentifier: ResultIdentifier;
   jobSummary: JobSummary;
-  filterOpen: boolean;
+  filteredNotes: FilteredNotes;
 }
 
 function ResultTabBottomSection({
   resultIdentifier,
   jobSummary,
+  filteredNotes,
 }: ResultTabBottomSectionProps) {
   return (
     <div className="lift-result-tab__section">

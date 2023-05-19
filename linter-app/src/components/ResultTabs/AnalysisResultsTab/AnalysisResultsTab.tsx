@@ -3,6 +3,8 @@ import { AnalysisResults } from "./AnalysisResults/AnalysisResults";
 import { Undefinable } from "../../../utils/nullable";
 import { TabIsPendingLoadingOrErrored } from "../TabIsPendingLoadingOrErrored/TabIsPendingLoadingOrErrored";
 import { ResultIdentifier } from "../../../services/api/sbomApi/sbomApi";
+import { JobSummary } from "../../../utils/filterableNote";
+import { ToolNote } from "../../../utils/filterableNote";
 
 
 export function AnalysisResultsTab({
@@ -23,6 +25,15 @@ export function AnalysisResultsTab({
   );
 
    */
+
+  const jobSummaryData: JobSummary = {
+    numIssuesFixed: 1,
+    numIssuesTotal: 2,
+    sourceBranch: "tu mama",
+  }
+
+  const toolNotes : ToolNote[] = []
+  
  
  
   return (
@@ -42,8 +53,8 @@ export function AnalysisResultsTab({
       */}
            <AnalysisResults
           resultIdentifier={resultIdentifier}
-          jobSummary={jobSummaryQuery.data!}
-          toolNotes={toolNotesQuery.data!}
+          jobSummary={jobSummaryData}
+          toolNotes={toolNotes}
         />
     </div>
   );

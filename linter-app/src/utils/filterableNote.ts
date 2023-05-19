@@ -17,7 +17,6 @@ export interface FilteredNotes {
   notes: FilterableNote[];
 }
 
-
 export interface FilterableNote extends ToolNote {
   tnPhaseText: string;
   tnToolTag: string;
