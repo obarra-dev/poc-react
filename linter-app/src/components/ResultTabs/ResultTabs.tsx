@@ -1,28 +1,15 @@
 import "./ResultTabs.scss";
 
-// import { AnalysisResultsTab } from "./AnalysisResultsTab/AnalysisResultsTab";
-import { PropsWithChildren, useState } from "react";
+import { AnalysisResultsTab } from "./AnalysisResultsTab/AnalysisResultsTab";
+import { useState } from "react";
 import { ResultIdentifier } from "../../services/api/sbomApi/sbomApi";
 import { JobStatusT } from "../../utils/status";
 import { isNotNullOrUndefined } from "../../utils/isNotNullOrUndefined";
 import { Undefinable } from "../../utils/nullable";
-import {
-  BOM_DR,
-  DEPENDENCIES,
-  LOGS,
-  RESULTS,
-  TECHNICAL_DEBT,
-  TOOL_RESULTS,
-} from "./allowedTabs";
+
 
 import { Box, Tabs, Tab, Typography } from "@mui/material";
 
-export interface ResultTabsProps {
-  resultIdentifier: ResultIdentifier;
-  jobStatus: Undefinable<JobStatusT>;
-  enabledTabs: string[];
-  allowPublicDependenciesAccess?: boolean;
-}
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -50,45 +37,55 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
+export interface ResultTabsProps {
+  resultIdentifier: ResultIdentifier;
+  jobStatus: Undefinable<JobStatusT>;
+}
+
 export function ResultTabs({
-  enabledTabs,
   resultIdentifier,
   jobStatus,
-  allowPublicDependenciesAccess = false,
 }: ResultTabsProps) {
-  const [tabOpenTime, setTabOpenTime] = useState(Date.now());
   
-  /*
+  
+  /* TODO
+  const [tabOpenTime, setTabOpenTime] = useState(Date.now());
+
   const [currentQueryParamTabName, setCurrentQueryParamTabName] = useQueryParam(
     "tab",
     StringParam
   );
+
+  const currentTabName: Tab = currentQueryParamTabName || "results";
+
+  useTabTracking(currentTabName, tabOpenTime);
+  useScrollTracking(currentTabName);
+
   */
 
   //const currentTabName: Tab = currentQueryParamTabName || "results";
 
-  const currentTabName = "results";
   
-  const [activeTabId, setActiveTabId] = useState(2);
+  const [activeTabId, setActiveTabId] = useState(0);
   const { jobId } = resultIdentifier;
 
-  function handleChange (event: React.SyntheticEvent, newValue: number)  {
-    setActiveTabId(newValue);
+  function handleTabSelected (event: React.SyntheticEvent, newIndex: number): void {
+    setActiveTabId(newIndex);
+      // TODO setCurrentQueryParamTabName(tabName);
+     // TODO setTabOpenTime(Date.now());
   };
-
 
   return (
     <div className="lift-result-tabs">
-
     <Box sx={{ width: '80%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={activeTabId} onChange={handleChange} aria-label="basic tabs example">
+        <Tabs value={activeTabId} onChange={handleTabSelected} aria-label="basic tabs example">
           <Tab label="Issues" />
           <Tab label="Item Two"  />
         </Tabs>
       </Box>
       <TabPanel value={activeTabId} index={0}>
-        Item Onevvv
+dsd
       </TabPanel>
       <TabPanel value={activeTabId} index={1}>
         Item Two
@@ -96,27 +93,4 @@ export function ResultTabs({
     </Box>
     </div>
   );
-
-  function handleTabSelect(index: number): void {
-    const tabName: string = getTabNameByIndex(index) as string;
-    // TODO setCurrentQueryParamTabName(tabName);
-    setTabOpenTime(Date.now());
-  }
-
-  function getTabNameByIndex(tabId: number): string | null {
-    if (tabId < 0 || tabId >= enabledTabs.length) {
-      return null;
-    }
-
-    return enabledTabs[tabId];
-  }
-
-  function getTabIndexByName(inputTabName: Tab): number {
-    const index = enabledTabs.indexOf(inputTabName);
-    return index < 0 ? 0 : index;
-  }
-
-  function isTabEnabled(tab: Tab): boolean {
-    return isNotNullOrUndefined(enabledTabs.find((entry) => entry === tab));
-  }
 }

@@ -1,6 +1,5 @@
 import { JobStatusT } from "../../../utils/status";
 import { AnalysisResults } from "./AnalysisResults/AnalysisResults";
-import React from "react";
 import { UnknownUseQueryResult } from "../../../services/api/rtk-query-types/UseQueryResult";
 import { FixRates } from "../../../services/api/fixRateApi/fixRates";
 import { Undefinable } from "../../../utils/nullable";
