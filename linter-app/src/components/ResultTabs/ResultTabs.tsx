@@ -4,7 +4,6 @@ import { AnalysisResultsTab } from "./AnalysisResultsTab/AnalysisResultsTab";
 import { useState } from "react";
 import { ResultIdentifier } from "../../services/api/sbomApi/sbomApi";
 import { JobStatusT } from "../../utils/status";
-import { isNotNullOrUndefined } from "../../utils/isNotNullOrUndefined";
 import { Undefinable } from "../../utils/nullable";
 
 
@@ -85,7 +84,10 @@ export function ResultTabs({
         </Tabs>
       </Box>
       <TabPanel value={activeTabId} index={0}>
-dsd
+      <AnalysisResultsTab
+              status={jobStatus}
+              resultIdentifier={resultIdentifier}
+            />
       </TabPanel>
       <TabPanel value={activeTabId} index={1}>
         Item Two

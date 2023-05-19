@@ -23,9 +23,8 @@ export function TrialReportPage(props: any) {
   const tabsShown = [RESULTS, DEPENDENCIES, TOOL_RESULTS, LOGS];
 
 
-  //const { repoHost, owner, repo, jobId } = props;
 
-  /** 
+  /**  TODO
  const jobStatusQueryResults = useLiveStatus(jobId).jobStatusQueryResults;
 
 

@@ -8,9 +8,5 @@ export const LOGS = "logs";
 export const allowedTabs = [
   RESULTS,
   DEPENDENCIES,
-  TECHNICAL_DEBT,
-  BOM_DR,
-  TOOL_RESULTS,
-  LOGS,
 ];
 export type Tab = typeof allowedTabs[number];
