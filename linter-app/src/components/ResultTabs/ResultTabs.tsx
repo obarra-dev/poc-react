@@ -26,8 +26,8 @@ export interface ResultTabsProps {
 
 interface TabPanelProps {
   children?: React.ReactNode;
-  index: number;
   value: number;
+  index: number;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -78,12 +78,13 @@ export function ResultTabs({
 
 
   return (
+    <div className="lift-result-tabs">
+
     <Box sx={{ width: '80%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={activeTabId} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item Onebbb" />
+          <Tab label="Issues" />
           <Tab label="Item Two"  />
-          <Tab label="Item Three"  />
         </Tabs>
       </Box>
       <TabPanel value={activeTabId} index={0}>
@@ -92,11 +93,8 @@ export function ResultTabs({
       <TabPanel value={activeTabId} index={1}>
         Item Two
       </TabPanel>
-      <TabPanel value={activeTabId} index={2}>
-        Item Three
-      </TabPanel>
-      
     </Box>
+    </div>
   );
 
   function handleTabSelect(index: number): void {
