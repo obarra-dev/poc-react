@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ResultIdentifier } from "../../../../services/api/sbomApi/sbomApi";
 
 import { IssuesArea } from "./IssueArea";
-import { FilteredNotes, JobSummary, ToolNote } from "../../../../utils/filterableNote";
+import { FilterableNote, FilteredNotes, JobSummary, ToolNote, ToolNoteDtoPhaseEnum } from "../../../../utils/filterableNote";
 
 
 export const AnalysisResults: React.FC<{
@@ -14,7 +14,14 @@ export const AnalysisResults: React.FC<{
 
 // TODO   const filteredNotes = useFilteredNotes(fixRates || {}, toolNotes);
 
-const filteredNotes: FilteredNotes = { notes : []};
+
+function transform(t: ToolNote ) : FilterableNote {
+  return {...t, tnPhaseText: "tnPhaseText", tnToolTag: "tnToolTag"};
+}
+
+const filteredNotes: FilteredNotes = { notes : toolNotes.map(transform)};
+
+
 
   /*TODO
   if (isReportWithNoIssuesFound()) {

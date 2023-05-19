@@ -15,7 +15,7 @@ export function IssueCard({
       <div className={classNames("lift-issue-card", "nx-card", className)}>
 
         <div className="lift-issue-card__meta-data-area">
-         barra
+         {groupedNote.title}
         </div>
       </div>
     </>

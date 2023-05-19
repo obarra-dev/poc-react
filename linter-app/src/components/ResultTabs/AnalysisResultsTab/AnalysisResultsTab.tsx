@@ -3,7 +3,7 @@ import { AnalysisResults } from "./AnalysisResults/AnalysisResults";
 import { Undefinable } from "../../../utils/nullable";
 import { TabIsPendingLoadingOrErrored } from "../TabIsPendingLoadingOrErrored/TabIsPendingLoadingOrErrored";
 import { ResultIdentifier } from "../../../services/api/sbomApi/sbomApi";
-import { JobSummary } from "../../../utils/filterableNote";
+import { JobSummary, ToolNoteDtoPhaseEnum } from "../../../utils/filterableNote";
 import { ToolNote } from "../../../utils/filterableNote";
 
 
@@ -32,7 +32,29 @@ export function AnalysisResultsTab({
     sourceBranch: "tu mama",
   }
 
-  const toolNotes : ToolNote[] = []
+  const toolNotes : ToolNote[] = [ {
+    jobId: "string",
+    toolName: "string",
+    title: "albert",
+    phase: ToolNoteDtoPhaseEnum.PhaseFixed,
+  },
+
+  {
+    jobId: "string",
+    toolName: "string",
+    title: "omar",
+    phase: ToolNoteDtoPhaseEnum.PhaseFixed,
+  },
+
+  {
+    jobId: "string",
+    toolName: "string",
+    title: "quelca",
+    phase: ToolNoteDtoPhaseEnum.PhaseFixed,
+  },
+  
+  
+]
   
  
  
