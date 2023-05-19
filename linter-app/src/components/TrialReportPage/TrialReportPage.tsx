@@ -17,11 +17,20 @@ import {
 
 
 
+interface TrialReportPageParams {
+  repoHost: string;
+  owner: string;
+  repo: string;
+  jobId: string;
+}
 
-export function TrialReportPage(props: any) {
+export function TrialReportPage() {
+  // TODO how to set a type for all the parrams and avoid as string!!!!
   const { repoHost, owner, repo, jobId } = useParams();
   const tabsShown = [RESULTS, DEPENDENCIES, TOOL_RESULTS, LOGS];
 
+
+  // const jobStatusQueryResults = useLiveStatus(jobId).jobStatusQueryResults;
 
 
   /**  TODO
@@ -46,12 +55,12 @@ export function TrialReportPage(props: any) {
     <div className="lift-trial-report-page lift-container">
       <TrialAnalysisHeader
         title={`${owner}/${repo}`}
-        url={buildGithubUrl(owner, repo)}
-        jobId={jobId}
+        url={buildGithubUrl(owner as string, repo as string)}
+        jobId={jobId as string}
       />
 
 <ResultTabs
-        resultIdentifier={resultIdentifier(repoHost, owner, repo, jobId)}
+        resultIdentifier={resultIdentifier(repoHost as string, owner as string, repo as string, jobId as string)}
         jobStatus={"jobStatus"}
         enabledTabs={tabsShown}
         allowPublicDependenciesAccess={true}
@@ -70,7 +79,7 @@ interface TrialAnalysisHeaderProps {
 function TrialAnalysisHeader({ title, url, jobId }: TrialAnalysisHeaderProps) {
   return (
     <ResultHeader title={title} url={url}>
-      OMAR {jobId}
+      {jobId}
     </ResultHeader>
   );
 }
