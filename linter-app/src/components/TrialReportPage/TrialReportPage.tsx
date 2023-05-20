@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { NotFoundTrigger } from "../NotFoundPage/NotFoundTrigger";
 import { resultIdentifier } from "../../services/api/sbomApi/sbomApi";
 
-// TODO import { useLiveStatus } from "../../hooks/useLive/useLiveStatus";
+import { useLiveStatus } from "../../hooks/useLive/useLiveStatus";
 import { JobStatusIndicator } from "../JobStatusIndicator/JobStatusIndicator";
 import { buildGithubUrl } from "../../utils/buildGithubUrl";
 import { ResultHeader } from "../ResultHeader/ResultHeader";
@@ -30,7 +30,8 @@ export function TrialReportPage() {
   const tabsShown = [RESULTS, DEPENDENCIES, TOOL_RESULTS, LOGS];
 
 
-  // const jobStatusQueryResults = useLiveStatus(jobId).jobStatusQueryResults;
+  const jobStatusQueryResults = useLiveStatus(jobId).jobStatusQueryResults;
+  console.log(jobStatusQueryResults);
 
 
   /**  TODO
