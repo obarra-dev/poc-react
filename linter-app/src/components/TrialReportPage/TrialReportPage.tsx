@@ -30,8 +30,10 @@ export function TrialReportPage() {
   const tabsShown = [RESULTS, DEPENDENCIES, TOOL_RESULTS, LOGS];
 
 
-  const jobStatusQueryResults = useLiveStatus(jobId as string).jobStatusQueryResults;
-  console.log("JOB STATUS: ", jobStatusQueryResults.data);
+  const {jobStatusQueryResults} = useLiveStatus(jobId as string);
+  const jobStatus = jobStatusQueryResults.data;
+
+  console.log(jobStatus)
 
 
   /**  TODO
@@ -48,7 +50,6 @@ export function TrialReportPage() {
     );
   }
 
-  const jobStatus = jobStatusQueryResults.data;
 
   */
 
@@ -63,7 +64,7 @@ export function TrialReportPage() {
 <ResultTabs
         resultIdentifier={resultIdentifier(repoHost as string, owner as string, repo as string, jobId as string)}
         jobStatus={"jobStatus"}
-        enabledTabs={tabsShown}
+        enabledTabs={jobStatus}
         allowPublicDependenciesAccess={true}
       />
     </div>
