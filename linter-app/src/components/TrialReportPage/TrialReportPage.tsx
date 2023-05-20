@@ -31,7 +31,7 @@ export function TrialReportPage() {
 
 
   const jobStatusQueryResults = useLiveStatus(jobId).jobStatusQueryResults;
-  console.log(jobStatusQueryResults);
+  console.log("OMAR", jobStatusQueryResults);
 
 
   /**  TODO
