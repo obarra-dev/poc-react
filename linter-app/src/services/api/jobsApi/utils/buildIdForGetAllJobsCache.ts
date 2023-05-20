@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2020-present Sonatype, Inc. All rights reserved.
- * "Sonatype" is a trademark of Sonatype, Inc.
- */
 
 import { RepoType } from "../../../../generated/website";
 

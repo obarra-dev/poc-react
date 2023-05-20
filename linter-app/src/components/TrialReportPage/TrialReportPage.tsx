@@ -9,6 +9,12 @@ import { ResultHeader } from "../ResultHeader/ResultHeader";
 import { ResultTabs } from "../ResultTabs/ResultTabs";
 
 import {
+  isQueryResult404,
+  isQueryResultFailed,
+} from "../../services/api/utils/isQueryPendingOrErrored";
+import { ResultPendingOrErrored } from "../ResultPendingOrErrored/ResultPendingOrErrored";
+
+import {
   DEPENDENCIES,
   LOGS,
   RESULTS,
@@ -33,13 +39,6 @@ export function TrialReportPage() {
   const {jobStatusQueryResults} = useLiveStatus(jobId as string);
   const jobStatus = jobStatusQueryResults.data;
 
-  console.log(jobStatus)
-
-
-  /**  TODO
- const jobStatusQueryResults = useLiveStatus(jobId).jobStatusQueryResults;
-
-
   if (isQueryResult404(jobStatusQueryResults)) {
     return <NotFoundTrigger />;
   } else if (isQueryResultFailed(jobStatusQueryResults)) {
@@ -50,8 +49,6 @@ export function TrialReportPage() {
     );
   }
 
-
-  */
 
   return (
     <div className="lift-trial-report-page lift-container">

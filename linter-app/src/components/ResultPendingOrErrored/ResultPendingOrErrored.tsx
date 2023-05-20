@@ -2,7 +2,7 @@ import { LiftUnrecoverableErrorDefault } from "../LiftUnrecoverableErrorDefault/
 import { isNotNullOrUndefined } from "../../utils/isNotNullOrUndefined";
 import { UnknownUseQueryResult } from "../../services/api/rtk-query-types/UseQueryResult";
 import { isQueryResultPending } from "../../services/api/utils/isQueryPendingOrErrored";
-import { NxLoadingSpinner } from "@some/react-test-components";
+import {Box, CircularProgress} from '@mui/material';
 import { QueryError } from "../../services/api/rtk-query-types/QueryError";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
@@ -20,7 +20,9 @@ export function ResultPendingOrErrored({
   } else if (isQueryResultPending(queryResult)) {
     return (
       <span>
-        <NxLoadingSpinner />
+    <Box sx={{ display: 'flex' }}>
+      <CircularProgress />
+    </Box>
         <div>{waitingMessage}</div>
       </span>
     );

@@ -5,7 +5,6 @@ import "./LiftContactCommunity.scss";
 import { NullableAndUndefinable } from "../../utils/nullable";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
-import { LiftIcon } from "../LiftIcon/LiftIcon";
 
 export function LiftContactCommunity({
   error,
@@ -18,7 +17,7 @@ export function LiftContactCommunity({
       <ExternalLink
         className="nx-text-link lift-contact-community__external-link-container"
         eventLabel={eventLabel}
-        to="https://community.sonatype.com/c/sonatype-lift/50"
+        to="https://react.dev/community"
       >
         Visit the community
        
