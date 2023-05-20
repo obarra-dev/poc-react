@@ -1,15 +1,15 @@
 import { ExternalLink } from "../ExternalLink/ExternalLink";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { sanitoryErrMsg } from "../../utils/errors";
-import "./LiftContactCommunity.scss";
+import "./ContactCommunity.scss";
 import { NullableAndUndefinable } from "../../utils/nullable";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
 
-export function LiftContactCommunity({
+export function ContactCommunity({
   error,
   eventLabel,
-}: LiftContactCommunityProps) {
+}: ContactCommunityProps) {
   // TODO  <LiftIcon  className="lift-contact-community__external-link-icon" icon={faExternalLinkAlt} /> in externa lin
   return (
     <>
@@ -27,7 +27,7 @@ export function LiftContactCommunity({
   );
 }
 
-interface LiftContactCommunityProps {
+interface ContactCommunityProps {
   error: NullableAndUndefinable<Error | FetchBaseQueryError | SerializedError>;
   eventLabel: string;
 }

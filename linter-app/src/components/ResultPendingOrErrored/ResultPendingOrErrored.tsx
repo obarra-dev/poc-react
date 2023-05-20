@@ -1,4 +1,4 @@
-import { LiftUnrecoverableErrorDefault } from "../LiftUnrecoverableErrorDefault/LiftUnrecoverableErrorDefault";
+import { UnrecoverableErrorDefault } from "../UnrecoverableErrorDefault/UnrecoverableErrorDefault";
 import { isNotNullOrUndefined } from "../../utils/isNotNullOrUndefined";
 import { UnknownUseQueryResult } from "../../services/api/rtk-query-types/UseQueryResult";
 import { isQueryResultPending } from "../../services/api/utils/isQueryPendingOrErrored";
@@ -16,7 +16,7 @@ export function ResultPendingOrErrored({
     isNotNullOrUndefined(error) &&
     (error as FetchBaseQueryError).status !== 404
   ) {
-    return <LiftUnrecoverableErrorDefault error={error as QueryError} />;
+    return <UnrecoverableErrorDefault error={error as QueryError} />;
   } else if (isQueryResultPending(queryResult)) {
     return (
       <span>
@@ -27,7 +27,7 @@ export function ResultPendingOrErrored({
       </span>
     );
   } else {
-    return null;
+    return <div>TODO</div>;
   }
 }
 

@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { LiftContactCommunity } from "../LiftContactCommunity/LiftContactCommunity";
-import { LiftUnrecoverableError } from "../LiftUnrecoverableError/LiftUnrecoverableError";
+import { ContactCommunity } from "../ContactCommunity/ContactCommunity";
+import { UnrecoverableError } from "../UnrecoverableError/UnrecoverableError";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
 import { useLocation } from "react-router-dom";
 
-export function LiftUnrecoverableErrorDefault({
+export function UnrecoverableErrorDefault({
   error,
-}: LiftUnrecoverableErrorDefaultProps) {
+}: UnrecoverableErrorDefaultProps) {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -16,12 +16,12 @@ export function LiftUnrecoverableErrorDefault({
   }, []);
 
   return (
-    <LiftUnrecoverableError>
-      <LiftContactCommunity error={error} eventLabel="supportEmail" />
-    </LiftUnrecoverableError>
+    <UnrecoverableError>
+      <ContactCommunity error={error} eventLabel="supportEmail" />
+    </UnrecoverableError>
   );
 }
 
-interface LiftUnrecoverableErrorDefaultProps {
+interface UnrecoverableErrorDefaultProps {
   error?: Error | FetchBaseQueryError | SerializedError;
 }

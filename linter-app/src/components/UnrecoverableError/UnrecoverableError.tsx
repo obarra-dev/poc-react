@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import "./LiftUnrecoverableError.scss";
+import "./UnrecoverableError.scss";
 
-export function LiftUnrecoverableError({
+export function UnrecoverableError({
   children,
-}: LiftUnrecoverableErrorProps) {
+}: UnrecoverableErrorProps) {
   return (
     <div className="nx-alert nx-alert--error" role="alert">
        <FontAwesomeIcon icon={faExclamationCircle} />
@@ -14,6 +14,6 @@ export function LiftUnrecoverableError({
   );
 }
 
-interface LiftUnrecoverableErrorProps {
+interface UnrecoverableErrorProps {
   children?: ReactNode;
 }

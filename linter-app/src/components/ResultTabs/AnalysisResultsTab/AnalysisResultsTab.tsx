@@ -1,7 +1,6 @@
 import { JobStatusT } from "../../../utils/status";
 import { AnalysisResults } from "./AnalysisResults/AnalysisResults";
 import { Undefinable } from "../../../utils/nullable";
-import { TabIsPendingLoadingOrErrored } from "../TabIsPendingLoadingOrErrored/TabIsPendingLoadingOrErrored";
 import { ResultIdentifier } from "../../../services/api/sbomApi/sbomApi";
 import { JobSummary, ToolNoteDtoPhaseEnum } from "../../../utils/filterableNote";
 import { ToolNote } from "../../../utils/filterableNote";
