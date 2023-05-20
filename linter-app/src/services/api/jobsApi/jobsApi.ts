@@ -5,7 +5,7 @@ import { JobStatusT } from "../../../utils/status";
 // TODO import { liftSdk } from "../../lift";
 
 const getCurrentStatus  = async (jobId:string) => {
-  const res = await fetch(`http://localhost:3000/api/web-console/v1/jobs/${jobId}/current-status`);
+  const res = await fetch(`http://localhost:3000/jobs/${jobId}/current-status`);
   const data = await res.json();
   const { currentStatus } = data;
   return currentStatus
