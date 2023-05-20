@@ -16,8 +16,8 @@ export const jobsApi = api.injectEndpoints({
     getJobStatus: builder.query<JobStatusT, GetJobStatusProps>({
       queryFn: ({ jobId }: GetJobStatusProps) => {
         return getCurrentStatus(jobId)
-          .then(function (status: any) {
-            return { data: status.currentStatus };
+          .then(function (currentStatus: any) {
+            return { data: currentStatus };
           })
           .catch(errorTransform);
       },

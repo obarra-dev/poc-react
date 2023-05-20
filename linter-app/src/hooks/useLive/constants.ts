@@ -1,1 +1,1 @@
-export const JOB_MONITOR_REFRESH_PERIOD = 10000; // ms
+export const JOB_MONITOR_REFRESH_PERIOD_MS = 10000;

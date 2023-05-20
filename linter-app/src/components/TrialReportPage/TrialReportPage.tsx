@@ -30,8 +30,8 @@ export function TrialReportPage() {
   const tabsShown = [RESULTS, DEPENDENCIES, TOOL_RESULTS, LOGS];
 
 
-  const jobStatusQueryResults = useLiveStatus(jobId).jobStatusQueryResults;
-  console.log("OMAR", jobStatusQueryResults);
+  const jobStatusQueryResults = useLiveStatus(jobId as string).jobStatusQueryResults;
+  console.log("jobStatusQueryResults: ", jobStatusQueryResults.data);
 
 
   /**  TODO
