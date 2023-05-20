@@ -1,7 +1,7 @@
 import { JobStatusT } from "../../../utils/status";
 import { AnalysisResults } from "./AnalysisResults/AnalysisResults";
 import { Undefinable } from "../../../utils/nullable";
-import { ResultIdentifier } from "../../../services/api/sbomApi/sbomApi";
+import { ResultIdentifier } from "../../../utils/models";
 import { JobSummary, ToolNoteDtoPhaseEnum } from "../../../utils/filterableNote";
 import { ToolNote } from "../../../utils/filterableNote";
 
@@ -51,7 +51,6 @@ export function AnalysisResultsTab({
     title: "quelca",
     phase: ToolNoteDtoPhaseEnum.PhaseFixed,
   },
-  
   
 ]
   

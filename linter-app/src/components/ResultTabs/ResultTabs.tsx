@@ -2,7 +2,7 @@ import "./ResultTabs.scss";
 
 import { AnalysisResultsTab } from "./AnalysisResultsTab/AnalysisResultsTab";
 import { useState } from "react";
-import { ResultIdentifier } from "../../services/api/sbomApi/sbomApi";
+import { ResultIdentifier } from "../../utils/models";
 import { JobStatusT } from "../../utils/status";
 import { Undefinable } from "../../utils/nullable";
 

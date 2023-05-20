@@ -1,6 +1,6 @@
 import { IssueCard } from "./IssueCard/IssueCard";
 import { useState } from "react";
-import { ResultIdentifier } from "../../services/api/sbomApi/sbomApi";
+import { ResultIdentifier } from "../../utils/models";
 import { Undefinable } from "../../utils/nullable";
 import { FilterableNote, JobSummary } from "../../utils/filterableNote";
 import { GroupedNote, useNotesGroupedBy } from "./hooks/useNotesGroupedBy";

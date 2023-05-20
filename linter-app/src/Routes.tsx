@@ -6,7 +6,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { TrialReportPage } from "./components/TrialReportPage/TrialReportPage";
 
-import { ResultIdentifier } from "./services/api/sbomApi/sbomApi";
+import { ResultIdentifier } from "./utils/models";
 import { NotFoundProvider } from "./components/NotFoundPage/NotFoundProvider";
 
 

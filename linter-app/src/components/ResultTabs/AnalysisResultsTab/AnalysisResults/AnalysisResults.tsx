@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // TODO import "./AnalysisResults.scss";
-import { ResultIdentifier } from "../../../../services/api/sbomApi/sbomApi";
+import { ResultIdentifier } from "../../../../utils/models";
 
 import { IssuesArea } from "./IssueArea";
 import { FilterableNote, FilteredNotes, JobSummary, ToolNote, ToolNoteDtoPhaseEnum } from "../../../../utils/filterableNote";

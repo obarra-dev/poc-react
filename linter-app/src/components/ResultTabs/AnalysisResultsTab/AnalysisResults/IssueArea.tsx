@@ -1,4 +1,4 @@
-import { ResultIdentifier } from "../../../../services/api/sbomApi/sbomApi";
+import { ResultIdentifier } from "../../../../utils/models";
 import { FilteredNotes, JobSummary } from "../../../../utils/filterableNote";
 
 import { Issues } from "../../../Issues/Issues";
