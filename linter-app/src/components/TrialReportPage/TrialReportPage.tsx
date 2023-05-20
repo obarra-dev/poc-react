@@ -31,7 +31,7 @@ export function TrialReportPage() {
 
 
   const jobStatusQueryResults = useLiveStatus(jobId as string).jobStatusQueryResults;
-  console.log("jobStatusQueryResults: ", jobStatusQueryResults.data);
+  console.log("JOB STATUS: ", jobStatusQueryResults.data);
 
 
   /**  TODO
@@ -66,7 +66,6 @@ export function TrialReportPage() {
         enabledTabs={tabsShown}
         allowPublicDependenciesAccess={true}
       />
-     
     </div>
   );
 }

@@ -17,6 +17,7 @@ export const jobsApi = api.injectEndpoints({
       queryFn: ({ jobId }: GetJobStatusProps) => {
         return getCurrentStatus(jobId)
           .then(function (currentStatus: any) {
+            // TODO check what happens if there is an error here
             return { data: currentStatus };
           })
           .catch(errorTransform);
@@ -35,11 +36,6 @@ export const jobsApi = api.injectEndpoints({
 export type GetJobStatusProps = {
   jobId: string;
 };
-
-export type GetJobType = {
-  jobId: string;
-};
-
 
 export const {
   useGetJobStatusQuery,
