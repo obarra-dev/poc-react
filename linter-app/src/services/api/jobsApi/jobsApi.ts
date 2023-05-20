@@ -1,6 +1,8 @@
 import { api, API_TAGS } from "../api";
 import { errorTransform } from "../utils/errorTransform";
 import { JobStatusT } from "../../../utils/status";
+import { ToolNote } from "../../../utils/filterableNote";
+import { successTransform } from "../utils/successTranform";
 
 // TODO import { liftSdk } from "../../lift";
 
@@ -10,6 +12,13 @@ const getCurrentStatus  = async (jobId:string) => {
   const { currentStatus } = data;
   return currentStatus
 }
+
+const getToolNotes  = async (jobId:string) => {
+  const res = await fetch(`http://localhost:3000/jobs/${jobId}/tool-notes`);
+  const data = await res.json();
+  return data
+}
+
 
 export const jobsApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -30,6 +39,14 @@ export const jobsApi = api.injectEndpoints({
       ],
     }),
 
+    getToolNotes: builder.query<ToolNote[], string>({
+      queryFn: (jobId: string) => {
+        return getToolNotes(jobId)
+          .then(successTransform)
+          .catch(errorTransform);
+      },
+    }),
+
   }),
 });
 
@@ -39,4 +56,5 @@ export type GetJobStatusProps = {
 
 export const {
   useGetJobStatusQuery,
+  useGetToolNotesQuery,
 } = jobsApi;

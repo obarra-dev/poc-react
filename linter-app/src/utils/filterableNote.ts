@@ -1,5 +1,5 @@
 export interface ToolNote {
-  jobId?: string;
+  jobId: string;
   toolName: string;
   title: string;
   phase: ToolNoteDtoPhaseEnum;
