@@ -65,13 +65,10 @@ export function AnalysisResultsTab({
         additionalDependentRequests={[toolNotesQuery, jobSummaryQuery]}
         tabType={TAB_TYPE}
       >
-        <AnalysisResults
-          resultIdentifier={resultIdentifier}
-          jobSummary={jobSummaryQuery.data!}
-          toolNotes={toolNotesQuery.data!}
-          fixRatesQuery={fixRateR}
-        />
+      
       */}
+
+      
            <AnalysisResults
           resultIdentifier={resultIdentifier}
           jobSummary={jobSummaryData}

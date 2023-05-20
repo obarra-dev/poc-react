@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { NotFoundTrigger } from "../NotFoundPage/NotFoundTrigger";
-import { resultIdentifier } from "../../services/api/sbomApi/sbomApi";
+import { resultIdentifier } from "../../utils/models";
 
 import { useLiveStatus } from "../../hooks/useLive/useLiveStatus";
 import { JobStatusIndicator } from "../JobStatusIndicator/JobStatusIndicator";
@@ -16,9 +16,7 @@ import { ResultPendingOrErrored } from "../ResultPendingOrErrored/ResultPendingO
 
 import {
   DEPENDENCIES,
-  LOGS,
   RESULTS,
-  TOOL_RESULTS,
 } from "../ResultTabs/allowedTabs";
 
 
@@ -33,7 +31,7 @@ interface TrialReportPageParams {
 export function TrialReportPage() {
   // TODO how to set a type for all the parrams and avoid as string!!!!
   const { repoHost, owner, repo, jobId } = useParams();
-  const tabsShown = [RESULTS, DEPENDENCIES, TOOL_RESULTS, LOGS];
+  const tabsShown = [RESULTS, DEPENDENCIES];
 
 
   const {jobStatusQueryResults} = useLiveStatus(jobId as string);
@@ -60,8 +58,8 @@ export function TrialReportPage() {
 
 <ResultTabs
         resultIdentifier={resultIdentifier(repoHost as string, owner as string, repo as string, jobId as string)}
-        jobStatus={"jobStatus"}
-        enabledTabs={jobStatus}
+        jobStatus={jobStatus}
+        enabledTabs={tabsShown}
         allowPublicDependenciesAccess={true}
       />
     </div>

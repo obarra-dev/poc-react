@@ -1,5 +1,3 @@
-
-
 export interface ToolNote {
   jobId?: string;
   toolName: string;
