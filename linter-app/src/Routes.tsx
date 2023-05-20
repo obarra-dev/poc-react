@@ -7,6 +7,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { TrialReportPage } from "./components/TrialReportPage/TrialReportPage";
 
 import { ResultIdentifier } from "./services/api/sbomApi/sbomApi";
+import { NotFoundProvider } from "./components/NotFoundPage/NotFoundProvider";
 
 
 
@@ -15,10 +16,17 @@ export function trialRoute({ repoHost, owner, repo, jobId }: ResultIdentifier) {
 }
 
 
+function RoutPa() {
+  return  <TrialReportPage/>
+}
+// TODO move NotFoundProvider to main
 export const router = createBrowserRouter([
   {
     path: "/trial/:repoHost/:owner/:repo/:jobId",
-    element: <TrialReportPage/>,
+    element:      <NotFoundProvider>
+    <RoutPa/>
+    </NotFoundProvider>
+,
   },
   {
     path: "about",

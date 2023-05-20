@@ -14,9 +14,10 @@ import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    {/* <ErrorBoundary> */}
       <Provider store={store}>
+      <ErrorBoundary> 
           <App />
+      </ErrorBoundary> 
       </Provider>
   </React.StrictMode>,
 )
