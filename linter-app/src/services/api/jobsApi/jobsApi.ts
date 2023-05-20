@@ -3,6 +3,10 @@ import { errorTransform } from "../utils/errorTransform";
 import { JobStatusT } from "../../../utils/status";
 import { ToolNote } from "../../../utils/filterableNote";
 import { successTransform } from "../utils/successTranform";
+import { UnknownUseQueryResult } from "../rtk-query-types/UseQueryResult";
+import { Undefinable } from "../../../utils/nullable";
+import { useGetQueryWhenJobIsComplete } from "../utils/useGetQueryWhenJobComplete";
+import { isNotNullOrUndefined } from "../../../utils/isNotNullOrUndefined";
 
 // TODO import { liftSdk } from "../../lift";
 
@@ -58,3 +62,16 @@ export const {
   useGetJobStatusQuery,
   useGetToolNotesQuery,
 } = jobsApi;
+
+
+
+export function useGetToolNotesQueryWhenJobComplete(
+  status: UnknownUseQueryResult<JobStatusT> | Undefinable<JobStatusT>,
+  jobId: Undefinable<string>
+) {
+  return useGetQueryWhenJobIsComplete(
+    status,
+    isNotNullOrUndefined(jobId) ? jobId : skipToken,
+    useGetToolNotesQuery
+  );
+}

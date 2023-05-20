@@ -4,6 +4,8 @@ import { Undefinable } from "../../../utils/nullable";
 import { ResultIdentifier } from "../../../utils/models";
 import { JobSummary, ToolNoteDtoPhaseEnum } from "../../../utils/filterableNote";
 import { ToolNote } from "../../../utils/filterableNote";
+import { UnknownUseQueryResult } from "../../../services/api/rtk-query-types/UseQueryResult";
+import { useGetToolNotesQueryWhenJobComplete } from "../../../services/api/jobsApi/jobsApi";
 
 
 export function AnalysisResultsTab({
@@ -11,12 +13,12 @@ export function AnalysisResultsTab({
   resultIdentifier,
 }: AnalysisResultsTabProps) {
   const jobId = resultIdentifier.jobId;
+  const toolNotesQuery: UnknownUseQueryResult< ToolNote[]> = useGetToolNotesQueryWhenJobComplete(status, jobId);
+
+  console.log("test: ", toolNotesQuery.data!)
 
   /**
    TODO 
-    const toolNotesQuery: UnknownUseQueryResult<
-    LiftWebConsoleToolNoteDto[]
-  > = useGetToolNotesQueryWhenJobComplete(status, jobId);
 
    const jobSummaryQuery: UnknownUseQueryResult<LiftWebConsoleJobSummary> = useGetJobSummaryQueryWhenJobComplete(
     status,
