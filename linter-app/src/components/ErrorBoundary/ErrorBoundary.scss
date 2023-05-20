@@ -1,0 +1,29 @@
+.error {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw !important;
+  margin: 0 !important;
+  background-color: #f9fafc;
+  z-index: 5;
+}
+.error-500,
+.not-found {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-500 {
+  justify-content: start;
+  padding-top: 10vh;
+
+  .icon {
+    fill: #ed1c24;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
