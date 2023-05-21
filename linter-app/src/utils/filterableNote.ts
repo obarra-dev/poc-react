@@ -3,6 +3,11 @@ export interface ToolNote {
   toolName: string;
   title: string;
   phase: ToolNoteDtoPhaseEnum;
+  column?: number;
+  lineNumber?: number;
+  file: string;
+  description: string;
+  detailsUrl?: string;
 }
 
 export interface JobSummary {

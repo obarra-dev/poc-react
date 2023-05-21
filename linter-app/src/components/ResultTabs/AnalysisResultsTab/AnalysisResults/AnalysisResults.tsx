@@ -11,15 +11,13 @@ export const AnalysisResults: React.FC<{
   jobSummary: JobSummary;
   toolNotes: ToolNote[];
 }> = ({ toolNotes, jobSummary, resultIdentifier }) => {
-
-// TODO   const filteredNotes = useFilteredNotes(fixRates || {}, toolNotes);
-
-
 function transform(t: ToolNote ) : FilterableNote {
   return {...t, tnPhaseText: "tnPhaseText", tnToolTag: "tnToolTag"};
 }
 
 const filteredNotes: FilteredNotes = { notes : toolNotes.map(transform)};
+
+// TODO   const filteredNotes = useFilteredNotes(fixRates || {}, toolNotes);
 
 
   /*TODO

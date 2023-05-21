@@ -37,6 +37,11 @@ export function AnalysisResultsTab({
     toolName: "string",
     title: "albert",
     phase: ToolNoteDtoPhaseEnum.PhaseFixed,
+    column: 1,
+    lineNumber: 2,
+    file: "file.js",
+    description: "desc",
+    detailsUrl: "urrlrlrlr",
   },
 
   {
@@ -44,15 +49,12 @@ export function AnalysisResultsTab({
     toolName: "string",
     title: "omar",
     phase: ToolNoteDtoPhaseEnum.PhaseFixed,
+    column: 1,
+    lineNumber: 2,
+    file: "file.js",
+    description: "desc",
+    detailsUrl: "urrlrlrlr",
   },
-
-  {
-    jobId: "string",
-    toolName: "string",
-    title: "quelca",
-    phase: ToolNoteDtoPhaseEnum.PhaseFixed,
-  },
-  
 ]
   
  

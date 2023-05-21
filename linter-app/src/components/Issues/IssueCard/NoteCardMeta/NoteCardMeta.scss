@@ -1,0 +1,37 @@
+/*
+ * Copyright (c) 2020-present Sonatype, Inc. All rights reserved.
+ * "Sonatype" is a trademark of Sonatype, Inc.
+ */
+
+.lift-node-card-meta {
+  display: flex;
+  flex: 2;
+}
+
+.lift-node-card-meta__file-info {
+  font-weight: bold;
+  display: inline;
+}
+
+.lift-node-card-meta__tool-display {
+  font-weight: bold;
+  flex: 0.75;
+}
+
+.lift-node-card-meta__file-link,
+.lift-node-card-meta__file-link:hover,
+.lift-node-card-meta__file-link:focus {
+  font-weight: normal;
+  display: flex;
+}
+
+.lift-node-card-meta__tool-display__tool-display {
+  font-weight: bold;
+}
+
+.lift-node-card-meta__file-icon {
+  &.nx-icon {
+    margin-left: 0;
+  }
+  color: black;
+}
