@@ -22,7 +22,6 @@ function transform(t: ToolNote ) : FilterableNote {
 const filteredNotes: FilteredNotes = { notes : toolNotes.map(transform)};
 
 
-
   /*TODO
   if (isReportWithNoIssuesFound()) {
     return <NoIssuesFound />;

@@ -5,7 +5,7 @@ import { ResultIdentifier } from "../../../utils/models";
 import { JobSummary, ToolNoteDtoPhaseEnum } from "../../../utils/filterableNote";
 import { ToolNote } from "../../../utils/filterableNote";
 import { UnknownUseQueryResult } from "../../../services/api/rtk-query-types/UseQueryResult";
-import { useGetToolNotesQueryWhenJobComplete } from "../../../services/api/jobsApi/jobsApi";
+import { useGetJobSummaryQueryWhenJobComplete, useGetToolNotesQueryWhenJobComplete } from "../../../services/api/jobsApi/jobsApi";
 
 
 export function AnalysisResultsTab({
@@ -15,22 +15,21 @@ export function AnalysisResultsTab({
   const jobId = resultIdentifier.jobId;
   const toolNotesQuery: UnknownUseQueryResult< ToolNote[]> = useGetToolNotesQueryWhenJobComplete(status, jobId);
 
-  console.log("test: ", toolNotesQuery.data!)
+  console.log("toolNotes: ", toolNotesQuery.data!)
 
-  /**
-   TODO 
 
-   const jobSummaryQuery: UnknownUseQueryResult<LiftWebConsoleJobSummary> = useGetJobSummaryQueryWhenJobComplete(
+  const jobSummaryQuery: UnknownUseQueryResult<JobSummary> = useGetJobSummaryQueryWhenJobComplete(
     status,
     jobId
   );
 
-   */
+  console.log("jobSummary: ", jobSummaryQuery.data)
 
   const jobSummaryData: JobSummary = {
     numIssuesFixed: 1,
     numIssuesTotal: 2,
     sourceBranch: "tu mama",
+    sourceCommit : "123"
   }
 
   const toolNotes : ToolNote[] = [ {

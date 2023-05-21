@@ -3,6 +3,12 @@
       { "id": 1, "title": "json-server" }
     ],
     "current-status": { "currentStatus": "JobCompleteSuccess"},
+    "job-summary": {
+      "numIssuesFixed": 0,
+      "numIssuesTotal": 11,
+      "sourceCommit": "e15fa5bd9f57beb38b1ba49a1c6a3e52e16dfe52",
+      "sourceBranch": "main"
+  },
     "tool-notes": [
       { "id": 1, "toolName": "json-server" , "title": "one", "phase": "PhaseFixed"},
       { "id": 2, "toolName": "json-server2" , "title": "two", "phase": "PhaseFixed"}

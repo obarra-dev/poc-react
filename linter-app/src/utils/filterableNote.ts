@@ -8,7 +8,9 @@ export interface ToolNote {
 export interface JobSummary {
   numIssuesFixed: number;
   numIssuesTotal: number;
-  sourceBranch?: string;
+  sourceBranch: string;
+  sourceCommit: string;
+
 }
 
 export interface FilteredNotes {
