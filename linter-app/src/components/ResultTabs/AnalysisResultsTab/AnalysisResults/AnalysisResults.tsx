@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ResultIdentifier } from "../../../../utils/models";
 
 import { IssuesArea } from "./IssueArea";
-import { JobSummary, ToolNote, ToolNoteDtoPhaseEnum } from "../../../../utils/filterableNote";
+import { JobSummary, ToolNote } from "../../../../utils/filterableNote";
 
 
 export const AnalysisResults: React.FC<{

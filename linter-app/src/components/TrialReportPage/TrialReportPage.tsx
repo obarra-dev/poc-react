@@ -75,7 +75,7 @@ interface TrialAnalysisHeaderProps {
 function TrialAnalysisHeader({ title, url, jobId }: TrialAnalysisHeaderProps) {
   return (
     <ResultHeader title={title} url={url}>
-      {jobId}
+      <JobStatusIndicator jobId={jobId}></JobStatusIndicator>
     </ResultHeader>
   );
 }
