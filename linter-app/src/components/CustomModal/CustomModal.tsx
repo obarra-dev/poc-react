@@ -19,8 +19,7 @@ export function CustomModal({
   }
 
   return (
-    <Modal  open={isOpen}
-    onClose={onClose} >
+    <Modal  open={isOpen} onClose={onClose} >
       <Box>
       <header className="nx-modal-header">
         <h2 className="nx-h2">
@@ -66,8 +65,8 @@ export function CustomModal({
 
 export type CustomModalProps = PropsWithChildren<{
   isOpen: boolean;
-  onClose: LiftDialogCloseHandler;
+  onClose: CustomModalCloseHandler;
   title: string;
 }>;
 
-export type LiftDialogCloseHandler = (arg0?: Event | React.MouseEvent) => void;
+export type CustomModalCloseHandler = (arg0?: Event | React.MouseEvent) => void;
