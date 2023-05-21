@@ -1,12 +1,12 @@
 import { Button, Modal } from "@mui/material";
 import React, { PropsWithChildren, useEffect, useRef } from "react";
 
-export function LiftModal({
+export function CustomModal({
   isOpen,
   onClose,
   title,
   children,
-}: LiftModalProps) {
+}: CustomModalProps) {
   const closeButtonEl = useRef<HTMLButtonElement | null>(null);
   const modalContents = useRef<HTMLDivElement | null>(null);
 
@@ -61,7 +61,7 @@ export function LiftModal({
   }
 }
 
-export type LiftModalProps = PropsWithChildren<{
+export type CustomModalProps = PropsWithChildren<{
   isOpen: boolean;
   onClose: LiftDialogCloseHandler;
   title: string;

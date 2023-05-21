@@ -1,16 +1,13 @@
 import { NoteCardMeta } from "../NoteCardMeta/NoteCardMeta";
 import { NoteDetailInfo } from "./NoteDetailInfo";
 import "./IssueDetailsDialog.scss";
-import {
-  LiftDialogCloseHandler,
-  LiftModal,
-} from "../../../LiftModal/LiftModal";
 import { Undefinable } from "../../../../utils/nullable";
 import { faTools } from "@fortawesome/free-solid-svg-icons";
 import { isUndefined } from "../../../../utils/isUndefinined";
 import { FilterableNote, JobSummary } from "../../../../utils/filterableNote";
 import { CustomMarkdown } from "../../../CustomMarkdown/CustomMarkdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CustomModal } from "../../../CustomModal/CustomModal";
 
 export function IssueDetailsDialog({
   note,
@@ -28,7 +25,7 @@ export function IssueDetailsDialog({
     note.description + buildMoreDetailsLinkForMarkdown(note.detailsUrl);
 
   return (
-    <LiftModal isOpen={isOpen} onClose={onClose} title={note.title}>
+    <CustomModal isOpen={isOpen} onClose={onClose} title={note.title}>
       <div className="lift-issue-details-dialog__status">
         <div className="lift-issue-details-dialog__status-row">
           <div className="lift-issue-details-dialog__tool-type-display">
@@ -63,7 +60,7 @@ export function IssueDetailsDialog({
           <FontAwesomeIcon icon={faTools} /> {note.toolName}
         </span>
       </div>
-    </LiftModal>
+    </CustomModal>
   );
 
   function buildMoreDetailsLinkForMarkdown(
