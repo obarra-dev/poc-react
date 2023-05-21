@@ -7,7 +7,7 @@ import { JobStatusT } from "../../utils/status";
 import { Undefinable } from "../../utils/nullable";
 
 
-import { Box, Tabs, Tab, Typography } from "@mui/material";
+import { Box, Tabs, Tab } from "@mui/material";
 
 
 interface TabPanelProps {

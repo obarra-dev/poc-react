@@ -59,8 +59,6 @@ export function TrialReportPage() {
 <ResultTabs
         resultIdentifier={resultIdentifier(repoHost as string, owner as string, repo as string, jobId as string)}
         jobStatus={jobStatus}
-        enabledTabs={tabsShown}
-        allowPublicDependenciesAccess={true}
       />
     </div>
   );
