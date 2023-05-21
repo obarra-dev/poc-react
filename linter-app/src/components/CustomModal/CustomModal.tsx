@@ -1,4 +1,4 @@
-import { Button, Modal } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import React, { PropsWithChildren, useEffect, useRef } from "react";
 
 export function CustomModal({
@@ -19,7 +19,9 @@ export function CustomModal({
   }
 
   return (
-    <Modal >
+    <Modal  open={isOpen}
+    onClose={onClose} >
+      <Box>
       <header className="nx-modal-header">
         <h2 className="nx-h2">
           <span>{title}</span>
@@ -41,6 +43,7 @@ export function CustomModal({
           </Button>
         </div>
       </footer>
+      </Box>
     </Modal>
   );
 

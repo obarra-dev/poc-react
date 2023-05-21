@@ -12,7 +12,6 @@ import { Undefinable } from "../../../utils/nullable";
 import { IssueDetailsDialog } from "./IssueDetailsDialog/IssueDetailsDialog";
 
 
-
 export function IssueCard({
   groupedNote,
   jobSummary,
@@ -48,8 +47,8 @@ export function IssueCard({
             className="lift-issue-card__show-details-link"
             href="#"
             onClick={(e) => {
-              setNoteToOpen(groupedNote);
               e.preventDefault();
+              setNoteToOpen(groupedNote);
               setDetailOpen(true);
             }}
           >

@@ -7,7 +7,7 @@ import { isUndefined } from "../../../../utils/isUndefinined";
 import { FilterableNote, JobSummary } from "../../../../utils/filterableNote";
 import { CustomMarkdown } from "../../../CustomMarkdown/CustomMarkdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CustomModal } from "../../../CustomModal/CustomModal";
+import { CustomModal, CustomModalCloseHandler } from "../../../CustomModal/CustomModal";
 
 export function IssueDetailsDialog({
   note,
@@ -79,6 +79,6 @@ interface ResultIssueDetailsDialogProps {
   jobSummary: JobSummary;
   githubOwner?: string;
   githubRepo?: string;
-  onClose: LiftDialogCloseHandler;
+  onClose: CustomModalCloseHandler;
   isOpen: boolean;
 }
