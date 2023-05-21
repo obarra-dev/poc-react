@@ -1,7 +1,7 @@
 import "./NoteCardMeta.scss";
 import { ExternalLink } from "../../../ExternalLink/ExternalLink";
 import { faFileAlt, faLink } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isNotNullOrUndefined } from "../../../../utils/isNotNullOrUndefined";
 import { Nullable, Undefinable } from "../../../../utils/nullable";
 import { isNullOrUndefined } from "../../../../utils/isNullOrUndefined";
@@ -79,7 +79,7 @@ export function NoteCardMeta({
   }
 
   function getCommitHash() {
-      return jobSummary.sourceCommit;
+    return jobSummary.sourceCommit;
   }
 }
 

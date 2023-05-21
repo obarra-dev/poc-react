@@ -4,12 +4,11 @@ import { IssueCardTitle } from "./IssueCardTitle/IssueCardTitle";
 import { CustomMarkdown } from "../../CustomMarkdown/CustomMarkdown";
 import { NoteCardMeta } from "./NoteCardMeta/NoteCardMeta";
 import { faChevronRight, faTools } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "@mui/material";
 import { useState } from "react";
 import { Undefinable } from "../../../utils/nullable";
 import { IssueDetailsDialog } from "./IssueDetailsDialog/IssueDetailsDialog";
-
 
 export function IssueCard({
   toolNote,

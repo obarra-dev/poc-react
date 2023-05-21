@@ -19,29 +19,29 @@ export function CustomModal({
   }
 
   return (
-    <Modal  open={isOpen} onClose={onClose} >
+    <Modal open={isOpen} onClose={onClose}>
       <Box>
-      <header className="nx-modal-header">
-        <h2 className="nx-h2">
-          <span>{title}</span>
-        </h2>
-      </header>
+        <header className="nx-modal-header">
+          <h2 className="nx-h2">
+            <span>{title}</span>
+          </h2>
+        </header>
 
-      <div className="nx-modal-content" ref={modalContents}>
-        {children}
-      </div>
-
-      <footer className="nx-footer">
-        <div className="nx-btn-bar">
-          <Button
-            data-test-selector="lift-modal__close-button"
-            ref={closeButtonEl}
-            onClick={onClose}
-          >
-            Close
-          </Button>
+        <div className="nx-modal-content" ref={modalContents}>
+          {children}
         </div>
-      </footer>
+
+        <footer className="nx-footer">
+          <div className="nx-btn-bar">
+            <Button
+              data-test-selector="lift-modal__close-button"
+              ref={closeButtonEl}
+              onClick={onClose}
+            >
+              Close
+            </Button>
+          </div>
+        </footer>
       </Box>
     </Modal>
   );

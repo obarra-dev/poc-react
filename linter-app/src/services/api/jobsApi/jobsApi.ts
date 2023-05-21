@@ -11,25 +11,24 @@ import { skipToken } from "@reduxjs/toolkit/dist/query";
 
 // TODO import { liftSdk } from "../../lift";
 
-const getCurrentStatus  = async (jobId:string) => {
+const getCurrentStatus = async (jobId: string) => {
   const res = await fetch(`http://localhost:3000/jobs/${jobId}/current-status`);
   const data = await res.json();
   const { currentStatus } = data;
-  return currentStatus
-}
+  return currentStatus;
+};
 
-const getToolNotes  = async (jobId:string) => {
+const getToolNotes = async (jobId: string) => {
   const res = await fetch(`http://localhost:3000/jobs/${jobId}/tool-notes`);
   const data = await res.json();
-  return data
-}
+  return data;
+};
 
-const getJobSummary  = async (jobId:string) => {
+const getJobSummary = async (jobId: string) => {
   const res = await fetch(`http://localhost:3000/jobs/${jobId}/job-summary`);
   const data = await res.json();
-  return data
-}
-
+  return data;
+};
 
 export const jobsApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -52,9 +51,7 @@ export const jobsApi = api.injectEndpoints({
 
     getToolNotes: builder.query<ToolNote[], string>({
       queryFn: (jobId: string) => {
-        return getToolNotes(jobId)
-          .then(successTransform)
-          .catch(errorTransform);
+        return getToolNotes(jobId).then(successTransform).catch(errorTransform);
       },
     }),
 
@@ -65,7 +62,6 @@ export const jobsApi = api.injectEndpoints({
           .catch(errorTransform);
       },
     }),
-
   }),
 });
 

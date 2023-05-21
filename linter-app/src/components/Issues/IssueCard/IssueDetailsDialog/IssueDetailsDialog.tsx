@@ -6,7 +6,10 @@ import { faTools } from "@fortawesome/free-solid-svg-icons";
 import { isUndefined } from "../../../../utils/isUndefinined";
 import { CustomMarkdown } from "../../../CustomMarkdown/CustomMarkdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CustomModal, CustomModalCloseHandler } from "../../../CustomModal/CustomModal";
+import {
+  CustomModal,
+  CustomModalCloseHandler,
+} from "../../../CustomModal/CustomModal";
 import { JobSummary, ToolNote } from "../../../../utils/filterableNote";
 
 export function IssueDetailsDialog({
@@ -22,7 +25,7 @@ export function IssueDetailsDialog({
   }
 
   const toolNoteDescription =
-  toolNote.description + buildMoreDetailsLinkForMarkdown(toolNote.detailsUrl);
+    toolNote.description + buildMoreDetailsLinkForMarkdown(toolNote.detailsUrl);
 
   return (
     <CustomModal isOpen={isOpen} onClose={onClose} title={toolNote.title}>

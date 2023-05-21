@@ -14,7 +14,7 @@ export function ResultHeader({ title, url, children }: ResultHeaderProps) {
     <div className="lift-results-title-container">
       <span className="lift-results-title">
         <ResultPageTitle>
-          {isNotNullOrUndefined(url)? (
+          {isNotNullOrUndefined(url) ? (
             <ExternalLink href={url}>{title}</ExternalLink>
           ) : (
             title

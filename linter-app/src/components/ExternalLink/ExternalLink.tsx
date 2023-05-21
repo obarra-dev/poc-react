@@ -5,7 +5,7 @@ export function ExternalLink({
   to = "",
   children,
   ...rest
-}: ExternalLinkProps)  {
+}: ExternalLinkProps) {
   return (
     <InternalLink
       eventLabel={eventLabel}

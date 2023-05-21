@@ -8,7 +8,6 @@ import {
 
 import { UseMutationResult } from "../rtk-query-types/UseMutationResult";
 
-
 export function isQueryResult404<T>(
   queryResult: UnknownUseQueryResult<T> | FailedUseQueryResult<T>
 ): boolean {

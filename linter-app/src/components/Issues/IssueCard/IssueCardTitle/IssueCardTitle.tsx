@@ -10,7 +10,7 @@ export function IssueCardTitle({ toolNote }: IssueCardTitleProps) {
           <h2 className="lift-issue-card__title-text nx-h2">
             {toolNote.title}
           </h2>
-        </Tooltip>     
+        </Tooltip>
       </div>
     </div>
   );

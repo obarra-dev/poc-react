@@ -14,12 +14,7 @@ import {
 } from "../../services/api/utils/isQueryPendingOrErrored";
 import { ResultPendingOrErrored } from "../ResultPendingOrErrored/ResultPendingOrErrored";
 
-import {
-  DEPENDENCIES,
-  RESULTS,
-} from "../ResultTabs/allowedTabs";
-
-
+import { DEPENDENCIES, RESULTS } from "../ResultTabs/allowedTabs";
 
 interface TrialReportPageParams {
   repoHost: string;
@@ -33,8 +28,7 @@ export function TrialReportPage() {
   const { repoHost, owner, repo, jobId } = useParams();
   const tabsShown = [RESULTS, DEPENDENCIES];
 
-
-  const {jobStatusQueryResults} = useLiveStatus(jobId as string);
+  const { jobStatusQueryResults } = useLiveStatus(jobId as string);
   const jobStatus = jobStatusQueryResults.data;
 
   if (isQueryResult404(jobStatusQueryResults)) {
@@ -47,7 +41,6 @@ export function TrialReportPage() {
     );
   }
 
-
   return (
     <div className="lift-trial-report-page lift-container">
       <TrialAnalysisHeader
@@ -56,8 +49,13 @@ export function TrialReportPage() {
         jobId={jobId as string}
       />
 
-<ResultTabs
-        resultIdentifier={resultIdentifier(repoHost as string, owner as string, repo as string, jobId as string)}
+      <ResultTabs
+        resultIdentifier={resultIdentifier(
+          repoHost as string,
+          owner as string,
+          repo as string,
+          jobId as string
+        )}
         jobStatus={jobStatus}
       />
     </div>

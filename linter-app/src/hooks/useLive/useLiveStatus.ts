@@ -8,9 +8,14 @@ import { UnknownUseQueryResult } from "../../services/api/rtk-query-types/UseQue
 export const useLiveStatus = (jobId: string): UseLiveStatusResults => {
   const [isJobComplete, setIsJobComplete] = useState(false);
 
-  const jobStatusQueryResults = useGetJobStatusQuery({jobId},  {
-    pollingInterval: isJobComplete ? undefined : JOB_MONITOR_REFRESH_PERIOD_MS,
-  });
+  const jobStatusQueryResults = useGetJobStatusQuery(
+    { jobId },
+    {
+      pollingInterval: isJobComplete
+        ? undefined
+        : JOB_MONITOR_REFRESH_PERIOD_MS,
+    }
+  );
 
   useEffect(() => {
     const newComplete = jobIsComplete(jobStatusQueryResults.data);

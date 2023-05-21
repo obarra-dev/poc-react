@@ -6,9 +6,7 @@ import { ResultIdentifier } from "../../utils/models";
 import { JobStatusT } from "../../utils/status";
 import { Undefinable } from "../../utils/nullable";
 
-
 import { Box, Tabs, Tab } from "@mui/material";
-
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -27,11 +25,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -41,12 +35,7 @@ export interface ResultTabsProps {
   jobStatus: Undefinable<JobStatusT>;
 }
 
-export function ResultTabs({
-  resultIdentifier,
-  jobStatus,
-}: ResultTabsProps) {
-  
-  
+export function ResultTabs({ resultIdentifier, jobStatus }: ResultTabsProps) {
   /* TODO
   const [tabOpenTime, setTabOpenTime] = useState(Date.now());
 
@@ -64,35 +53,41 @@ export function ResultTabs({
 
   //const currentTabName: Tab = currentQueryParamTabName || "results";
 
-  
   const [activeTabId, setActiveTabId] = useState(0);
   const { jobId } = resultIdentifier;
 
-  function handleTabSelected (event: React.SyntheticEvent, newIndex: number): void {
+  function handleTabSelected(
+    event: React.SyntheticEvent,
+    newIndex: number
+  ): void {
     setActiveTabId(newIndex);
-      // TODO setCurrentQueryParamTabName(tabName);
-     // TODO setTabOpenTime(Date.now());
+    // TODO setCurrentQueryParamTabName(tabName);
+    // TODO setTabOpenTime(Date.now());
   }
 
   return (
     <div className="lift-result-tabs">
-    <Box sx={{ width: '80%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={activeTabId} onChange={handleTabSelected} aria-label="basic tabs example">
-          <Tab label="Issues" />
-          <Tab label="Item Two"  />
-        </Tabs>
+      <Box sx={{ width: "80%" }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs
+            value={activeTabId}
+            onChange={handleTabSelected}
+            aria-label="basic tabs example"
+          >
+            <Tab label="Issues" />
+            <Tab label="Item Two" />
+          </Tabs>
+        </Box>
+        <TabPanel value={activeTabId} index={0}>
+          <AnalysisResultsTab
+            status={jobStatus}
+            resultIdentifier={resultIdentifier}
+          />
+        </TabPanel>
+        <TabPanel value={activeTabId} index={1}>
+          Item Two
+        </TabPanel>
       </Box>
-      <TabPanel value={activeTabId} index={0}>
-      <AnalysisResultsTab
-              status={jobStatus}
-              resultIdentifier={resultIdentifier}
-            />
-      </TabPanel>
-      <TabPanel value={activeTabId} index={1}>
-        Item Two
-      </TabPanel>
-    </Box>
     </div>
   );
 }

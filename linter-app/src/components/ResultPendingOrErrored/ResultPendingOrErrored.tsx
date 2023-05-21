@@ -2,7 +2,7 @@ import { UnrecoverableErrorDefault } from "../UnrecoverableErrorDefault/Unrecove
 import { isNotNullOrUndefined } from "../../utils/isNotNullOrUndefined";
 import { UnknownUseQueryResult } from "../../services/api/rtk-query-types/UseQueryResult";
 import { isQueryResultPending } from "../../services/api/utils/isQueryPendingOrErrored";
-import {Box, CircularProgress} from '@mui/material';
+import { Box, CircularProgress } from "@mui/material";
 import { QueryError } from "../../services/api/rtk-query-types/QueryError";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
@@ -20,9 +20,9 @@ export function ResultPendingOrErrored({
   } else if (isQueryResultPending(queryResult)) {
     return (
       <span>
-    <Box sx={{ display: 'flex' }}>
-      <CircularProgress />
-    </Box>
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress />
+        </Box>
         <div>{waitingMessage}</div>
       </span>
     );

@@ -17,8 +17,6 @@ export function Issues({
   toolNotes,
   className,
 }: IssuesProps) {
-
-
   return (
     <div className={className}>
       {toolNotes.map((toolNote: ToolNote, ndx: number) => {
@@ -33,7 +31,6 @@ export function Issues({
           />
         );
       })}
-      
     </div>
   );
 }

@@ -6,10 +6,7 @@ import { NullableAndUndefinable } from "../../utils/nullable";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
 
-export function ContactCommunity({
-  error,
-  eventLabel,
-}: ContactCommunityProps) {
+export function ContactCommunity({ error, eventLabel }: ContactCommunityProps) {
   // TODO  <LiftIcon  className="lift-contact-community__external-link-icon" icon={faExternalLinkAlt} /> in externa lin
   return (
     <>
@@ -20,7 +17,6 @@ export function ContactCommunity({
         to="https://react.dev/community"
       >
         Visit the community
-       
       </ExternalLink>
       for help.
     </>

@@ -1,4 +1,3 @@
-
 export const JobStatus = {
   JobReceivedAndEnqueued: "JobReceivedAndEnqueued",
   JobDequeued: "JobDequeued",
@@ -24,9 +23,7 @@ const completeStates: Set<JobStatusT> = new Set([
   JobStatus.JobComplete,
   JobStatus.JobDeclinedBySystemFilter,
 ]);
-const failureStates: Set<JobStatusT> = new Set([
-  JobStatus.JobCompleteFailure,
-]);
+const failureStates: Set<JobStatusT> = new Set([JobStatus.JobCompleteFailure]);
 
 const successStates: Set<JobStatusT> = new Set([
   JobStatus.JobComplete,
@@ -44,7 +41,6 @@ export const jobIsSuccess = (status?: JobStatusT) =>
 
 export const jobIsSkipped = (status?: JobStatusT) =>
   !!status && skippedStates.has(status);
-
 
 export const getJobStatusColor = (status?: string): StatusColors => {
   switch (status) {

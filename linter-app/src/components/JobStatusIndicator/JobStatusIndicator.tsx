@@ -8,13 +8,11 @@ export const JobStatusIndicator: React.FC<JobStatusIndicatorProps> = ({
   jobId,
 }: PropsWithoutRef<JobStatusIndicatorProps>) => {
   const { jobStatusQueryResults } = useLiveStatus(jobId);
- const { data: jobStatus, error: errorLoadingStatus } = jobStatusQueryResults;
+  const { data: jobStatus, error: errorLoadingStatus } = jobStatusQueryResults;
 
   const getStatusIndicator = () => {
     if (errorLoadingStatus) {
-      return (
-        <Alert severity="error">Error getting status</Alert>
-      );
+      return <Alert severity="error">Error getting status</Alert>;
     }
 
     if (jobIsFailure(jobStatus)) {
@@ -22,21 +20,14 @@ export const JobStatusIndicator: React.FC<JobStatusIndicatorProps> = ({
     }
 
     if (jobIsSkipped(jobStatus)) {
-      return (
-        <Alert severity="warning">Analysis skipped</Alert>
-      );
+      return <Alert severity="warning">Analysis skipped</Alert>;
     }
 
     if (jobIsSuccess(jobStatus)) {
-      return (
-        <Alert severity="success">Analysis complete</Alert>
-      );
+      return <Alert severity="success">Analysis complete</Alert>;
     }
 
-    return (
-      <Alert severity="info">Analysis in progress</Alert>
-    );
-
+    return <Alert severity="info">Analysis in progress</Alert>;
   };
 
   return <span className="lift-results-indicator">{getStatusIndicator()}</span>;

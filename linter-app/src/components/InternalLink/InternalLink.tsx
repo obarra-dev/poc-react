@@ -8,7 +8,7 @@ export function InternalLink({
   ...rest
 }: InternalLinkProps) {
   const onClick = () => {
-   console.log("on click on href");
+    console.log("on click on href");
   };
 
   return <a href={to} onClick={onClick} children={children} {...rest} />;

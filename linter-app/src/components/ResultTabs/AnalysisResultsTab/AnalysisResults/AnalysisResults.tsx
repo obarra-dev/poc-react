@@ -5,15 +5,12 @@ import { ResultIdentifier } from "../../../../utils/models";
 import { IssuesArea } from "./IssueArea";
 import { JobSummary, ToolNote } from "../../../../utils/filterableNote";
 
-
 export const AnalysisResults: React.FC<{
   resultIdentifier: ResultIdentifier;
   jobSummary: JobSummary;
   toolNotes: ToolNote[];
 }> = ({ toolNotes, jobSummary, resultIdentifier }) => {
-
-// TODO   const filteredNotes = useFilteredNotes(fixRates || {}, toolNotes);
-
+  // TODO   const filteredNotes = useFilteredNotes(fixRates || {}, toolNotes);
 
   /*TODO
   if (isReportWithNoIssuesFound()) {
@@ -30,7 +27,7 @@ export const AnalysisResults: React.FC<{
       />
     </>
   );
-}
+};
 
 export interface ResultTabBottomSectionProps {
   resultIdentifier: ResultIdentifier;

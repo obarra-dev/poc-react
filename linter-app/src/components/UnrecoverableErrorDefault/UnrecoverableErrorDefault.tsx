@@ -12,7 +12,7 @@ export function UnrecoverableErrorDefault({
 
   useEffect(() => {
     console.debug(pathname);
-   //TODO analytics.sendAnalyticsEvent("unrecoverable-error-shown", { error: `${error}`,pathname, });
+    //TODO analytics.sendAnalyticsEvent("unrecoverable-error-shown", { error: `${error}`,pathname, });
   }, []);
 
   return (

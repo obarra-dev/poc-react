@@ -12,9 +12,6 @@ export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl }),
   refetchOnMountOrArgChange: CACHE_DURATION_SECONDS,
-  tagTypes: [
-    API_TAGS.JobResult,
-    API_TAGS.JobStatus,
-  ],
+  tagTypes: [API_TAGS.JobResult, API_TAGS.JobStatus],
   endpoints: () => ({}),
 });

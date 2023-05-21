@@ -102,11 +102,9 @@ function isError(errorObj: RequestError): errorObj is Error {
   return errorObj instanceof Error;
 }
 
-
-
 export class ResponseError extends Error {
   override name: "ResponseError" = "ResponseError";
   constructor(public response: Response, msg?: string) {
-      super(msg);
+    super(msg);
   }
 }

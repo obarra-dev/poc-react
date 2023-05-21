@@ -15,13 +15,12 @@ export function IssuesArea({
 }: IssuesAreaProps) {
   return (
     <div className="lift-result-tab__issues-area">
-     <Issues
-          resultIdentifier={resultIdentifier}
-          toolNotes={toolNotes}
-          jobSummary={jobSummary}
-          className={"lift-result-tab__issues-list"}
-        />
+      <Issues
+        resultIdentifier={resultIdentifier}
+        toolNotes={toolNotes}
+        jobSummary={jobSummary}
+        className={"lift-result-tab__issues-list"}
+      />
     </div>
   );
-
 }
