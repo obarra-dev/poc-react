@@ -5,23 +5,23 @@ import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { isNotNullOrUndefined } from "../../../../utils/isNotNullOrUndefined";
 import { Nullable, Undefinable } from "../../../../utils/nullable";
 import { isNullOrUndefined } from "../../../../utils/isNullOrUndefined";
-import { FilterableNote, JobSummary, ToolNote } from "../../../../utils/filterableNote";
 import { Tooltip } from "@mui/material";
+import { JobSummary, ToolNote } from "../../../../utils/filterableNote";
 
 export function NoteCardMeta({
-  note,
+  toolNote,
   jobSummary,
   githubOwner,
   githubRepo,
 }: NoteCardMetaProps) {
   const ref = getCommitHash();
-  const fileLink = makeGitHubFileLink(githubOwner, githubRepo, ref, note);
+  const fileLink = makeGitHubFileLink(githubOwner, githubRepo, ref, toolNote);
 
-  const file = note.file || "";
+  const file = toolNote.file || "";
   const paths = file.split("/");
   const tnFile =
     paths.length > 2 ? `${paths[0]}/.../${paths[paths.length - 1]}` : file;
-  const colNum = note.column;
+  const colNum = toolNote.column;
 
   return (
     <div className="lift-node-card-meta">
@@ -38,7 +38,7 @@ export function NoteCardMeta({
                   className="lift-node-card-meta__file-icon"
                   icon={faLink}
                 />{" "}
-                {tnFile} {note.lineNumber}
+                {tnFile} {toolNote.lineNumber}
                 {colNum !== undefined && colNum > 0 ? `:${colNum}` : null}
               </ExternalLink>
             </span>
@@ -49,9 +49,9 @@ export function NoteCardMeta({
               className="lift-node-card-meta__line-number-icon"
               icon={faFileAlt}
             />{" "}
-            {tnFile} {note.lineNumber}
-            {note.column !== undefined && note.column > 0
-              ? `:${note.column}`
+            {tnFile} {toolNote.lineNumber}
+            {toolNote.column !== undefined && toolNote.column > 0
+              ? `:${toolNote.column}`
               : null}
           </div>
         )}
@@ -84,7 +84,7 @@ export function NoteCardMeta({
 }
 
 interface NoteCardMetaProps {
-  note: FilterableNote;
+  toolNote: ToolNote;
   jobSummary: JobSummary;
   githubOwner?: string;
   githubRepo?: string;

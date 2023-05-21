@@ -1,5 +1,5 @@
 import { LineNumberDisplay } from "./LineNumberDisplay";
-import { FilterableNote } from "../../../../utils/filterableNote";
+import { ToolNote } from "../../../../utils/filterableNote";
 
 export function NoteDetailInfo({ note }: NoteDetailInfoProps) {
   const file = note.file;
@@ -21,5 +21,5 @@ export function NoteDetailInfo({ note }: NoteDetailInfoProps) {
 }
 
 interface NoteDetailInfoProps {
-  note: FilterableNote;
+  note: ToolNote;
 }

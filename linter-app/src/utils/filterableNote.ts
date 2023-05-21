@@ -18,16 +18,6 @@ export interface JobSummary {
 
 }
 
-export interface FilteredNotes {
-  notes: FilterableNote[];
-}
-
-export interface FilterableNote extends ToolNote {
-  tnPhaseText: string;
-  tnToolTag: string;
-}
-
-
 export const ToolNoteDtoPhaseEnum = {
   PhaseUnknown: 'PhaseUnknown',
   PhasePreexisting: 'PhasePreexisting',

@@ -1,6 +1,5 @@
 import classNames from "classnames";
-import { GroupedNote } from "../hooks/useNotesGroupedBy";
-import { FilterableNote, JobSummary } from "../../../utils/filterableNote";
+import { JobSummary, ToolNote } from "../../../utils/filterableNote";
 import { IssueCardTitle } from "./IssueCardTitle/IssueCardTitle";
 import { CustomMarkdown } from "../../CustomMarkdown/CustomMarkdown";
 import { NoteCardMeta } from "./NoteCardMeta/NoteCardMeta";
@@ -13,34 +12,34 @@ import { IssueDetailsDialog } from "./IssueDetailsDialog/IssueDetailsDialog";
 
 
 export function IssueCard({
-  groupedNote,
+  toolNote,
   jobSummary,
   githubOwner,
   githubRepo,
   className,
 }: IssueCardProps) {
   const [detailOpen, setDetailOpen] = useState(false);
-  const [noteToOpen, setNoteToOpen] = useState<Undefinable<FilterableNote>>();
+  const [noteToOpen, setNoteToOpen] = useState<Undefinable<ToolNote>>();
 
   return (
     <>
       <div className={classNames("lift-issue-card", "nx-card", className)}>
-        <IssueCardTitle groupedNote={groupedNote} />
+        <IssueCardTitle toolNote={toolNote} />
 
         <CustomMarkdown
-          content={groupedNote.description.split("\n").slice(0, 2).join("\n")}
+          content={toolNote.description.split("\n").slice(0, 2).join("\n")}
           className="lift-issue-card__markdown-description"
         />
         <div className="lift-issue-card__meta-data-area">
           <NoteCardMeta
-            note={groupedNote}
+            toolNote={toolNote}
             jobSummary={jobSummary}
             githubOwner={githubOwner}
             githubRepo={githubRepo}
           />
 
           <span className="lift-node-card-meta__tool-display">
-            <FontAwesomeIcon icon={faTools} /> {groupedNote.toolName}
+            <FontAwesomeIcon icon={faTools} /> {toolNote.toolName}
           </span>
 
           <Link
@@ -48,7 +47,7 @@ export function IssueCard({
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              setNoteToOpen(groupedNote);
+              setNoteToOpen(toolNote);
               setDetailOpen(true);
             }}
           >
@@ -56,25 +55,10 @@ export function IssueCard({
             <FontAwesomeIcon icon={faChevronRight} />
           </Link>
         </div>
-{
-  /**
-   
-
-        <IssueCardInstanceExpansion
-          groupedNote={groupedNote}
-          jobSummary={jobSummary}
-          githubOwner={githubOwner}
-          githubRepo={githubRepo}
-          setNoteToOpen={setNoteToOpen}
-          setDetailOpen={setDetailOpen}
-        />
-
-           */
-}
       </div>
 
       <IssueDetailsDialog
-        note={noteToOpen}
+        toolNote={noteToOpen}
         jobSummary={jobSummary}
         githubOwner={githubOwner}
         githubRepo={githubRepo}
@@ -86,7 +70,7 @@ export function IssueCard({
 }
 
 export interface IssueCardProps {
-  groupedNote: GroupedNote;
+  toolNote: ToolNote;
   jobSummary: JobSummary;
   githubOwner?: string;
   githubRepo?: string;

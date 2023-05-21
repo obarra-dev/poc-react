@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ResultIdentifier } from "../../../../utils/models";
 
 import { IssuesArea } from "./IssueArea";
-import { FilterableNote, FilteredNotes, JobSummary, ToolNote, ToolNoteDtoPhaseEnum } from "../../../../utils/filterableNote";
+import { JobSummary, ToolNote, ToolNoteDtoPhaseEnum } from "../../../../utils/filterableNote";
 
 
 export const AnalysisResults: React.FC<{
@@ -11,11 +11,6 @@ export const AnalysisResults: React.FC<{
   jobSummary: JobSummary;
   toolNotes: ToolNote[];
 }> = ({ toolNotes, jobSummary, resultIdentifier }) => {
-function transform(t: ToolNote ) : FilterableNote {
-  return {...t, tnPhaseText: "tnPhaseText", tnToolTag: "tnToolTag"};
-}
-
-const filteredNotes: FilteredNotes = { notes : toolNotes.map(transform)};
 
 // TODO   const filteredNotes = useFilteredNotes(fixRates || {}, toolNotes);
 
@@ -31,7 +26,7 @@ const filteredNotes: FilteredNotes = { notes : toolNotes.map(transform)};
       <ResultTabBottomSection
         resultIdentifier={resultIdentifier}
         jobSummary={jobSummary}
-        filteredNotes={filteredNotes}
+        toolNotes={toolNotes}
       />
     </>
   );
@@ -40,20 +35,20 @@ const filteredNotes: FilteredNotes = { notes : toolNotes.map(transform)};
 export interface ResultTabBottomSectionProps {
   resultIdentifier: ResultIdentifier;
   jobSummary: JobSummary;
-  filteredNotes: FilteredNotes;
+  toolNotes: ToolNote[];
 }
 
 function ResultTabBottomSection({
   resultIdentifier,
   jobSummary,
-  filteredNotes,
+  toolNotes,
 }: ResultTabBottomSectionProps) {
   return (
     <div className="lift-result-tab__section">
       <IssuesArea
         resultIdentifier={resultIdentifier}
         jobSummary={jobSummary}
-        filteredNotes={filteredNotes}
+        toolNotes={toolNotes}
       />
     </div>
   );

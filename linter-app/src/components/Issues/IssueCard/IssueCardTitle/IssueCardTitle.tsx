@@ -1,14 +1,14 @@
-import { GroupedNote } from "../../hooks/useNotesGroupedBy";
 import { Tooltip } from "@mui/material";
+import { ToolNote } from "../../../../utils/filterableNote";
 
 // TODO SHOW PhaseDisplay, tag gruped
-export function IssueCardTitle({ groupedNote }: IssueCardTitleProps) {
+export function IssueCardTitle({ toolNote }: IssueCardTitleProps) {
   return (
     <div className="lift-issue-card__title">
       <div className="lift-issue-card__header">
-        <Tooltip title={groupedNote.title}>
+        <Tooltip title={toolNote.title}>
           <h2 className="lift-issue-card__title-text nx-h2">
-            {groupedNote.title}
+            {toolNote.title}
           </h2>
         </Tooltip>     
       </div>
@@ -17,5 +17,5 @@ export function IssueCardTitle({ groupedNote }: IssueCardTitleProps) {
 }
 
 export interface IssueCardTitleProps {
-  groupedNote: GroupedNote;
+  toolNote: ToolNote;
 }
