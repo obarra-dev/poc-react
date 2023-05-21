@@ -17,6 +17,6 @@ export function ExternalLink({
       {...rest}
     />
   );
-};
+}
 
 export type ExternalLinkProps = Partial<InternalLinkProps>;

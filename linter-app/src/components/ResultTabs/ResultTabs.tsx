@@ -72,7 +72,7 @@ export function ResultTabs({
     setActiveTabId(newIndex);
       // TODO setCurrentQueryParamTabName(tabName);
      // TODO setTabOpenTime(Date.now());
-  };
+  }
 
   return (
     <div className="lift-result-tabs">

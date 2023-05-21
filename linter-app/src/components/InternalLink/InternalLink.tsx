@@ -12,7 +12,7 @@ export function InternalLink({
   };
 
   return <a href={to} onClick={onClick} children={children} {...rest} />;
-};
+}
 
 export interface InternalLinkProps extends React.HTMLProps<HTMLAnchorElement> {
   eventLabel: string;
