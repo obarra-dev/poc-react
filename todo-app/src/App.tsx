@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import "./App.css";
 
 type FormElemEvent = React.FormEvent<HTMLFormElement>;
 
