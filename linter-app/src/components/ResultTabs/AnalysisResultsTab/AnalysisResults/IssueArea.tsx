@@ -14,12 +14,12 @@ export function IssuesArea({
   jobSummary,
 }: IssuesAreaProps) {
   return (
-    <div className="lift-result-tab__issues-area">
+    <div className="puv-result-tab__issues-area">
       <Issues
         resultIdentifier={resultIdentifier}
         toolNotes={toolNotes}
         jobSummary={jobSummary}
-        className={"lift-result-tab__issues-list"}
+        className={"puv-result-tab__issues-list"}
       />
     </div>
   );

@@ -22,7 +22,7 @@ export const DEFAULT_REQUEST_ERROR_STATUS = 500;
   throws an error.
 
   We have two generated sdks, created using openapi-generate. One is based on the
-  Haskell "website" service and the other is based on the Kotlin "lift-backend" service.
+  Haskell "website" service and the other is based on the Kotlin "puv-backend" service.
 
   Unfortunately due to slight version differences they both behave a little different in the above scenario.
 

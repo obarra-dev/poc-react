@@ -34,7 +34,7 @@ export function CustomModal({
         <footer className="nx-footer">
           <div className="nx-btn-bar">
             <Button
-              data-test-selector="lift-modal__close-button"
+              data-test-selector="puv-modal__close-button"
               ref={closeButtonEl}
               onClick={onClose}
             >

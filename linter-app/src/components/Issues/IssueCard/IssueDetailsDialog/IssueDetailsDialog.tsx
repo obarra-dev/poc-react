@@ -29,29 +29,29 @@ export function IssueDetailsDialog({
 
   return (
     <CustomModal isOpen={isOpen} onClose={onClose} title={toolNote.title}>
-      <div className="lift-issue-details-dialog__status">
-        <div className="lift-issue-details-dialog__status-row">
-          <div className="lift-issue-details-dialog__tool-type-display">
+      <div className="puv-issue-details-dialog__status">
+        <div className="puv-issue-details-dialog__status-row">
+          <div className="puv-issue-details-dialog__tool-type-display">
             <h3 className="nx-h3">Tool</h3>
           </div>
         </div>
 
-        <div className="lift-issue-details-dialog__tool-text lift-issue-details-dialog__status-row">
+        <div className="puv-issue-details-dialog__tool-text puv-issue-details-dialog__status-row">
           {toolNote.toolName}
         </div>
       </div>
 
       <NoteDetailInfo note={toolNote} />
 
-      <div className="lift-issue-details-dialog__description">
+      <div className="puv-issue-details-dialog__description">
         <h3 className="nx-h3">Description</h3>
         <CustomMarkdown
           content={toolNoteDescription}
-          className="lift-issue-details-dialog__tool-note-markdown"
+          className="puv-issue-details-dialog__tool-note-markdown"
         />
       </div>
 
-      <div className="lift-issue-details-dialog__footer">
+      <div className="puv-issue-details-dialog__footer">
         <NoteCardMeta
           toolNote={toolNote}
           jobSummary={jobSummary}
@@ -59,7 +59,7 @@ export function IssueDetailsDialog({
           githubRepo={githubRepo}
         />
 
-        <span className="lift-node-card-meta__tool-display">
+        <span className="puv-node-card-meta__tool-display">
           <FontAwesomeIcon icon={faTools} /> {toolNote.toolName}
         </span>
       </div>

@@ -35,14 +35,14 @@ export function TrialReportPage() {
     return <NotFoundTrigger />;
   } else if (isQueryResultFailed(jobStatusQueryResults)) {
     return (
-      <div className="lift-container">
+      <div className="puv-container">
         <ResultPendingOrErrored queryResult={jobStatusQueryResults} />
       </div>
     );
   }
 
   return (
-    <div className="lift-trial-report-page lift-container">
+    <div className="puv-trial-report-page puv-container">
       <TrialAnalysisHeader
         title={`${owner}/${repo}`}
         url={buildGithubUrl(owner as string, repo as string)}

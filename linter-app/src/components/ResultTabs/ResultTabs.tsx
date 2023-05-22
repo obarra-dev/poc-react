@@ -66,7 +66,7 @@ export function ResultTabs({ resultIdentifier, jobStatus }: ResultTabsProps) {
   }
 
   return (
-    <div className="lift-result-tabs">
+    <div className="puv-result-tabs">
       <Box sx={{ width: "80%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs

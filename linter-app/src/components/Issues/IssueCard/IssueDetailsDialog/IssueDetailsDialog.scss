@@ -1,12 +1,12 @@
-.lift-issue-details-dialog__footer {
+.puv-issue-details-dialog__footer {
   display: flex;
 }
 
-.lift-issue-details-dialog__detail-info-row {
+.puv-issue-details-dialog__detail-info-row {
   display: flex;
 }
 
-.lift-issue-details-dialog__status-row {
+.puv-issue-details-dialog__status-row {
   display: flex;
 
   :not(:first-child) {
@@ -14,20 +14,20 @@
   }
 }
 
-.lift-issue-details-dialog__status {
+.puv-issue-details-dialog__status {
   margin-bottom: 1rem;
 }
 
-.lift-issue-details-dialog__detail-info * {
+.puv-issue-details-dialog__detail-info * {
   margin-bottom: 1rem;
 }
 
-.lift-issue-details-dialog__phase-display {
+.puv-issue-details-dialog__phase-display {
   font-size: 16px;
   font-weight: bold;
 }
 
-.lift-issue-details-dialog__tool-note-markdown {
+.puv-issue-details-dialog__tool-note-markdown {
   margin-top: 0;
   font-size: var(--nx-font-size);
 

@@ -41,7 +41,7 @@ function ResultTabBottomSection({
   toolNotes,
 }: ResultTabBottomSectionProps) {
   return (
-    <div className="lift-result-tab__section">
+    <div className="puv-result-tab__section">
       <IssuesArea
         resultIdentifier={resultIdentifier}
         jobSummary={jobSummary}

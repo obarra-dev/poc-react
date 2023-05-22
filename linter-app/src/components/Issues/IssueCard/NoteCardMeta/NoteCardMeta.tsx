@@ -24,18 +24,18 @@ export function NoteCardMeta({
   const colNum = toolNote.column;
 
   return (
-    <div className="lift-node-card-meta">
-      <div className="lift-node-card-meta__file-info">
+    <div className="puv-node-card-meta">
+      <div className="puv-node-card-meta__file-info">
         {fileLink ? (
           <Tooltip title={file}>
             <span>
               <ExternalLink
                 to={fileLink}
                 eventLabel="githubSource"
-                className="lift-node-card-meta__file-link"
+                className="puv-node-card-meta__file-link"
               >
                 <FontAwesomeIcon
-                  className="lift-node-card-meta__file-icon"
+                  className="puv-node-card-meta__file-icon"
                   icon={faLink}
                 />{" "}
                 {tnFile} {toolNote.lineNumber}
@@ -44,9 +44,9 @@ export function NoteCardMeta({
             </span>
           </Tooltip>
         ) : (
-          <div className="lift-node-card-meta__file-no-link">
+          <div className="puv-node-card-meta__file-no-link">
             <FontAwesomeIcon
-              className="lift-node-card-meta__line-number-icon"
+              className="puv-node-card-meta__line-number-icon"
               icon={faFileAlt}
             />{" "}
             {tnFile} {toolNote.lineNumber}

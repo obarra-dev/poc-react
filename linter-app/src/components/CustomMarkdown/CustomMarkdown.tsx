@@ -5,7 +5,7 @@ export function CustomMarkdown({ content, className }: CustomMarkdownProps) {
   return (
     <Markdown
       children={content}
-      className={classNames("lift-markdown", className)}
+      className={classNames("puv-markdown", className)}
     />
   );
 }

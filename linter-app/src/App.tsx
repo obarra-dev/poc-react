@@ -10,18 +10,21 @@ import { NotFoundProvider } from "./components/NotFoundPage/NotFoundProvider";
 
 // TODO <Router history={history}>
 
+function App() {
+  return <RouterProvider router={router} />;
+}
+
+
 /*
-const App: React.FC = () => {
+
+function App() {
   return (
             <NotFoundProvider>
               <RouterProvider router={router} />
             </NotFoundProvider>
   );
-};
-*/
-
-function App() {
-  return <RouterProvider router={router} />;
 }
+
+*/
 
 export default App;

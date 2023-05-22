@@ -7,12 +7,12 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
 
 export function ContactCommunity({ error, eventLabel }: ContactCommunityProps) {
-  // TODO  <LiftIcon  className="lift-contact-community__external-link-icon" icon={faExternalLinkAlt} /> in externa lin
+  // TODO  <puvIcon  className="puv-contact-community__external-link-icon" icon={faExternalLinkAlt} /> in externa lin
   return (
     <>
       {sanitoryErrMsg(error)}.
       <ExternalLink
-        className="nx-text-link lift-contact-community__external-link-container"
+        className="nx-text-link puv-contact-community__external-link-container"
         eventLabel={eventLabel}
         to="https://react.dev/community"
       >

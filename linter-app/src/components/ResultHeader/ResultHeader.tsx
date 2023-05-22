@@ -11,8 +11,8 @@ export type ResultHeaderProps = PropsWithChildren<{
 
 export function ResultHeader({ title, url, children }: ResultHeaderProps) {
   return (
-    <div className="lift-results-title-container">
-      <span className="lift-results-title">
+    <div className="puv-results-title-container">
+      <span className="puv-results-title">
         <ResultPageTitle>
           {isNotNullOrUndefined(url) ? (
             <ExternalLink href={url}>{title}</ExternalLink>
@@ -22,7 +22,7 @@ export function ResultHeader({ title, url, children }: ResultHeaderProps) {
         </ResultPageTitle>
       </span>
 
-      <div className="lift-results-details">{children}</div>
+      <div className="puv-results-details">{children}</div>
     </div>
   );
 }

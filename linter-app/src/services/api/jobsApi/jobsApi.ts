@@ -9,7 +9,7 @@ import { useGetQueryWhenJobIsComplete } from "../utils/useGetQueryWhenJobComplet
 import { isNotNullOrUndefined } from "../../../utils/isNotNullOrUndefined";
 import { skipToken } from "@reduxjs/toolkit/dist/query";
 
-// TODO import { liftSdk } from "../../lift";
+// TODO import { puvSdk } from "../../puv";
 
 const getCurrentStatus = async (jobId: string) => {
   const res = await fetch(`http://localhost:3000/jobs/${jobId}/current-status`);

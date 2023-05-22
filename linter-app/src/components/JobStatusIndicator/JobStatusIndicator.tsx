@@ -30,7 +30,7 @@ export const JobStatusIndicator: React.FC<JobStatusIndicatorProps> = ({
     return <Alert severity="info">Analysis in progress</Alert>;
   };
 
-  return <span className="lift-results-indicator">{getStatusIndicator()}</span>;
+  return <span className="puv-results-indicator">{getStatusIndicator()}</span>;
 };
 
 export interface JobStatusIndicatorProps {

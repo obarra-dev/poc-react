@@ -1,3 +1,3 @@
 import { getConfig } from "../config";
 
-// TODO export const liftSdk = new DefaultApi( new Configuration({ basePath: getConfig("PUBLIC_URL") }));
+// TODO export const puvSdk = new DefaultApi( new Configuration({ basePath: getConfig("PUBLIC_URL") }));

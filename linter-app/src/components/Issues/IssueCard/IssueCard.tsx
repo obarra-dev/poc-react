@@ -22,14 +22,14 @@ export function IssueCard({
 
   return (
     <>
-      <div className={classNames("lift-issue-card", "nx-card", className)}>
+      <div className={classNames("puv-issue-card", "nx-card", className)}>
         <IssueCardTitle toolNote={toolNote} />
 
         <CustomMarkdown
           content={toolNote.description.split("\n").slice(0, 2).join("\n")}
-          className="lift-issue-card__markdown-description"
+          className="puv-issue-card__markdown-description"
         />
-        <div className="lift-issue-card__meta-data-area">
+        <div className="puv-issue-card__meta-data-area">
           <NoteCardMeta
             toolNote={toolNote}
             jobSummary={jobSummary}
@@ -37,12 +37,12 @@ export function IssueCard({
             githubRepo={githubRepo}
           />
 
-          <span className="lift-node-card-meta__tool-display">
+          <span className="puv-node-card-meta__tool-display">
             <FontAwesomeIcon icon={faTools} /> {toolNote.toolName}
           </span>
 
           <Link
-            className="lift-issue-card__show-details-link"
+            className="puv-issue-card__show-details-link"
             href="#"
             onClick={(e) => {
               e.preventDefault();

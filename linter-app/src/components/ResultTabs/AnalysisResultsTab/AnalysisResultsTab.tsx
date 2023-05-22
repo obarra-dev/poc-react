@@ -62,7 +62,7 @@ export function AnalysisResultsTab({
   ];
 
   return (
-    <div className="lift-results-page__analysis_results-tab">
+    <div className="puv-results-page__analysis_results-tab">
       {/* TODO
        <TabIsPendingLoadingOrErrored
         status={status}

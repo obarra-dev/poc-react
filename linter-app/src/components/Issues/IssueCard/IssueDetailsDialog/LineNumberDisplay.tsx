@@ -10,10 +10,10 @@ export function LineNumberDisplay({
   }
 
   return (
-    <div className={classNames("lift-line-number-display", className)}>
-      <h3 className="lift-line-number-display-header nx-h3">Line</h3>
+    <div className={classNames("puv-line-number-display", className)}>
+      <h3 className="puv-line-number-display-header nx-h3">Line</h3>
 
-      <div className="lift-line-number-display__value">{lineNumber}</div>
+      <div className="puv-line-number-display__value">{lineNumber}</div>
     </div>
   );
 }

@@ -22,7 +22,7 @@ export function Issues({
       {toolNotes.map((toolNote: ToolNote, ndx: number) => {
         return (
           <IssueCard
-            className="lift-issues__issue-card"
+            className="puv-issues__issue-card"
             toolNote={toolNote}
             jobSummary={jobSummary}
             githubOwner={resultIdentifier.owner}

@@ -1,4 +1,4 @@
-// must match deployment/service/lift-frontend/default.conf.template
+// must match deployment/service/puv-frontend/default.conf.template
 // and web/console/app/src/setupProxy.js
 import { isUndefined } from "./utils/isUndefinined";
 
