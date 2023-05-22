@@ -21,18 +21,18 @@ function App(): JSX.Element {
   }
 
   function addTask(name: string): void {
-    const newTasks: Task[] = [...tasks, { name, done: false }];
+    const newTasks = [...tasks, { name, done: false }];
     setTasks(newTasks);
   }
 
   function toggleDoneTask(i: number): void {
-    const newTasks: Task[] = [...tasks];
+    const newTasks = [...tasks];
     newTasks[i].done = !newTasks[i].done;
     setTasks(newTasks);
   }
 
   function removeTask(i: number): void {
-    const newTasks: Task[] = [...tasks];
+    const newTasks = [...tasks];
     newTasks.splice(i, 1);
     setTasks(newTasks);
   }
@@ -58,20 +58,20 @@ function App(): JSX.Element {
                 />
                 <button className="btn btn-success btn-block mt-2">Save</button>
               </form>
-              {tasks.map((t: Task, i: number) => (
-                <div key={i} className="card card-body mt-2">
+              {tasks.map((t: Task, index: number) => (
+                <div key={index} className="card card-body mt-2">
                   <h2 style={{ textDecoration: t.done ? "line-through" : "" }}>
                     {t.name}
                   </h2>
                   <div>
                     <button
-                      onClick={() => toggleDoneTask(i)}
+                      onClick={() => toggleDoneTask(index)}
                       className="btn btn-secondary"
                     >
                       {t.done ? "✓" : "✗"}
                     </button>
                     <button
-                      onClick={() => removeTask(i)}
+                      onClick={() => removeTask(index)}
                       className="btn btn-danger"
                     >
                       🗑
