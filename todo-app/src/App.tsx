@@ -43,7 +43,7 @@ function App(): JSX.Element {
         <div className="col-md-6 offset-md-3">
           <div className="card">
             <div className="card-header">
-              <h1 className="text-center">Tasks ReactTs</h1>
+              <h1 className="text-center">TODOs</h1>
             </div>
             <div className="card-body">
               <form onSubmit={handleSubmit}>
