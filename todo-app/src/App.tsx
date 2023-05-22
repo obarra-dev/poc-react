@@ -13,29 +13,29 @@ function App(): JSX.Element {
   const [tasks, setTasks] = useState<Task[]>([]);
   const taskInput = useRef<HTMLInputElement>(null);
 
-  function handleSubmit(e: FormElemEvent): void  {
+  function handleSubmit(e: FormElemEvent): void {
     e.preventDefault();
     addTask(newTask);
     setNewTask("");
     taskInput.current?.focus();
-  };
+  }
 
-  function addTask(name: string): void  {
+  function addTask(name: string): void {
     const newTasks: Task[] = [...tasks, { name, done: false }];
     setTasks(newTasks);
-  };
+  }
 
-  function toggleDoneTask  (i: number): void  {
+  function toggleDoneTask(i: number): void {
     const newTasks: Task[] = [...tasks];
     newTasks[i].done = !newTasks[i].done;
     setTasks(newTasks);
-  };
+  }
 
-  function removeTask (i: number): void {
+  function removeTask(i: number): void {
     const newTasks: Task[] = [...tasks];
     newTasks.splice(i, 1);
     setTasks(newTasks);
-  };
+  }
 
   return (
     <div className="container p-4">
@@ -50,7 +50,7 @@ function App(): JSX.Element {
                 <input
                   type="text"
                   value={newTask}
-                  onChange={e => setNewTask(e.target.value)}
+                  onChange={(e) => setNewTask(e.target.value)}
                   ref={taskInput}
                   className="form-control"
                   required
