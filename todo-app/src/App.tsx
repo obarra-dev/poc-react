@@ -24,15 +24,15 @@ function App(): JSX.Element {
     setTasks(newTasks);
   }
 
-  function toggleDoneTask(i: number): void {
+  function toggleDoneTask(index: number): void {
     const newTasks = [...tasks];
-    newTasks[i].done = !newTasks[i].done;
+    newTasks[index].done = !newTasks[index].done;
     setTasks(newTasks);
   }
 
-  function removeTask(i: number): void {
+  function removeTask(index: number): void {
     const newTasks = [...tasks];
-    newTasks.splice(i, 1);
+    newTasks.splice(index, 1);
     setTasks(newTasks);
   }
 
