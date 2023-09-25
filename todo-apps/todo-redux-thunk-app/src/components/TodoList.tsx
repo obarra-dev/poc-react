@@ -1,10 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TodosState } from "../redux/todo.types";
+import { getTodos } from "../redux/todo.thunks";
 import { TodoItem } from "./TodoItem";
-import { fetchTodosStart, fetchTodosSuccess, fetchTodosError } from "../redux/todo.actions";
-import { fetchTodos } from "../api/todos";
-
 
 export function TodoList() {
   const loading = useSelector(
@@ -17,11 +15,7 @@ export function TodoList() {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    dispatch(fetchTodosStart());
-    fetchTodos()
-    .then(response => dispatch(fetchTodosSuccess(response.data)))
-    .catch(error => dispatch(fetchTodosError(error as Error)))
-
+    dispatch(getTodos() as any);
   }, [dispatch]);
 
   if (loading) {

@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchTodos } from "../api/todos";
 import { getMaxTodoId } from "../utils";
-import { AppThunk } from "./store";
 import { Todo, TodosState } from "./todo.types";
 
 const initialState: TodosState = {
@@ -60,18 +58,6 @@ const todoSlice = createSlice({
     },
   },
 });
-
-export const getTodos = (): AppThunk => {
-  return async (dispatch) => {
-    dispatch(fetchTodosStart());
-    try {
-      const response = await fetchTodos();
-      dispatch(fetchTodosSuccess(response.data));
-    } catch (error) {
-      dispatch(fetchTodosError(error as Error));
-    }
-  };
-};
 
 export const {
   addTodo,

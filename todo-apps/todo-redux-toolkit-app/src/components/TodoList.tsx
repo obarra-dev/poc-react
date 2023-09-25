@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getTodos } from "../redux/todo.slice";
+import { getTodos } from "../redux/todo.thunks";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { TodoItem } from "./TodoItem";
 
