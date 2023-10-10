@@ -1,6 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getMaxTodoId } from "../utils";
 import { Todo, TodosState } from "./todo.types";
+import { fetchTodos } from "../api/todos";
+import { getTodosWithCreateAsyncThunk } from "./todo.thunks";
 
 const initialState: TodosState = {
   items: [],
@@ -57,7 +59,27 @@ const todoSlice = createSlice({
       };
     },
   },
+  extraReducers(builder) {
+    builder
+        .addCase(getTodosWithCreateAsyncThunk.pending, (state, action) => {
+            state.loading = true,
+            state.error = null,
+            state.items =[]
+        })
+        .addCase(getTodosWithCreateAsyncThunk.fulfilled, (state, action) => {
+          state.loading = false,
+          state.error = null,
+          state.items = action.payload
+        })
+        .addCase(getTodosWithCreateAsyncThunk.rejected, (state, action) => {
+          state.loading = false,
+            //state.error = action.error.message
+          state.error = new Error("some error"), 
+          state.items =[]
+        })
+}
 });
+
 
 export const {
   addTodo,

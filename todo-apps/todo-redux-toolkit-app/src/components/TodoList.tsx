@@ -1,16 +1,20 @@
 import { useEffect } from "react";
-import { getTodos } from "../redux/todo.thunks";
+import { getTodos, getTodosWithCreateAsyncThunk } from "../redux/todo.thunks";
+
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { TodoItem } from "./TodoItem";
 
 export function TodoList() {
   const loading = useAppSelector((state) => state.todos.loading);
   const todos = useAppSelector((state) => state.todos.items);
+  const error = useAppSelector((state) => state.todos.error);
+
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getTodos());
+   // dispatch(getTodosWithCreateAsyncThunk())
   }, [dispatch]);
 
   if (loading) {
@@ -19,6 +23,12 @@ export function TodoList() {
         <i className="fa fa-spinner fa-spin fa-4x"></i>
       </div>
     );
+  }
+
+  if (error) {
+    return (
+      <div>Error...</div>
+    )
   }
 
   return (
