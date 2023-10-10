@@ -1,7 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getMaxTodoId } from "../utils";
 import { Todo, TodosState } from "./todo.types";
-import { fetchTodos } from "../api/todos";
 import { getTodosWithCreateAsyncThunk } from "./todo.thunks";
 
 const initialState: TodosState = {
@@ -61,7 +60,7 @@ const todoSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-        .addCase(getTodosWithCreateAsyncThunk.pending, (state, action) => {
+        .addCase(getTodosWithCreateAsyncThunk.pending, (state) => {
             state.loading = true,
             state.error = null,
             state.items =[]
