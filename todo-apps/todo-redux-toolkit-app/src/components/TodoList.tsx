@@ -9,13 +9,11 @@ export function TodoList() {
   const todos = useAppSelector((state) => state.todos.items);
   const error = useAppSelector((state) => state.todos.error);
 
-  console.log("render")
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getTodos());
-   // dispatch(getTodosWithCreateAsyncThunk())
+    dispatch(getTodosWithCreateAsyncThunk())
   }, [dispatch]);
 
   if (loading) {
