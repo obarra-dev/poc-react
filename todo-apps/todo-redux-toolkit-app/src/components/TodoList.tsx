@@ -12,7 +12,7 @@ export function TodoList() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getTodos());
+   // dispatch(getTodos());
     dispatch(getTodosWithCreateAsyncThunk())
   }, [dispatch]);
 
@@ -26,7 +26,7 @@ export function TodoList() {
 
   if (error) {
     return (
-      <div>Error...</div>
+      <div>Error reason: {error.message}</div>
     )
   }
 

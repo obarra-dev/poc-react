@@ -65,15 +65,14 @@ const todoSlice = createSlice({
             state.error = null,
             state.items =[]
         })
-        .addCase(getTodosWithCreateAsyncThunk.fulfilled, (state, action) => {
+        .addCase(getTodosWithCreateAsyncThunk.fulfilled, (state, action: PayloadAction<Todo[]>) => {
           state.loading = false,
           state.error = null,
           state.items = action.payload
         })
         .addCase(getTodosWithCreateAsyncThunk.rejected, (state, action) => {
           state.loading = false,
-            //state.error = action.error.message
-          state.error = new Error("some error"), 
+          state.error = new Error(action.payload as string), 
           state.items =[]
         })
 }
