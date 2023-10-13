@@ -16,8 +16,8 @@ export const getTodos = (): AppThunk => {
       await new Promise((resolve) => setInterval(resolve, 3000));
       const response = await fetchTodos();
       dispatch(fetchTodosSuccess(response.data));
-    } catch (error) {
-      dispatch(fetchTodosError(error as string));
+    } catch (err) {
+     dispatch(fetchTodosError(err as Error));
     }
   };
 };

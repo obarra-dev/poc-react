@@ -12,8 +12,8 @@ export function TodoList() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-   // dispatch(getTodos());
-    dispatch(getTodosWithCreateAsyncThunk())
+    dispatch(getTodos());
+   // dispatch(getTodosWithCreateAsyncThunk())
   }, [dispatch]);
 
   if (loading) {

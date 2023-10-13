@@ -37,7 +37,7 @@ const todoSlice = createSlice({
       return {
         ...state,
         loading: true,
-        error: null,
+        errorMessage: null,
         items: [],
       };
     },
@@ -45,15 +45,15 @@ const todoSlice = createSlice({
       return {
         ...state,
         loading: false,
-        error: null,
+        errorMessage: null,
         items: action.payload,
       };
     },
-    fetchTodosError(state, action: PayloadAction<string>) {
+    fetchTodosError(state, action: PayloadAction<Error>) {
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        errorMessage: action.payload.message,
         items: [],
       };
     },
