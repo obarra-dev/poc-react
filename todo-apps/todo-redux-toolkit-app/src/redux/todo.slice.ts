@@ -6,7 +6,7 @@ import { getTodosWithCreateAsyncThunk } from "./todo.thunks";
 const initialState: TodosState = {
   items: [],
   loading: false,
-  error: null,
+  errorMessage: null,
 };
 
 const todoSlice = createSlice({
@@ -49,7 +49,7 @@ const todoSlice = createSlice({
         items: action.payload,
       };
     },
-    fetchTodosError(state, action: PayloadAction<Error>) {
+    fetchTodosError(state, action: PayloadAction<string>) {
       return {
         ...state,
         loading: false,
@@ -62,19 +62,24 @@ const todoSlice = createSlice({
     builder
         .addCase(getTodosWithCreateAsyncThunk.pending, (state) => {
             state.loading = true,
-            state.error = null,
+            state.errorMessage = null,
             state.items =[]
         })
         .addCase(getTodosWithCreateAsyncThunk.fulfilled, (state, action) => {
           state.loading = false,
-          state.error = null,
+          state.errorMessage = null,
           state.items = action.payload
         })
         .addCase(getTodosWithCreateAsyncThunk.rejected, (state, action) => {
-          
+         if (action.payload) {
+          // here action.payload is unkonwn, how can I define a string?
+          state.errorMessage = `API frendly error: ${action.payload}`
+        } else if (action.error.message) {
+          state.errorMessage = `Technical error: ${action.error.message}`
+        } else {
+          state.errorMessage = 'Generic error' 
+        }
           state.loading = false,
-          state.error = new Error(action.payload as string), 
-          
           state.items =[]
         })
 }

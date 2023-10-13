@@ -7,7 +7,7 @@ import { TodoItem } from "./TodoItem";
 export function TodoList() {
   const loading = useAppSelector((state) => state.todos.loading);
   const todos = useAppSelector((state) => state.todos.items);
-  const error = useAppSelector((state) => state.todos.error);
+  const errorMessage = useAppSelector((state) => state.todos.errorMessage);
 
   const dispatch = useAppDispatch();
 
@@ -24,9 +24,9 @@ export function TodoList() {
     );
   }
 
-  if (error) {
+  if (errorMessage) {
     return (
-      <div>Error reason: {error.message}</div>
+      <div>Error reason: {errorMessage}</div>
     )
   }
 

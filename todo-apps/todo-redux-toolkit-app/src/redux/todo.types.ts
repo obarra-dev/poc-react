@@ -7,5 +7,5 @@ export interface Todo {
 export interface TodosState {
   items: Todo[];
   loading: boolean;
-  error: Error | null;
+  errorMessage: string | null;
 }

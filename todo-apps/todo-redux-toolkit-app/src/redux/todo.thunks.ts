@@ -7,6 +7,7 @@ import {
 import { AppThunk } from "./store";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Todo } from "./todo.types";
+import { AxiosError } from "axios";
 
 export const getTodos = (): AppThunk => {
   return async (dispatch) => {
@@ -16,10 +17,14 @@ export const getTodos = (): AppThunk => {
       const response = await fetchTodos();
       dispatch(fetchTodosSuccess(response.data));
     } catch (error) {
-      dispatch(fetchTodosError(error as Error));
+      dispatch(fetchTodosError(error as string));
     }
   };
 };
+
+function checkIsAxiosError(error: unknown): error is AxiosError {
+  return (error as AxiosError).isAxiosError !== undefined
+}
 
 export const getTodosWithCreateAsyncThunk = createAsyncThunk<Todo[], void>(
   "todos/fetchTodos",
@@ -30,7 +35,14 @@ export const getTodosWithCreateAsyncThunk = createAsyncThunk<Todo[], void>(
       const data = response.data;
       return data as Todo[];
     } catch (err) {
-      return rejectWithValue([] as Todo[]);
+      if (checkIsAxiosError(err)) {
+        // get custom message from backend
+        if (err.response && err.response.data) {
+          return rejectWithValue(err.response.data)
+        }
+      }
+      
+      throw err
     }
   }
 );
