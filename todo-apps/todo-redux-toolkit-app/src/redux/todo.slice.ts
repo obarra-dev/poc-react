@@ -60,31 +60,27 @@ const todoSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-        .addCase(getTodosWithCreateAsyncThunk.pending, (state) => {
-            state.loading = true,
-            state.errorMessage = null,
-            state.items =[]
-        })
-        .addCase(getTodosWithCreateAsyncThunk.fulfilled, (state, action) => {
-          state.loading = false,
-          state.errorMessage = null,
-          state.items = action.payload
-        })
-        .addCase(getTodosWithCreateAsyncThunk.rejected, (state, action) => {
-         if (action.payload) {
+      .addCase(getTodosWithCreateAsyncThunk.pending, (state) => {
+        (state.loading = true), (state.errorMessage = null), (state.items = []);
+      })
+      .addCase(getTodosWithCreateAsyncThunk.fulfilled, (state, action) => {
+        (state.loading = false),
+          (state.errorMessage = null),
+          (state.items = action.payload);
+      })
+      .addCase(getTodosWithCreateAsyncThunk.rejected, (state, action) => {
+        if (action.payload) {
           // here action.payload is unkonwn, how can I define a string?
-          state.errorMessage = `API frendly error: ${action.payload}`
+          state.errorMessage = `API frendly error: ${action.payload}`;
         } else if (action.error.message) {
-          state.errorMessage = `Technical error: ${action.error.message}`
+          state.errorMessage = `Technical error: ${action.error.message}`;
         } else {
-          state.errorMessage = 'Generic error' 
+          state.errorMessage = "Generic error";
         }
-          state.loading = false,
-          state.items =[]
-        })
-}
+        (state.loading = false), (state.items = []);
+      });
+  },
 });
-
 
 export const {
   addTodo,

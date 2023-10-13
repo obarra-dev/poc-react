@@ -17,13 +17,13 @@ export const getTodos = (): AppThunk => {
       const response = await fetchTodos();
       dispatch(fetchTodosSuccess(response.data));
     } catch (err) {
-     dispatch(fetchTodosError(err as Error));
+      dispatch(fetchTodosError(err as Error));
     }
   };
 };
 
 function checkIsAxiosError(error: unknown): error is AxiosError {
-  return (error as AxiosError).isAxiosError !== undefined
+  return (error as AxiosError).isAxiosError !== undefined;
 }
 
 export const getTodosWithCreateAsyncThunk = createAsyncThunk<Todo[], void>(
@@ -38,11 +38,11 @@ export const getTodosWithCreateAsyncThunk = createAsyncThunk<Todo[], void>(
       if (checkIsAxiosError(err)) {
         // get custom message from backend
         if (err.response && err.response.data) {
-          return rejectWithValue(err.response.data)
+          return rejectWithValue(err.response.data);
         }
       }
-      
-      throw err
+
+      throw err;
     }
   }
 );
