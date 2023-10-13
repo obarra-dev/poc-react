@@ -6,6 +6,7 @@ import {
 } from "./todo.slice";
 import { AppThunk } from "./store";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { Todo } from "./todo.types";
 
 export const getTodos = (): AppThunk => {
   return async (dispatch) => {
@@ -20,15 +21,16 @@ export const getTodos = (): AppThunk => {
   };
 };
 
-export const getTodosWithCreateAsyncThunk = createAsyncThunk(
+export const getTodosWithCreateAsyncThunk = createAsyncThunk<Todo[], void>(
   "todos/fetchTodos",
   async (_, { rejectWithValue }) => {
     try {
       await new Promise((resolve) => setInterval(resolve, 3000));
       const response = await fetchTodos();
-      return response.data;
+      const data = response.data;
+      return data as Todo[];
     } catch (err) {
-      return rejectWithValue(err);
+      return rejectWithValue([] as Todo[]);
     }
   }
 );
