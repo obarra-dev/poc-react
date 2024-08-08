@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- example from https://www.youtube.com/watch?v=tbBILjDgXb4-->
+    >
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const originalItems = [
+        { value: "", id: 1 },
+        { value: "", id: 2 },
+        { value: "", id: 3 },
+      ];
+
+      // using memo and useCallback we avoid that the rest of the brother item renders
+      /**
+       * 
+       misconception about react
+it's not gonna re-render children unless these 3 props have not been changed (that is false)
+in fact, that's not true as long as the parent gets re-rendered it re-renders all of its children recursiverly
+that is caousing our performance issue
+to alleviate that we can use this memo 
+but the function is still changing, this is because a new one is created in each parent render
+to alleviate that we can use callback
+       */
+      const Item = React.memo(({ id, value, onChange }) => {
+        return (
+          <div>
+            <h5>Re-render {(Math.random() * 100).toFixed()}</h5>
+            <label htmlFor="text">Item</label>
+            <input
+              type="text"
+              name="text"
+              onChange={(e) => onChange(id, e.target.value)}
+              value={value}
+            />
+          </div>
+        );
+      });
+
+      function MyApp() {
+        let [items, setItems] = React.useState(originalItems);
+
+        const changeValue = React.useCallback((id, value) => {
+          setItems((prevItems) =>
+            prevItems.map((item) => {
+              if (item.id === id) {
+                item.value = value;
+              }
+              return item;
+            })
+          );
+        }, []);
+
+        return (
+          <>
+            <header>
+              <h1>Parent</h1>
+              <p>{JSON.stringify(items)}</p>
+            </header>
+            <body>
+              {items.map(
+                (item, index) =>
+                  item && (
+                    <Item
+                      key={index}
+                      id={item.id}
+                      value={item.value}
+                      onChange={changeValue}
+                    />
+                  )
+              )}
+            </body>
+          </>
+        );
+      }
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
+</html>
