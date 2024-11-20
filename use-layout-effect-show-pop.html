@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // example from https://www.youtube.com/watch?v=wU57kvYOxT4&t=30s
+      function UsingUseLayoutEffect() {
+        const [show, setShow] = React.useState(false);
+        const popupRef = React.useRef();
+        const buttonRef = React.useRef();
+
+        // USE CASE: you need to do something based on the layout of your DOM
+        // if you need to measure DOM elements,
+        // if you need to move things in the dom that are going to be visible to the user
+
+        React.useLayoutEffect(() => {
+          if (popupRef.current == null || buttonRef.current == null) {
+            return;
+          }
+          const { bottom } = buttonRef.current.getBoundingClientRect();
+          popupRef.current.style.top = `${bottom + 40}px`;
+        }, [show]);
+
+        return (
+          <div>
+            <h2>Using useLayoutEffect</h2>
+            <button ref={buttonRef} onClick={() => setShow((prev) => !prev)}>
+              Show popup
+            </button>
+
+            {show && (
+              <div ref={popupRef} style={{ position: "absolute" }}>
+                This is a popup
+              </div>
+            )}
+          </div>
+        );
+      }
+
+      function UsingUseEffect() {
+        const [show, setShow] = React.useState(false);
+        const popupRef = React.useRef();
+        const buttonRef = React.useRef();
+
+        React.useEffect(() => {
+          if (popupRef.current == null || buttonRef.current == null) {
+            return;
+          }
+          const { bottom } = buttonRef.current.getBoundingClientRect();
+          popupRef.current.style.top = `${bottom + 40}px`;
+        }, [show]);
+
+        return (
+          <div>
+            <h2>Using useEffect</h2>
+            <button ref={buttonRef} onClick={() => setShow((prev) => !prev)}>
+              Show popup
+            </button>
+
+            {show && (
+              <div ref={popupRef} style={{ position: "absolute" }}>
+                This is a popup
+              </div>
+            )}
+          </div>
+        );
+      }
+
+      function MyApp() {
+        return (
+          <div>
+            <UsingUseLayoutEffect />
+            <UsingUseEffect />
+          </div>
+        );
+      }
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
+</html>

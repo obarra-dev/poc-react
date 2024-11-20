@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // example from https://www.youtube.com/watch?v=9GAt97z8Jc4
+      function UsingUseLayoutEffect() {
+        const [isAdmin, setIsAdmin] = React.useState(true);
+        const [userId, setUserId] = React.useState(1);
+
+        let now = performance.now();
+        while (performance.now() - now < 200) {
+          // Artificial delay -- do nothing for 200ms
+        }
+
+        // USE CASE: you need to do something based on the layout of your DOM
+        // if you need to measure DOM elements, 
+        // if you need to move things in the dom that are going to be visible to the user
+        
+        // useLayoutEffect is sync, it will block the rendering
+        // useLayoutEffect is identical to useEffect, but it is synchronous
+        // useLayoutEffect is not good for performance, you are blocking the entire rendering just to run this piece of code
+        React.useLayoutEffect(() => {
+          setIsAdmin(userId === 1);
+        }, [userId]);
+
+        function onClick() {
+          const otherId = userId === 1 ? 2 : 1;
+          setUserId(otherId);
+        }
+
+        // the render will happen every 400ms only one time, when the button is clicked
+        return (
+          <div>
+            <h2>Using useLayoutEffect</h2>
+            <p>userId: {userId}</p>
+            <p>admin: {isAdmin ? "true" : "false"}</p>
+            <button onClick={onClick}>change user</button>
+          </div>
+        );
+      }
+
+      function UsingUseEffect() {
+        const [isAdmin, setIsAdmin] = React.useState(true);
+        const [userId, setUserId] = React.useState(1);
+        console.log("UsingUseEffect");
+        let now = performance.now();
+        while (performance.now() - now < 200) {
+          // Artificial delay -- do nothing for 200ms
+        }
+
+        // useEffect is async, it will not block the rendering
+        React.useEffect(() => {
+          // it is not a good practice, It is used only for demonstration purposes
+          // you should not have an effect that will set a property based on onther property 
+          // you should instead DERIVE the state
+          setIsAdmin(userId === 1);
+        }, [userId]);
+
+        function onClick() {
+          const otherId = userId === 1 ? 2 : 1;
+          setUserId(otherId);
+        }
+
+        // the render will happen every 200ms two times when the button is clicked
+        return (
+          <div>
+            <h2>Using useEffect</h2>
+            <p>userId: {userId}</p>
+            <p>admin: {isAdmin ? "true" : "false"}</p>
+            <button onClick={onClick}>change user</button>
+          </div>
+        );
+      }
+
+      function MyApp() {
+        return (
+          <div>
+            <UsingUseLayoutEffect />
+            <UsingUseEffect />
+          </div>
+        );
+      }
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
+</html>
