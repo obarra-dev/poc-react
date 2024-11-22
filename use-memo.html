@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // example from https://www.youtube.com/watch?v=vpE9I_eqHdM
+      
+      const MAX = 29_999_999;
+      const initialItems = Array.from({ length: MAX }, (_, index) => index + 1);
+
+      function MyApp() {
+        const [count, setCount] = React.useState(0);
+        const [items] = React.useState(initialItems);
+
+        // this is very expensive because it has to iterate over a huge number of items
+        // if this is called in every render, it will slow down the app
+        const selectedItemFn = () => items.find((item) => item === MAX);
+
+        // USE CASE: when you have a very expensive function that causes performance issues
+        // and that function it does not need to be called in every render (calling inecesarly)
+        
+        //NOTE be careful: useMemo compare the previous value with the new value, it can couse performance issues too
+        
+        // selectedItemFn will be executed only the first time and if items changes
+        const memoizedSelectedItem = React.useMemo(
+          selectedItemFn,
+          [items]
+        );
+
+        return (
+          <>
+            <h2>Use memo</h2>
+            <p>Count: {count}</p>
+            <p>Selected item: {memoizedSelectedItem}</p>
+            <button onClick={() => setCount(count + 1)}>Increment</button>
+          </>
+        );
+      }
+
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this page for starting a new React project with JSX:
+      https://react.dev/learn/start-a-new-react-project
+
+      Read this page for adding React with JSX to an existing project:
+      https://react.dev/learn/add-react-to-an-existing-project
+    -->
+  </body>
+</html>
