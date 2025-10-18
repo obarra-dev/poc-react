@@ -23,6 +23,7 @@
 
         // this is very expensive because it has to iterate over a huge number of items
         // if this is called in every render, it will slow down the app
+        // this example, the function is not executed, only the creation of the function is done so it is not that expensive
         const selectedItemFn = () => items.find((item) => item === MAX);
 
         // USE CASE: when you have a very expensive function that causes performance issues
